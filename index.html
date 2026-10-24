@@ -287,6 +287,8 @@ ul.gl li{display:block}ul.gl li b{display:block}
     <button class="btn" data-first="opp" aria-pressed="false">ฉันหลัง</button>
   </div>
   <div class="links"><span id="decklinks"></span><button id="imgs">ใส่รูปการ์ด</button></div>
+  <button class="btn tutbtn" id="imgs2" style="margin-top:14px">🖼 ใส่รูปการ์ด · นำเข้าแพ็กรูป</button>
+  <p class="note" id="imgstat"></p>
   <div id="onlinebox"><h2>เล่นกับเพื่อน (ออนไลน์)</h2>
   <p class="sub">เลือกเด็คด้านบนก่อน คนหนึ่งกดสร้างห้องแล้วส่งรหัสให้อีกคน รูปการ์ด: กด “ใส่รูปการ์ด” แล้วนำเข้าแพ็กรูปครั้งเดียว</p>
   <div class="seg"><button class="btn" id="host">สร้างห้อง</button></div>
@@ -3076,6 +3078,7 @@ function initUI(){
   st.querySelectorAll('[data-opp]').forEach(b=>b.onclick=()=>{ oppDeck=b.dataset.opp; st.querySelectorAll('[data-opp]').forEach(x=>x.setAttribute('aria-pressed',x===b)); });
   st.querySelectorAll('[data-first]').forEach(b=>b.onclick=()=>{ first=b.dataset.first; st.querySelectorAll('[data-first]').forEach(x=>x.setAttribute('aria-pressed',x===b)); });
   document.getElementById('imgs').onclick=openImageManager;
+  { const b2=document.getElementById('imgs2'); if(b2) b2.onclick=openImageManager; const st2=document.getElementById('imgstat'); const upd=()=>{ if(st2) st2.textContent=Object.keys(IMG).length?`มีรูปการ์ดในเครื่องนี้แล้ว ${Object.keys(IMG).length} ใบ`:'ยังไม่มีรูปการ์ดในเครื่องนี้ — กดปุ่มด้านบน แล้วเลือก “นำเข้าแพ็กรูป (.json)”'; }; upd(); setTimeout(upd,800); setInterval(upd,3000); }
   imgLoadAll();
   st.querySelectorAll('[data-list]').forEach(b=>b.onclick=()=>{ openSheet(deckListHTML(b.dataset.list)); sheetEl.querySelector('#cls').onclick=closeSheet; });
   const tb=document.getElementById('tut'); if(tb) tb.onclick=()=>lessonSheet(0,()=>{ st.hidden=true; document.getElementById('app').hidden=false; COACH.done=new Set(); startGame('rezael','kairi','me',false,false,true); });
