@@ -2868,7 +2868,7 @@ function render(){
   let btns='';
   if(UIPICK) btns=`<span class="hint pk2">${esc(UIPICK.title)}<br><small>แตะช่องที่เรืองแสงบนกระดาน</small></span>${UIPICK.cancel?'<button class="btn" data-bar="pickcancel">ยกเลิก</button>':''}`;
   else if(G.over) btns=`<button class="btn pri" data-bar="again">เล่นใหม่</button>`;
-  else if(!mine || G.busy || !G.next) btns=`<span class="wait">${mine?((typeof PEND!=='undefined'&&Object.keys(PEND).length)?'รอเพื่อนตัดสินใจ…':'กำลังประมวลผล…'):(NET.role?'รอเพื่อนเล่น…':'รอคู่แข่ง')}</span>`;
+  else if(!mine || G.busy || !G.next) btns=`<span class="wait">${mine?((typeof PEND!=='undefined'&&Object.keys(PEND).length)?'รอเพื่อนตัดสินใจ…':'กำลังประมวลผล…'):(NET.role?'รอเพื่อนเล่น…':'รอคู่แข่ง')}${NET.role==='guest'?'<br><small>ถ้ารอนาน: ให้คนสร้างห้องเปิดหน้าเกมค้างไว้ อย่าสลับไปแอปอื่น</small>':''}</span>`;
   else if(G.phase==='main'){
     btns=`<button class="btn" data-bar="act" ${acts(me).length?'':'disabled'}>ใช้สกิล (${acts(me).length})</button>`
       + `<button class="btn pri" data-bar="next">${G.turn>1?'เข้าสู่ Battle':'จบเทิร์น'}</button>`;
@@ -2893,7 +2893,13 @@ async function onTap(e){
     const a=t.dataset.bar;
     if(a==='again') return location.reload();
     if(a==='mute'){ toggleMute(); return; }
-    if(a==='bgm'){ toggleBgm(); return; }
+    if(a==='bgm'){
+      const v=await ask('เพลงประกอบ', BGM.on&&BGM.cur?('กำลังเล่น: '+TRACKS[BGM.cur].name):'ปิดอยู่',
+        BGM.on?[{l:'⏹ ปิดเพลง',v:'off',pri:1},{l:'⏭ เปลี่ยนเพลง',v:'next'},{l:'ยกเลิก',v:null}]:[{l:'▶ เปิดเพลง',v:'on',pri:1},{l:'ยกเลิก',v:null}]);
+      if(v==='off'){ BGM.on=false; bgmStop(); try{ localStorage.setItem('vg-bgm','0'); }catch(e){} }
+      if(v==='on'){ BGM.on=true; try{ localStorage.setItem('vg-bgm','1'); }catch(e){} actx(); bgmShuffle(); bgmSync(); }
+      if(v==='next' && BGM.timer) bgmNextTrack();
+      render(); return; }
     if(a==='voice'){ toggleVoice(); return; }
     if(a==='help'){ helpSheet(); return; }
     if(a==='exit'){ const v=await ask('ออกจากเกม?',NET.role?'อีกฝ่ายจะเห็นว่าคุณออกจากเกม และเกมนี้จะจบทันที':'เกมนี้จะจบและกลับไปหน้าแรก',[{l:'ออกจากเกม',v:true,pri:1},{l:'เล่นต่อ',v:false}]); if(v){ if(NET.role) netSend('x',{}); setTimeout(()=>location.reload(),900); } return; }
@@ -2901,9 +2907,9 @@ async function onTap(e){
     if(a==='next'){ if(NET.role==='guest'){ G.next=null; render(); netSend('i',{k:'next'}); return; } const r=G.next; G.next=null; r(); return; }
     if(a==='act'){
       const L=acts(me); if(!L.length) return;
-      G.busy=true; render();
+      const lb=NET.role!=='guest'; if(lb){ G.busy=true; render(); }
       try{ const k=await ask('ใช้สกิล [ACT]','',L.map(x=>({l:x.l,v:x.k})).concat([{l:'ยกเลิก',v:null}])); if(k){ if(NET.role==='guest') netSend('i',{k:'act',a:{k}}); else await doAct(me,k); } }
-      finally{ G.busy=false; render(); }
+      finally{ if(lb) G.busy=false; render(); }
     }
     return;
   }
@@ -2923,7 +2929,7 @@ async function onTap(e){
     const opts=[]; if(canCall) opts.push({l:'Call ลงสนาม',v:'call',pri:1}); if(canSet) opts.push({l:u.c.kind==='normal'?'เล่น Order':'เล่น Set Order',v:'set',pri:1});
     if(u.c.kind==='blitz'||u.c.kind==='ticket') opts.push({l:'ใช้ได้ตอนถูกโจมตี (หน้าจอ Guard)',v:null,dis:true});
     opts.push({l:'ปิด',v:null});
-    const act=!!humanFree; if(act){ G.busy=true; render(); }
+    const act=!!humanFree && NET.role!=='guest'; if(act){ G.busy=true; render(); }
     try{
       const v=await ask(u.c.n,cardDesc(u),opts);
       if(v==='call'){ const c=await pickCircle(me,`Call ${u.c.s} ลงช่องไหน`,RCS); if(c){ if(NET.role==='guest') netSend('i',{k:'call',a:{uid:u.uid,c}}); else await execIntent(me,'call',{uid:u.uid,c}); } }
@@ -2933,7 +2939,7 @@ async function onTap(e){
   }
   if(t.dataset.cir){
     const [pi,c]=t.dataset.cir.split('-'); const p=G.p[+pi]; const u=p.f[c]; if(!u) return;
-    const act=!!humanFree; if(act){ G.busy=true; render(); }
+    const act=!!humanFree && NET.role!=='guest'; if(act){ G.busy=true; render(); }
     try{
       if(+pi===0 && humanFree && G.phase==='battle' && canAttackFrom(p,c)){ try{ await humanAttack(c); } catch(err){ console.error(err); const nx=G.next; recoverError(err); G.next=nx; } return; }
       const opts=[];
@@ -3008,7 +3014,7 @@ async function hostIntent(k,a){
 const ANSWERED={}; let curPrompt=0;
 async function guestPrompt(m){
   if(ANSWERED[m.id]!==undefined){ netSend('a',{id:m.id,v:ANSWERED[m.id]}); return; }
-  if(curPrompt===m.id) return; curPrompt=m.id;
+  if(curPrompt===m.id && (!wrapEl.hidden || UIPICK)) return; curPrompt=m.id;
   let v; const a=m.args;
   try{
   if(m.kind==='ask') v=await ask(a.title,a.text,a.opts);
@@ -3065,6 +3071,7 @@ function deckListHTML(key){
     <div class="txt">ที่มารายการการ์ด: ${D.src||''}\nข้อความการ์ด: en.cf-vanguard.com/cardlist</div><div class="txt">✓ สกิลครบตามข้อความการ์ด · ~ ใส่บางส่วนหรือมีสมมติฐาน · – ใช้ค่าพลังมาตรฐาน ยังไม่ใส่สกิล</div><div class="opts"><button class="btn" id="cls">ปิด</button></div>`;
 }
 function initUI(){
+  document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible' && NET.role==='host' && G && G.p && G.p.length){ NET.lastState=''; sendStateNow(); for(const k in PEND) netSend('p',PEND[k].msg); } });
   document.addEventListener('pointerdown',()=>{ actx(); voicePrime(); },{passive:true});
   sheetEl=document.getElementById('sheet'); wrapEl=document.getElementById('wrap');
   document.getElementById('app').addEventListener('click',onTap);
