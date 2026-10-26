@@ -2868,7 +2868,7 @@ function render(){
   let btns='';
   if(UIPICK) btns=`<span class="hint pk2">${esc(UIPICK.title)}<br><small>แตะช่องที่เรืองแสงบนกระดาน</small></span>${UIPICK.cancel?'<button class="btn" data-bar="pickcancel">ยกเลิก</button>':''}`;
   else if(G.over) btns=`<button class="btn pri" data-bar="again">เล่นใหม่</button>`;
-  else if(!mine || G.busy || !G.next) btns=`<span class="wait">${mine?'กำลังประมวลผล':'รอคู่แข่ง'}</span>`;
+  else if(!mine || G.busy || !G.next) btns=`<span class="wait">${mine?((typeof PEND!=='undefined'&&Object.keys(PEND).length)?'รอเพื่อนตัดสินใจ…':'กำลังประมวลผล…'):(NET.role?'รอเพื่อนเล่น…':'รอคู่แข่ง')}</span>`;
   else if(G.phase==='main'){
     btns=`<button class="btn" data-bar="act" ${acts(me).length?'':'disabled'}>ใช้สกิล (${acts(me).length})</button>`
       + `<button class="btn pri" data-bar="next">${G.turn>1?'เข้าสู่ Battle':'จบเทิร์น'}</button>`;
@@ -3010,11 +3010,14 @@ async function guestPrompt(m){
   if(ANSWERED[m.id]!==undefined){ netSend('a',{id:m.id,v:ANSWERED[m.id]}); return; }
   if(curPrompt===m.id) return; curPrompt=m.id;
   let v; const a=m.args;
+  try{
   if(m.kind==='ask') v=await ask(a.title,a.text,a.opts);
   else if(m.kind==='board') v=await boardPick(a.side,a.title,a.list,a.cancel);
   else { const list=a.list.map(DU); const o={min:a.min,max:a.max};
     if(a.guard){ const items=a.guard.items.map((x,i)=>({u:list[i],t:x.t,c:x.c||undefined})); o.guard={b:G.bat,T:G.p[0].f[a.guard.tgtC],items}; o.validate=s=>!guardValid(G.p[0],items,s); }
     v=await localPickCards(G.p[0],a.title,list,o); }
+  } catch(err){ console.error(err); closeSheet(); UIPICK=null;
+    v = m.kind==='ask' ? ((a.opts.find(x=>!x.dis)||{}).v ?? null) : m.kind==='board' ? (a.cancel?null:a.list[0]) : Array.from({length:a.min||0},(_,i)=>i); }
   ANSWERED[m.id]=v===undefined?null:v; curPrompt=0; netSend('a',{id:m.id,v:ANSWERED[m.id]});
 }
 let shownAnim=0, rx={v:0,parts:[],got:0};
@@ -3042,6 +3045,7 @@ async function setupOnline(getDeck,getFirst){
     peer.on('open',()=>netMsg(`รหัสห้อง: ${code}\nส่งรหัสนี้ให้เพื่อน แล้วรอเพื่อนกดเข้าห้อง`));
     peer.on('error',e=>{ netMsg('สร้างห้องไม่ได้ ('+(e.type||e)+') โหลดหน้าใหม่แล้วลองอีกครั้ง'); });
     peer.on('connection',conn=>{ if(NET.conn){ conn.close(); return; } NET.conn=conn; NET.peer=conn.peer; wire(conn); });
+    setInterval(()=>{ for(const k in PEND) netSend('p',PEND[k].msg); },3000);
   };
   document.getElementById('join').onclick=()=>{
     if(!ok()||NET.role) return; const code=(document.getElementById('code').value||'').trim().toUpperCase(); if(!/^[A-Z0-9]{4}$/.test(code)){ netMsg('ใส่รหัสห้อง 4 ตัว'); return; }
