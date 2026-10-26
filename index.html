@@ -2958,8 +2958,8 @@ const PEND={}; let PID=0;
 function netSend(topic,data){ if(NET.conn && NET.conn.open){ try{ NET.conn.send(JSON.stringify({t:topic,d:data})); }catch(e){} } }
 async function chanDispatch(raw){ let msg; try{ msg=JSON.parse(raw); }catch(e){ return; }
   const t=msg.t, d=msg.d;
-  if(NET.role==='host'){ if(t==='a'){ const r=PEND[d.id]; if(r){ delete PEND[d.id]; r.res(d.v); } } else if(t==='i') hostIntent(d.k,d.a); else if(t==='x') netLost(true); else if(t==='h'){ if(!NET.started) onGuestJoined(d.deck); else { NET.lastState=''; sendStateNow(); } } }
-  else { if(t==='s') guestStateStr(d); else if(t==='p') guestPrompt(d); else if(t==='x') netLost(true); }
+  if(NET.role==='host'){ if(t==='a'){ const r=PEND[d.id]; if(r){ delete PEND[d.id]; r.res(d.v); } } else if(t==='i') hostIntent(d.k,d.a); else if(t==='x') netLost(true); else if(t==='h'){ if(d.ver!==APP_VER){ netSend('n',{why:`เกมคนละเวอร์ชัน (${d.ver||'เก่า'} / ${APP_VER}) ให้ทั้งสองเครื่องโหลดหน้าใหม่`}); netMsg('เพื่อนใช้เกมคนละเวอร์ชัน ให้ทั้งสองเครื่องโหลดหน้าใหม่'); return; } if(!NET.started) onGuestJoined(d.deck); else { NET.lastState=''; sendStateNow(); } } }
+  else { if(t==='s') guestStateStr(d); else if(t==='p') guestPrompt(d); else if(t==='n') guestNack(d); else if(t==='x') netLost(true); }
 }
 function remotePrompt(kind,args){ return new Promise(res=>{ const id=++PID; PEND[id]={res,msg:{id,kind,args}}; sendStateNow(); netSend('p',PEND[id].msg); }); }
 const SKIP0=new Set([false,0,-1,null,undefined,'']);
@@ -2970,7 +2970,8 @@ function ser(v,hideArr){
   if(v && typeof v==='object'){ if(v.uid!==undefined && v.id!==undefined && v.c) return {$u:SU(v)}; const o={}; for(const k in v){ if(typeof v[k]==='function') continue; o[k]=ser(v[k]); } return o; }
   return v;
 }
-function snapPlayer(p,hideHand){ const o={}; for(const k in p){ const v=p[k]; if(typeof v==='function') continue;
+const HOST_ONLY=new Set(['remote','ai']);
+function snapPlayer(p,hideHand){ const o={}; for(const k in p){ const v=p[k]; if(typeof v==='function'||HOST_ONLY.has(k)) continue;
     if(k==='deck'){ o.deckN=v.length; if(!hideHand) o.deckIds=v.map(u=>u.id).sort(); continue; } if(k==='hand' && hideHand){ o.handN=v.length; continue; } o[k]=ser(v); } return o; }
 function snapshot(){ const b=G.bat;
   return {turn:G.turn,active:G.active,phase:G.phase,battleNo:G.battleNo,over:G.over,winner:G.winner,why:G.why,log:G.log.slice(-14),busy:G.busy,
@@ -2986,7 +2987,7 @@ function sendChunks(str){ NET.ver++; const CH=1100, n=Math.ceil(str.length/CH); 
 const DU=o=>{ const u=Object.assign({rest:false,pt:0,pb:0,ct:0,cb:0,gsh:0,placedTurn:-1},o); u.c=C[o.id]; return u; };
 function des(v){ if(Array.isArray(v)) return v.map(des); if(v && typeof v==='object'){ if(v.$u) return DU(v.$u); if(v.$s) return new Set(v.$s); const o={}; for(const k in v) o[k]=des(v[k]); return o; } return v; }
 function deser(s){
-  const mk=(sp,ni)=>{ const p={}; for(const k in sp) p[k]=des(sp[k]); p.i=ni; p.deck=sp.deckIds?sp.deckIds.map((id,k)=>DU({uid:-k-1,id})):new Array(sp.deckN||0).fill(null); if(sp.handN!==undefined) p.hand=new Array(sp.handN).fill(null); return p; };
+  const mk=(sp,ni)=>{ const p={}; for(const k in sp) p[k]=des(sp[k]); p.i=ni; p.deck=sp.deckIds?sp.deckIds.map((id,k)=>DU({uid:-k-1,id})):new Array(sp.deckN||0).fill(null); if(sp.handN!==undefined) p.hand=new Array(sp.handN).fill(null); p.remote=false; p.ai=false; return p; };
   const g={uid:0,turn:s.turn,phase:s.phase,battleNo:s.battleNo,over:s.over,why:s.why,log:s.log,busy:s.busy,fxq:s.fxq,fxid:s.fxid,anims:s.anims,
     p:[mk(s.p[1],0),mk(s.p[0],1)],active:1-s.active,winner:s.winner===undefined?undefined:1-s.winner,next:s.waiting===1?true:null,reveal:null,bat:null,online:true};
   if(s.reveal) g.reveal={u:DU(s.reveal.u),p:g.p[1-s.reveal.pi],kind:s.reveal.kind,n:s.reveal.n,of:s.reveal.of,rid:s.reveal.rid};
@@ -3006,11 +3007,15 @@ async function execIntent(p,k,a){
     const d=opp(p); if(!d.f[a.tgt]||!FRONT.includes(a.tgt)) return; await doAttack(p,a.c,boost,a.tgt); }
 }
 async function hostIntent(k,a){
-  if(!G||G.over||G.active!==1||!G.next||G.busy) return;
+  if(!G||G.over) return;
+  if(G.active!==1||!G.next||G.busy){ netSend('n',{why:G.active!==1?'ยังไม่ถึงตาคุณ':'รอให้เกมทำงานเสร็จก่อน แล้วลองใหม่'}); return; }
   if(k==='next'){ const r=G.next; G.next=null; r(); return; }
-  G.busy=true; render();
-  try{ await execIntent(G.p[1],k,a||{}); } catch(err){ console.error(err); } finally{ G.busy=false; render(); }
+  G.busy=true; render(); const before=G.log.length; let failed=false;
+  try{ await execIntent(G.p[1],k,a||{}); } catch(err){ console.error(err); failed=true; } finally{ G.busy=false; render(); }
+  if(failed||G.log.length===before) netSend('n',{why:'ทำไม่ได้ตอนนี้ (ผิดเงื่อนไขของการ์ดหรือช่วงเวลา)'});
+  NET.lastState=''; sendStateNow();
 }
+function guestNack(d){ const el=document.getElementById('toast')||Object.assign(document.body.appendChild(document.createElement('div')),{id:'toast'}); el.textContent='⚠ '+(d&&d.why||'ทำไม่ได้ตอนนี้'); el.className='show'; clearTimeout(el._t); el._t=setTimeout(()=>el.className='',2600); }
 const ANSWERED={}; let curPrompt=0;
 async function guestPrompt(m){
   if(ANSWERED[m.id]!==undefined){ netSend('a',{id:m.id,v:ANSWERED[m.id]}); return; }
@@ -3037,6 +3042,7 @@ function guestStateStr(str){
 }
 function netLost(left){ if(NET.lost||(G&&G.over)) return; NET.lost=true; openSheet(`<h2>${left?'อีกฝ่ายออกจากเกม':'การเชื่อมต่อหลุด'}</h2><div class="txt">${left?'อีกฝ่ายกดออกจากเกมแล้ว':'อีกฝ่ายปิดหน้านี้หรือเน็ตหลุด'} เกมนี้เล่นต่อไม่ได้</div><div class="opts"><button class="btn pri" id="rl">กลับหน้าแรก</button></div>`); sheetEl.querySelector('#rl').onclick=()=>location.reload(); }
 function netMsg(t){ const el=document.getElementById('netmsg'); if(el) el.textContent=t; }
+const APP_VER='2026-10-26';
 let onGuestJoined=()=>{};
 async function setupOnline(getDeck,getFirst){
   const box=document.getElementById('onlinebox'); if(!box) return;
@@ -3046,7 +3052,7 @@ async function setupOnline(getDeck,getFirst){
   const wire=conn=>{ conn.on('data',d=>chanDispatch(typeof d==='string'?d:JSON.stringify(d))); conn.on('close',()=>netLost(false)); };
   document.getElementById('host').onclick=()=>{
     if(!ok()||NET.role) return; const A='ABCDEFGHJKMNPQRSTUVWXYZ23456789'; const code=Array.from({length:4},()=>A[Math.random()*A.length|0]).join('');
-    NET.role='host'; NET.code=code; netMsg('กำลังสร้างห้อง…');
+    NET.role='host'; NET.code=code; netMsg('กำลังสร้างห้อง…'); ['go','tut'].forEach(id=>{ const e=document.getElementById(id); if(e) e.disabled=true; });
     const peer=new Peer('vgfight-'+code); NET.peerObj=peer;
     peer.on('open',()=>netMsg(`รหัสห้อง: ${code}\nส่งรหัสนี้ให้เพื่อน แล้วรอเพื่อนกดเข้าห้อง`));
     peer.on('error',e=>{ netMsg('สร้างห้องไม่ได้ ('+(e.type||e)+') โหลดหน้าใหม่แล้วลองอีกครั้ง'); });
@@ -3055,11 +3061,11 @@ async function setupOnline(getDeck,getFirst){
   };
   document.getElementById('join').onclick=()=>{
     if(!ok()||NET.role) return; const code=(document.getElementById('code').value||'').trim().toUpperCase(); if(!/^[A-Z0-9]{4}$/.test(code)){ netMsg('ใส่รหัสห้อง 4 ตัว'); return; }
-    NET.role='guest'; NET.code=code; netMsg('กำลังเชื่อมต่อ…');
+    NET.role='guest'; NET.code=code; netMsg('กำลังเชื่อมต่อ…'); ['go','tut'].forEach(id=>{ const e=document.getElementById(id); if(e) e.disabled=true; });
     const peer=new Peer(); NET.peerObj=peer;
     peer.on('error',e=>{ netMsg('เข้าห้องไม่ได้ ('+(e.type||e)+') ตรวจรหัสห้อง แล้วโหลดหน้าใหม่'); });
     peer.on('open',()=>{ const conn=peer.connect('vgfight-'+code,{reliable:true,serialization:'json'}); NET.conn=conn; wire(conn);
-      conn.on('open',()=>{ netMsg('เชื่อมต่อแล้ว รอโฮสต์เริ่มเกม'); netSend('h',{deck:getDeck()}); }); });
+      conn.on('open',()=>{ netMsg('เชื่อมต่อแล้ว รอโฮสต์เริ่มเกม'); netSend('h',{deck:getDeck(),ver:APP_VER}); }); });
   };
 }
 function deckListHTML(key){
@@ -3094,6 +3100,7 @@ function initUI(){
   st.querySelectorAll('[data-list]').forEach(b=>b.onclick=()=>{ openSheet(deckListHTML(b.dataset.list)); sheetEl.querySelector('#cls').onclick=closeSheet; });
   const tb=document.getElementById('tut'); if(tb) tb.onclick=()=>lessonSheet(0,()=>{ st.hidden=true; document.getElementById('app').hidden=false; COACH.done=new Set(); startGame('rezael','kairi','me',false,false,true); });
   setupOnline(()=>deck,()=>first);
+  { const ft=document.querySelector('#start .credits'); if(ft) ft.insertAdjacentHTML('beforeend',` · เวอร์ชัน ${APP_VER}`); }
   document.getElementById('go').onclick=()=>{ st.hidden=true; document.getElementById('app').hidden=false; const ks=Object.keys(DECKS); startGame(deck, oppDeck==='rand'?ks[Math.random()*ks.length|0]:oppDeck, first); };
 }
 if(HAS_DOM) document.addEventListener('DOMContentLoaded',initUI);
