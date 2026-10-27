@@ -9,11 +9,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=IBM+Plex+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--mat:#e4e2f0;--mat-deep:#d4d1e7;--panel:#f8f7fd;--ink:#1d1f36;--muted:#5a5d7d;--line:#a9a5cb;--cir:#efeef8;
---rz:#9c6f12;--rz-bg:#fbf0d4;--kr:#0f7b85;--kr-bg:#d9f1f3;--nu:#5b50a8;--nu-bg:#e8e5f8;--accent:#c2416f;--good:#21804a;--bad:#bf3a2c;--scrim:rgba(20,18,50,.45);color-scheme:light}
+--rz:#9c6f12;--rz-bg:#fbf0d4;--kr:#d63a84;--kr-bg:#fde2ef;--nu:#5b50a8;--nu-bg:#e8e5f8;--accent:#c2416f;--good:#21804a;--bad:#bf3a2c;--scrim:rgba(20,18,50,.45);color-scheme:light}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--mat:#1c1e3c;--mat-deep:#14162e;--panel:#262950;--ink:#eceaf8;--muted:#a3a5c8;--line:#464b82;--cir:#23264a;
---rz:#e8c163;--rz-bg:#3a311d;--kr:#63d3dc;--kr-bg:#153a43;--nu:#b5abf2;--nu-bg:#2d2955;--accent:#f088ae;--good:#62d391;--bad:#ff7d6e;--scrim:rgba(0,0,0,.55);color-scheme:dark}}
+--rz:#e8c163;--rz-bg:#3a311d;--kr:#ff8cc3;--kr-bg:#47192f;--nu:#b5abf2;--nu-bg:#2d2955;--accent:#f088ae;--good:#62d391;--bad:#ff7d6e;--scrim:rgba(0,0,0,.55);color-scheme:dark}}
 :root[data-theme="dark"]{--mat:#1c1e3c;--mat-deep:#14162e;--panel:#262950;--ink:#eceaf8;--muted:#a3a5c8;--line:#464b82;--cir:#23264a;
---rz:#e8c163;--rz-bg:#3a311d;--kr:#63d3dc;--kr-bg:#153a43;--nu:#b5abf2;--nu-bg:#2d2955;--accent:#f088ae;--good:#62d391;--bad:#ff7d6e;--scrim:rgba(0,0,0,.55);color-scheme:dark}
+--rz:#e8c163;--rz-bg:#3a311d;--kr:#ff8cc3;--kr-bg:#47192f;--nu:#b5abf2;--nu-bg:#2d2955;--accent:#f088ae;--good:#62d391;--bad:#ff7d6e;--scrim:rgba(0,0,0,.55);color-scheme:dark}
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -81,6 +81,9 @@ h1,h2,.btn,.pw,.gr,.phase,.vs b,.vs2 b,.info b,.dl b{font-family:"Chakra Petch",
 .cd.ord{border-style:dashed}.cd .kd{font-size:9px;color:var(--muted);text-align:right}
 .cd.rest{transform:rotate(90deg) scale(.86);opacity:.85}
 .mid{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:6px 0;padding:7px 10px;border-radius:12px;background:var(--mat-deep);min-height:44px}
+.table3d .mid{min-height:88px;align-content:flex-start}
+.table3d .mid .gc{max-width:100%;overflow-x:auto}
+.table3d .mid .gc .cd{width:36px;height:50px}
 .ph{display:flex;align-items:baseline;gap:8px;flex:1 1 auto}
 .phase{font-weight:700;font-size:18px;color:var(--accent)}
 .tn{font-size:12px;color:var(--muted)}
@@ -270,6 +273,222 @@ ul.gl li{display:block}ul.gl li b{display:block}
 .dkmain{font-size:11px;color:var(--ink);opacity:.75;margin-top:3px}
 #code{flex:1;min-width:0;font:700 18px "Chakra Petch",sans-serif;letter-spacing:3px;text-transform:uppercase;border:1.5px solid var(--ink);border-radius:12px;padding:8px 12px;background:var(--panel);color:var(--ink)}
 .sub{font-size:13px}
+
+/* 3D table */
+.table3d{transform-origin:50% 62%;transition:transform .5s ease}
+body[data-anim="full"] .table3d,body[data-anim="mid"] .table3d{transform:perspective(1100px) rotateX(13deg) scale(.985)}
+body[data-anim="short"] .table3d{transform:perspective(1300px) rotateX(7deg)}
+@media (min-width:700px){ body[data-anim="full"] .table3d,body[data-anim="mid"] .table3d{transform:perspective(1300px) rotateX(18deg) scale(.97)} }
+.table3d .side .cir{box-shadow:inset 0 2px 6px rgba(0,0,0,.12)}
+.table3d .cir .cd{box-shadow:0 8px 14px rgba(0,0,0,.35),0 2px 3px rgba(0,0,0,.25);transition:box-shadow .18s ease}
+.table3d .cir.pick .cd{box-shadow:0 0 0 2px rgba(80,220,140,.9),0 8px 14px rgba(0,0,0,.35)}
+.flyghost{position:fixed;z-index:30;pointer-events:none}
+.flyghost .cd{box-shadow:0 10px 24px rgba(0,0,0,.45)}
+#anlv{margin-bottom:10px}
+@media (min-width:1000px) and (min-height:760px){ #start{zoom:1.32} }
+@media (prefers-reduced-motion:reduce){.table3d{transform:none!important}}
+
+/* ===== effects ===== */
+#fxc{position:fixed;inset:0;z-index:39;pointer-events:none}
+.ftxt{position:fixed;z-index:41;transform:translate(-50%,-50%);pointer-events:none;font:800 22px "Chakra Petch",sans-serif;color:#fff;letter-spacing:1px;
+  text-shadow:0 0 10px rgba(0,0,0,.6),0 2px 0 rgba(0,0,0,.5);animation:ftx 1.25s ease-out forwards}
+.ftxt.hit{color:#ffd0c4;font-size:30px;text-shadow:0 0 18px #ff4a2a,0 2px 0 #7a1200}
+.ftxt.blk{color:#d8f0ff;font-size:24px;text-shadow:0 0 16px #3b9cff,0 2px 0 #08356b}
+.ftxt.pow{font-size:20px;color:#fff6c2;text-shadow:0 0 12px #ffb300,0 2px 0 #6b4400}
+.ftxt.pow.heal{color:#d9ffe4;text-shadow:0 0 12px #2bd36b}.ftxt.pow.draw{color:#dff0ff;text-shadow:0 0 12px #3b8cff}.ftxt.pow.front{color:#ffe0d0;text-shadow:0 0 12px #ff3d3d}.ftxt.pow.over{font-size:24px;color:#fff;text-shadow:0 0 14px #ff5ec4,0 0 24px #5ef0ff}
+@keyframes ftx{0%{opacity:0;transform:translate(-50%,-30%) scale(.6)}15%{opacity:1;transform:translate(-50%,-60%) scale(1.15)}70%{opacity:1;transform:translate(-50%,-110%) scale(1)}100%{opacity:0;transform:translate(-50%,-150%) scale(.95)}}
+.shieldfx{position:fixed;z-index:40;width:120px;height:120px;margin:-60px 0 0 -60px;pointer-events:none;border-radius:50%;
+  background:radial-gradient(circle,rgba(140,210,255,.0) 40%,rgba(140,210,255,.55) 62%,rgba(255,255,255,.9) 66%,rgba(140,210,255,0) 72%);animation:shf .75s ease-out forwards}
+@keyframes shf{0%{transform:scale(.3);opacity:0}30%{transform:scale(1);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.trigflash{display:none}
+.trigglow{position:fixed;z-index:37;width:220px;height:220px;margin:-110px 0 0 -110px;border-radius:50%;pointer-events:none;animation:tgl .75s ease-out forwards}
+.trigglow.t-crit{background:radial-gradient(circle,rgba(255,224,102,.45),transparent 65%)}.trigglow.t-draw{background:radial-gradient(circle,rgba(90,170,255,.4),transparent 65%)}.trigglow.t-heal{background:radial-gradient(circle,rgba(80,240,140,.4),transparent 65%)}.trigglow.t-front{background:radial-gradient(circle,rgba(255,90,70,.4),transparent 65%)}.trigglow.t-over{background:radial-gradient(circle,rgba(255,94,196,.45),rgba(94,240,255,.2) 45%,transparent 68%)}
+@keyframes tgl{0%{opacity:0;transform:scale(.6)}25%{opacity:1}100%{opacity:0;transform:scale(1.15)}}
+.trigflash.t-crit{background:radial-gradient(circle at 50% 45%,rgba(255,224,102,.55),transparent 60%)}
+.trigflash.t-draw{background:radial-gradient(circle at 50% 45%,rgba(90,170,255,.45),transparent 60%)}
+.trigflash.t-heal{background:radial-gradient(circle at 50% 70%,rgba(80,240,140,.45),transparent 65%)}
+.trigflash.t-front{background:linear-gradient(90deg,rgba(255,80,60,.0),rgba(255,80,60,.45),rgba(255,80,60,0));animation:tfr .7s ease-out forwards}
+.trigflash.t-over{background:radial-gradient(circle at 50% 45%,#fff 0,rgba(255,94,196,.5) 25%,rgba(94,240,255,.3) 45%,transparent 70%)}
+@keyframes tfl{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
+@keyframes tfr{0%{opacity:0;transform:translateX(-60%)}30%{opacity:1}100%{opacity:0;transform:translateX(60%)}}
+.cutin{position:fixed;inset:0;z-index:42;display:flex;align-items:center;pointer-events:auto;cursor:pointer;--glow:#c9a94a;background:rgba(10,8,25,.35);animation:cin var(--dur) ease forwards}
+.cutin.c-kr{--glow:#ff5ea8}.cutin.c-rz{--glow:#f2c94c}.cutin.c-ds{--glow:#7f9cff}.cutin.c-bd{--glow:#ff3b6b}.cutin.c-de{--glow:#ff6a3d}
+.cband{position:relative;width:100%;height:150px;display:flex;align-items:center;transform:skewY(-6deg);overflow:hidden;
+  background:linear-gradient(90deg,rgba(0,0,0,.85),color-mix(in srgb,var(--glow) 55%,#000) 50%,rgba(0,0,0,.85));box-shadow:0 0 0 3px var(--glow),0 0 40px var(--glow);animation:cband var(--dur) cubic-bezier(.2,.9,.3,1) forwards}
+.cart{position:absolute;left:0;top:-40px;bottom:-40px;width:58%;background-size:cover;background-position:center 20%;transform:skewY(6deg);
+  -webkit-mask-image:linear-gradient(90deg,#000 55%,transparent);mask-image:linear-gradient(90deg,#000 55%,transparent);animation:cart var(--dur) ease-out forwards}
+.ctxt{position:relative;margin-left:auto;margin-right:6%;text-align:right;transform:skewY(6deg);color:#fff}
+.ctxt b{display:block;font:900 40px "Chakra Petch",sans-serif;letter-spacing:3px;text-shadow:0 0 18px var(--glow),0 3px 0 rgba(0,0,0,.6);animation:ctx var(--dur) ease-out forwards}
+.ctxt small{display:block;font-size:14px;opacity:.9;margin-top:2px}
+@media (min-width:700px){ .cband{height:200px} .ctxt b{font-size:58px} }
+@keyframes cin{0%{opacity:0}10%{opacity:1}85%{opacity:1}100%{opacity:0}}
+@keyframes cband{0%{transform:skewY(-6deg) translateX(-100%)}18%{transform:skewY(-6deg) translateX(0)}82%{transform:skewY(-6deg) translateX(0)}100%{transform:skewY(-6deg) translateX(100%)}}
+@keyframes cart{0%{background-position:center 40%}100%{background-position:center 10%}}
+@keyframes ctx{0%{opacity:0;letter-spacing:22px}25%{opacity:1;letter-spacing:3px}100%{opacity:1}}
+/* ===== clan themes (generated, no images) ===== */
+.table3d .side{border-radius:18px;transition:background .6s}
+.table3d[data-op="rz"] .side.opp,.table3d[data-me="rz"] .side.me{background:radial-gradient(ellipse at 50% 40%,rgba(242,201,76,.22),transparent 65%),repeating-conic-gradient(from 0deg at 50% 45%,rgba(242,201,76,.07) 0 6deg,transparent 6deg 18deg)}
+.table3d[data-op="kr"] .side.opp,.table3d[data-me="kr"] .side.me{background:radial-gradient(circle at 20% 30%,rgba(255,94,168,.22) 0 8%,transparent 9%),radial-gradient(circle at 80% 65%,rgba(255,94,168,.18) 0 6%,transparent 7%),radial-gradient(circle at 60% 20%,rgba(255,180,220,.25) 0 3%,transparent 4%),radial-gradient(ellipse at 50% 50%,rgba(255,94,168,.20),transparent 70%)}
+.table3d[data-op="ds"] .side.opp,.table3d[data-me="ds"] .side.me{background:repeating-radial-gradient(circle at 50% 50%,rgba(127,156,255,.10) 0 2px,transparent 2px 22px),radial-gradient(ellipse at 50% 50%,rgba(70,100,200,.22),transparent 70%)}
+.table3d[data-op="bd"] .side.opp,.table3d[data-me="bd"] .side.me{background:conic-gradient(from 200deg at 15% 0%,rgba(255,59,107,.22),transparent 25%),conic-gradient(from 130deg at 85% 0%,rgba(255,59,107,.22),transparent 25%),radial-gradient(ellipse at 50% 80%,rgba(120,10,40,.25),transparent 70%)}
+.table3d[data-op="de"] .side.opp,.table3d[data-me="de"] .side.me{background:radial-gradient(ellipse at 50% 100%,rgba(255,106,61,.30),transparent 65%),linear-gradient(0deg,rgba(200,54,27,.14),transparent 60%)}
+body[data-myclan="kr"]{background-image:radial-gradient(circle at 10% 20%,rgba(255,94,168,.10) 0 30px,transparent 31px),radial-gradient(circle at 90% 70%,rgba(255,94,168,.08) 0 50px,transparent 51px)}
+body[data-myclan="rz"]{background-image:radial-gradient(ellipse at 50% 0%,rgba(242,201,76,.14),transparent 60%)}
+body[data-myclan="ds"]{background-image:radial-gradient(ellipse at 50% 0%,rgba(127,156,255,.14),transparent 60%)}
+body[data-myclan="bd"]{background-image:radial-gradient(ellipse at 50% 0%,rgba(255,59,107,.14),transparent 60%)}
+body[data-myclan="de"]{background-image:radial-gradient(ellipse at 50% 100%,rgba(255,106,61,.16),transparent 60%)}
+body[data-anim="off"] .table3d .side{background:none!important}
+@media (prefers-reduced-motion:reduce){.cutin,.cband,.ftxt,.trigflash,.shieldfx{animation-duration:.01ms!important}}
+
+/* ===== playmat layout ===== */
+.mat{position:relative;width:100%;aspect-ratio:1.96;container-type:inline-size;border-radius:2.2cqw;overflow:visible;margin:2px 0}
+.matbg{position:absolute;inset:0;border-radius:inherit;background-size:100% 100%;background-position:center;box-shadow:0 6px 18px rgba(0,0,0,.35);filter:saturate(.9) brightness(.92)}
+.mat.opp .matbg{transform:rotate(180deg)}
+.mat.gen .matbg{background:radial-gradient(ellipse at 50% 50%,color-mix(in srgb,var(--cl,#556) 35%,#0d1030),#0b0d22)}
+.mat.gen.c-kr .matbg{--cl:#ff5ea8}.mat.gen.c-rz .matbg{--cl:#f2c94c}.mat.gen.c-ds .matbg{--cl:#5a78e6}.mat.gen.c-de .matbg{--cl:#e2462a}.mat.gen.c-bd .matbg{--cl:#c8204e}
+.table3d .side{background:none!important;padding:0}
+.mat .cir{position:absolute;width:14.6cqw;height:19.6cqw;transform:translate(-50%,-50%);border:none;background:transparent;box-shadow:none;border-radius:2cqw;display:grid;place-items:center}
+.mat .cir.vc{border:none;border-radius:2cqw}
+.mat .cir .cd{width:12.8cqw;height:17.8cqw;font-size:1.6cqw;padding:.5cqw .7cqw;border-radius:1.2cqw}
+.mat .cd .gr{font-size:2cqw}.mat .cd .pw{font-size:2.5cqw}.mat .cd .nm{font-size:1.55cqw}.mat .cd .tg,.mat .cd .sk,.mat .cd .crit{font-size:1.5cqw}
+.mat .cir.can{box-shadow:0 0 0 .5cqw var(--accent),0 0 2.4cqw var(--accent)}
+.mat .cir.pick{box-shadow:0 0 0 .6cqw #19b37a,0 0 2.8cqw rgba(25,179,122,.9)}
+.mat .cir.atk{box-shadow:0 0 0 .5cqw var(--atk),0 0 2.6cqw var(--atk)}.mat .cir.tgt{box-shadow:0 0 0 .5cqw var(--tgt),0 0 2.6cqw var(--tgt)}.mat .cir.bst{box-shadow:0 0 0 .35cqw var(--atk)}
+.mat .cir .role{font-size:1.6cqw;top:-1.6cqw}
+.mat .duo{right:-4cqw}
+.soulb{position:absolute;left:50%;bottom:-2.6cqw;transform:translateX(-50%);font:700 1.5cqw "Chakra Petch",sans-serif;background:rgba(0,0,0,.65);color:#fff;border-radius:1cqw;padding:.2cqw 1cqw;white-space:nowrap;cursor:pointer;z-index:2}
+.mz{position:absolute;border-radius:1cqw;cursor:default}
+.mzl{position:absolute;left:50%;transform:translateX(-50%);bottom:-2.4cqw;font:700 1.4cqw "Chakra Petch","IBM Plex Sans Thai",sans-serif;color:#fff;text-shadow:0 1px 2px #000;white-space:nowrap}
+.mat.opp .mzl{bottom:auto;top:-2.4cqw}
+.dmgz{display:flex;flex-direction:column;gap:.35cqw;padding:.4cqw;cursor:pointer}
+.mat.opp .dmgz{flex-direction:column-reverse}
+.dslot{flex:1;border-radius:.6cqw;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.25);position:relative;background-size:cover;background-position:center 30%;display:grid;place-items:center}
+.dslot span{font:700 1.4cqw "Chakra Petch";color:rgba(255,255,255,.55)}
+.dslot.on{border-color:rgba(255,255,255,.8);box-shadow:0 .3cqw .8cqw rgba(0,0,0,.5)}
+.dslot.down{background-size:cover;filter:brightness(.75)}
+.dslot .tl{position:absolute;right:.4cqw;font:800 1.4cqw "Chakra Petch";font-style:normal;color:#fff;background:rgba(0,0,0,.55);border-radius:.4cqw;padding:0 .4cqw}
+.ordz{display:flex;gap:.6cqw;align-items:center;justify-content:center;flex-wrap:wrap;padding:.5cqw}
+.ordz[data-pile]{cursor:pointer}
+.ordz .cd{width:6.4cqw;height:8.9cqw;font-size:1cqw;padding:.3cqw}
+.ordz .cd .gr,.ordz .cd .kd,.ordz .cd .nm{font-size:1.05cqw}
+.deckz,.dropz{display:grid;place-items:center;cursor:pointer}
+.pilecard{width:88%;height:96%;border-radius:1cqw;background-size:cover;background-position:center;background-color:#1b2448;box-shadow:.3cqw .4cqw 0 rgba(0,0,0,.35),.6cqw .8cqw 0 rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.35)}
+.dropz .pilecard{background-position:center 25%}
+.cnt{position:absolute;bottom:.4cqw;right:.4cqw;font:800 2.2cqw "Chakra Petch",sans-serif;color:#fff;background:rgba(0,0,0,.7);border-radius:.8cqw;padding:0 .8cqw}
+.ridez{display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.45);color:#fff;font:700 1.5cqw "Chakra Petch";cursor:pointer}
+.ridez b{font-size:2.2cqw}
+.trigz{display:flex;gap:.6cqw;align-items:center;justify-content:center}
+.tcz{display:flex;align-items:center;gap:.3cqw;font:800 1.6cqw "Chakra Petch",sans-serif;color:#fff;border-radius:.8cqw;padding:.2cqw .7cqw;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.35)}
+.tcz b{font-size:2cqw}
+.tcz.t-crit{background:#9a7a00}.tcz.t-draw{background:#1d4fa3}.tcz.t-heal{background:#1b7f45}.tcz.t-front{background:#a3301d}.tcz.t-over{background:linear-gradient(90deg,#b0307a,#2f7fb0)}
+.flip .face.back{background-size:cover;background-position:center}
+.cd.lockd{background-size:cover;background-position:center}
+.seg.wrap{flex-wrap:wrap}
+/* side-by-side layout on wide landscape screens (tablet / computer) */
+@media (orientation:landscape) and (min-width:820px) and (min-height:560px){
+  #app{max-width:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,340px);gap:6px 16px;align-items:start;padding:8px 16px 84px}
+  #app>.table3d{grid-column:1;grid-row:1 / span 2;width:min(100%,calc((100vh - 250px) * .98));justify-self:center}
+  #app>.handwrap{grid-column:2;grid-row:1}
+  #app>#log{grid-column:2;grid-row:2;max-height:calc(100vh - 420px)}
+  #app>.handwrap .hand{flex-wrap:wrap}
+}
+
+/* ===== generated board (no playmat images) ===== */
+.mat.tall{aspect-ratio:1.45}
+.mat.gen .matbg{background:
+  radial-gradient(ellipse at 50% 30%,color-mix(in srgb,var(--cl) 30%,transparent),transparent 62%),
+  repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 2px,transparent 2px 22px),
+  linear-gradient(160deg,color-mix(in srgb,var(--cl) 42%,#14102a),color-mix(in srgb,var(--cl) 18%,#0b0a1c));
+  border:1px solid color-mix(in srgb,var(--cl) 55%,transparent)}
+.mat.gen.c-kr{--cl:#ff5ea8}.mat.gen.c-rz{--cl:#e6b93c}.mat.gen.c-ds{--cl:#5a78e6}.mat.gen.c-de{--cl:#ea5a2c}.mat.gen.c-bd{--cl:#c8204e}.mat.gen.c-nu{--cl:#8a72e0}
+.mat .cir::before{content:"";position:absolute;width:118%;aspect-ratio:1;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;
+  border:.5cqw solid color-mix(in srgb,var(--cl) 55%,rgba(255,255,255,.35));box-shadow:0 0 2cqw color-mix(in srgb,var(--cl) 45%,transparent),inset 0 0 2cqw color-mix(in srgb,var(--cl) 30%,transparent);pointer-events:none;z-index:0}
+.mat .cir.vc::before{width:132%;border-color:color-mix(in srgb,#ffd36a 70%,var(--cl));box-shadow:0 0 3cqw rgba(255,211,106,.45),inset 0 0 2.4cqw rgba(255,211,106,.25)}
+.mat .cir::after{content:attr(data-l);position:absolute;inset:0;display:grid;place-items:center;font:900 7cqw "Chakra Petch",sans-serif;color:rgba(255,255,255,.22);pointer-events:none;z-index:0}
+.mat .cir.vc::after{color:rgba(255,215,120,.35)}
+.mat .cir>*{position:relative;z-index:1}
+.mat .cir .role{position:absolute}
+.mat .mz:not(.trigz):not(.ridez){border:1px solid rgba(255,255,255,.28);background:rgba(0,0,0,.18)}
+.mat .mzl{bottom:auto;top:.4cqw;font-size:1.35cqw;opacity:.85}
+.mat.opp .mzl{top:auto;bottom:.4cqw}
+.mat .dmgz{padding-top:2.4cqw}.mat.opp .dmgz{padding-top:.4cqw;padding-bottom:2.4cqw}
+/* tall (phone) sizes */
+.mat.tall{border-radius:3cqw}
+.mat.tall .cir{width:19cqw;height:26.5cqw}
+.mat.tall .cir .cd{width:17.8cqw;height:24.8cqw;font-size:2.2cqw;padding:.7cqw .9cqw;border-radius:1.6cqw}
+.mat.tall .cd .gr{font-size:2.8cqw}.mat.tall .cd .pw{font-size:3.6cqw}.mat.tall .cd .nm{font-size:2.1cqw}.mat.tall .cd .tg,.mat.tall .cd .sk,.mat.tall .cd .crit{font-size:2.2cqw}
+.mat.tall .cd .crit{font-weight:900}
+.mat.tall .cir::after{font-size:9cqw}
+.mat.tall .cir .role{font-size:2.3cqw;top:-2.4cqw}
+.mat.tall .soulb{font-size:2.1cqw;bottom:-3.4cqw}
+.mat.tall .mzl{font-size:2cqw}
+.mat.tall .dmgz{padding-top:3.4cqw}.mat.tall.opp .dmgz{padding-top:.5cqw;padding-bottom:3.4cqw}
+.mat.tall .dslot span{font-size:2cqw}.mat.tall .dslot .tl{font-size:2cqw}
+.mat.tall .cnt{font-size:3cqw}
+.mat.tall .ordz{padding-top:3.2cqw}.mat.tall .ordz .cd{width:9cqw;height:12.5cqw;font-size:1.4cqw}
+.mat.tall .trigz{flex-wrap:wrap;gap:.6cqw;align-content:center}
+.mat.tall .tcz{font-size:2.1cqw;padding:.2cqw .8cqw}.mat.tall .tcz b{font-size:2.6cqw}
+.mat.tall .deckz .pilecard,.mat.tall .dropz .pilecard{width:78%;height:72%;margin-top:2.6cqw}
+.mat.tall.opp .deckz .pilecard,.mat.tall.opp .dropz .pilecard{margin-top:0;margin-bottom:2.6cqw}
+.rideb{position:absolute;left:50%;transform:translateX(-50%);bottom:.5cqw;font:700 2cqw "Chakra Petch",sans-serif;background:rgba(0,0,0,.7);color:#fff;border-radius:.8cqw;padding:0 .8cqw;white-space:nowrap;cursor:pointer;z-index:2}
+.mat.opp .rideb{bottom:auto;top:.5cqw}
+/* gentle "you can tap here" pulse (no flashing) */
+.mat .cir.can::before{animation:canp 1.8s ease-in-out infinite;border-color:var(--accent)}
+.mat .cir.pick::before{animation:canp 1.4s ease-in-out infinite;border-color:#19d38a}
+@keyframes canp{50%{box-shadow:0 0 3.4cqw var(--accent),inset 0 0 2cqw var(--accent)}}
+.mat .cir.can,.mat .cir.pick{cursor:pointer}
+/* bigger hand + buttons, phase hint */
+.hand{flex-wrap:nowrap!important;overflow-x:auto;padding:6px 2px 8px;scroll-snap-type:x proximity}
+.hand .cd{flex:0 0 auto;width:76px;height:106px;scroll-snap-align:start}
+.hand .cd .pw{font-size:14px}.hand .cd .gr{font-size:12px}
+#bar .btn{min-height:46px;font-size:15px;padding:0 18px}
+.hintm{flex-basis:100%;font-size:12px;color:var(--accent);font-weight:600}
+@media (orientation:landscape) and (min-width:820px) and (min-height:560px){ #app>.handwrap .hand{flex-wrap:wrap!important;overflow:visible} }
+
+/* ===== phone portrait: whole game fits one screen (no scrolling) ===== */
+.logb{display:none}
+@media (orientation:portrait) and (max-width:700px){
+  #app{height:calc(100vh - 62px);height:calc(100dvh - 62px);display:flex;flex-direction:column;overflow:hidden;padding:4px 6px 0}
+  #app>.table3d{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly}
+  #app>.table3d>.side{width:100%;display:flex;flex-direction:column;align-items:center}
+  .table3d .mat.tall{width:min(100%,calc((100vh - 252px) * .725));width:min(100%,calc((100dvh - 252px) * .725))}
+  .table3d .mid{min-height:0;padding:4px 8px;margin:3px 0;gap:4px 6px;width:100%}
+  .table3d .mid{flex-wrap:nowrap}
+  .table3d .mid .ph{flex:1 1 auto;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 6px}
+  .table3d .mid .ph .tn{font-size:11px}
+  .table3d .mid .btn.ex{flex:0 0 auto;padding:0 7px;min-height:28px;min-width:28px;font-size:12px;margin:0}
+  .table3d .mid .who2,.table3d .mid .bt{flex-basis:100%}
+  .table3d .mid:has(.who2){flex-wrap:wrap}
+  .bgmn{display:none}
+  .hintm{font-size:11px}
+  .info{margin:2px 0;font-size:11px;gap:3px 5px}
+  #app>.handwrap{flex:0 0 auto;margin-top:2px}
+  #app>.handwrap .hl{display:none}
+  .hand{padding:2px 2px 4px}
+  .hand .cd{width:62px;height:86px}
+  .hand .cd .pw{font-size:12px}
+  .logb{display:inline-flex}
+  #app>#log{display:none}
+  body.showlog #app>#log{display:block;position:fixed;left:8px;right:8px;bottom:68px;max-height:42vh;z-index:30;box-shadow:0 10px 30px rgba(0,0,0,.35);border:1px solid var(--line);font-size:13px}
+}
+
+.hintbox{margin:2px auto 4px;max-width:100%;width:fit-content;font-size:12.5px;line-height:1.35;color:#fff;background:color-mix(in srgb,var(--accent) 82%,#000);border-radius:10px;padding:4px 10px;box-shadow:0 3px 10px rgba(0,0,0,.25);text-align:center}
+@media (orientation:portrait) and (max-width:700px){
+  .table3d .mid .ph{flex-wrap:nowrap;white-space:nowrap;overflow:hidden}
+  .table3d .mid .ph .phase{font-size:16px}
+  .table3d .mid .ph .tn{overflow:hidden;text-overflow:ellipsis}
+  .table3d .mid{position:relative;z-index:2}
+  .hintbox{font-size:11.5px;padding:3px 9px;margin:0 auto 3px}
+}
+
+.menu{display:flex;flex-direction:column;gap:8px;margin:6px 0 4px}
+.btn.mrow{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:50px;font-size:15px;text-align:left;padding:0 14px}
+.btn.mrow small{font-size:11px;opacity:.7;margin-left:4px}
+.btn.mrow b{font-size:13px;padding:2px 10px;border-radius:999px;background:var(--mat);color:var(--ink)}
+.btn.mrow b.on{background:var(--good);color:#fff}.btn.mrow b.off{background:var(--bad);color:#fff}
+.btn.mrow.danger{color:var(--bad);border-color:var(--bad)}
+.menub{font-weight:700}
+@media (orientation:portrait) and (max-width:700px){ .table3d .mid .btn.menub{min-height:32px;padding:0 12px;font-size:14px} }
 </style>
 </head>
 <body>
@@ -767,9 +986,14 @@ const isTicket = u => u.c.kind==='ticket';
 const hasRezVG = p => p.f.VC && p.f.VC.c.g>=3 && /Rezael/.test(p.f.VC.c.n);
 const hasKairiVG = p => p.f.VC && p.f.VC.c.g>=3 && /Kairi/.test(p.f.VC.c.n);
 const upN = p => p.dmg.filter(d=>d.up).length;
-function cb(p,n){ let k=0; for(const d of p.dmg){ if(k>=n)break; if(d.up){d.up=false;k++;} } }
+async function cb(p,n){
+  const up=p.dmg.filter(d=>d.up);
+  if(!p.ai && up.length>n){ const r=await pickCards(p,`Counter Blast ${n}: เลือกการ์ดใน Damage zone ที่จะคว่ำ`,up.map(d=>d.u),{min:n,max:n}); r.forEach(i=>{ up[i].up=false; }); render(); return; }
+  let k=0; for(const d of p.dmg){ if(k>=n)break; if(d.up){d.up=false;k++;} } }
 function cc(p,n){ let k=0; for(const d of p.dmg){ if(k>=n)break; if(!d.up){d.up=true;k++;} } }
-function sb(p,n){ for(let k=0;k<n&&p.soul.length;k++){ let i=p.soul.findIndex(u=>!/Rezael/.test(u.c.n)); if(i<0)i=0; p.drop.push(fresh(p.soul.splice(i,1)[0])); } }
+async function sb(p,n){
+  if(!p.ai && p.soul.length>n){ const L=p.soul.slice(); const r=await pickCards(p,`Soul Blast ${n}: เลือกการ์ดใน Soul ที่จะนำลง Drop`,L,{min:n,max:n}); r.map(i=>L[i]).forEach(u=>{ p.soul.splice(p.soul.indexOf(u),1); p.drop.push(fresh(u)); }); render(); return; }
+  for(let k=0;k<n&&p.soul.length;k++){ let i=p.soul.findIndex(u=>!/Rezael/.test(u.c.n)); if(i<0)i=0; p.drop.push(fresh(p.soul.splice(i,1)[0])); } }
 function once(p,key){ if(p.used.has(key)) return false; p.used.add(key); return true; }
 const realHand = p => p.hand.filter(u=>!isTicket(u));
 function val(u){ const c=u.c; if(c.kind==='ticket') return 99; if(c.kind==='normal') return c.cm?6:4; if(c.kind!=='unit') return c.kind==='blitz'?8:3;
@@ -827,9 +1051,10 @@ function draw(p,n=1){
   return true;
 }
 function lose(p,why){ if(G.over)return; G.over=true; G.winner=1-p.i; G.why=why; fx('end'); log(`${p.short} แพ้: ${why}`); showEnd(); }
-function heal(p,why){
+async function heal(p,why){
   if(!p.dmg.length) return;
   let i=p.dmg.findIndex(d=>!d.up); if(i<0)i=p.dmg.length-1;
+  if(!p.ai && p.dmg.length>1){ const r=await pickCards(p,`${why}: เลือกการ์ดใน Damage zone ที่จะฟื้น`,p.dmg.map(d=>d.u),{min:1,max:1}); i=r[0]; }
   const d=p.dmg.splice(i,1)[0]; p.drop.push(fresh(d.u));
   log(`${p.short} ฟื้นดาเมจ 1 (${why})`);
 }
@@ -893,7 +1118,7 @@ async function retire(p,u){
   const wasG = u.id==='genetile';
   fresh(u);
   if(wasG && G.phase==='battle' && G.active===p.i && hasRezVG(p) && p.soul.length && await yes(p,'Genetile ถูก Retire: SB1 ให้ยูนิต 2 ตัว +5000?')){
-    sb(p,1);
+    await sb(p,1);
     let picks;
     if(p.ai) picks=units(p).sort((a,b)=>(a[1].rest-b[1].rest)||(a[0]==='VC'?-1:1)).slice(0,2).map(x=>x[0]);
     else { const us=units(p); const r=await pickCards(p,'เลือกยูนิต 2 ตัวรับ +5000',us.map(x=>x[1]),{min:Math.min(2,us.length),max:2}); picks=r.map(i=>us[i][0]); }
@@ -908,7 +1133,7 @@ async function returnToHand(p,c,byKairi){
       const w=p.f[oc]; if(!w) continue;
       if(G.phase!=='battle') continue;
       if(w.id==='penelopp' && p.soul.length && !p.used.has('pen'+w.uid) && await yes(p,'Penelopp: SB1 เพื่อ Stand แนวหลังในแถวตั้งเดียวกัน?', [oc,COL[oc]].some(x=>p.f[x]&&p.f[x].rest))){
-        p.used.add('pen'+w.uid); sb(p,1); standColumn(p,oc); log('Penelopp: Stand แถวตั้งเดียวกัน');
+        p.used.add('pen'+w.uid); await sb(p,1); standColumn(p,oc); log('Penelopp: Stand แถวตั้งเดียวกัน');
       }
       if(w.id==='appeleile' && p.en>=4 && !p.used.has('app'+w.uid) && await yes(p,'Appeleile: Energy-Blast 4 เพื่อ Stand แนวหลังในแถวตั้งเดียวกัน?', [oc,COL[oc]].some(x=>p.f[x]&&p.f[x].rest))){
         p.used.add('app'+w.uid); p.en-=4; standColumn(p,oc); log('Appeleile: Stand แถวตั้งเดียวกัน');
@@ -923,7 +1148,7 @@ async function onPlaced(p,u,c,opt){
   const mate=p.f[COL[c]];
   if(mate && mate.id==='yuika' && COL[c]!=='VC' && opp(p).f.VC.c.g>=3 && once(p,'yui'+mate.uid)){ mate.pt+=5000; log('Yuika +5000'); }
   if(u.id==='nobia' && hasRezVG(p) && upN(p)>=1 && p.deck.length && await yes(p,'Nobia: จ่าย CB1 ดู 3 ใบบนเด็ค?')){
-    cb(p,1);
+    await cb(p,1);
     const top=p.deck.splice(0,Math.min(3,p.deck.length));
     const inBattle = G.phase==='battle' && G.active===p.i;
     let pick=null; const cand=top.filter(x=>x.c.g<=3&&(inBattle||isUnit(x)));
@@ -934,12 +1159,12 @@ async function onPlaced(p,u,c,opt){
       else { const c2=await chooseCallCircle(p,pick); log(`Nobia: เรียก ${pick.c.s}`); await place(p,pick,c2); } }
   }
   if(u.id==='rifistor' && upN(p)>=1 && await yes(p,'Rifistor: จ่าย CB1 หา Rezael จาก 7 ใบบน?', !p.hand.some(x=>/Rezael/.test(x.c.n)) || p.dmg.length<3)){
-    cb(p,1);
+    await cb(p,1);
     const pick=await searchDeck(p,7,x=>x.c.g>=3&&/Rezael/.test(x.c.n),'Rifistor: เลือก Rezael ขึ้นมือ',cs=>cs.find(x=>x.id==='vita')||cs[0]);
     if(!pick){ cc(p,1); log('Rifistor: Counter-Charge 1'); }
   }
   if(u.id==='gabwelius' && p.soul.length && p.deck.length && await yes(p,'Gabwelius: SB1 ดูการ์ดบนสุดของเด็ค?')){
-    sb(p,1); const t=p.deck[0];
+    await sb(p,1); const t=p.deck[0];
     let bottom;
     if(p.ai) bottom=!t.c.trig;
     else bottom = await askP(p,'Gabwelius: การ์ดบนสุดคือ '+t.c.s, cardDesc(t), [{l:'วางใต้เด็ค (+5000)',v:true,pri:1},{l:'วางไว้บนเด็ค',v:false}]);
@@ -947,7 +1172,7 @@ async function onPlaced(p,u,c,opt){
   }
   if(u.id==='appeleile' && (hasMermaidG3VG(p) || p.ride.some(x=>x.c.g===3&&x.c.race==='Mermaid'))){
     if(upN(p)>=1 && await yes(p,'Appeleile: จ่าย CB1 ดู 7 ใบบนเด็ค?')){
-      cb(p,1);
+      await cb(p,1);
       const pick=await searchDeck(p,7,x=>(isUnit(x)&&x.c.race==='Mermaid'&&!x.c.trig&&!x.c.sent)||x.id==='prism','Appeleile: เลือกการ์ดขึ้นมือ',
         cs=>(!p.oz.length&&cs.find(x=>x.id==='prism'))||cs.slice().sort((a,b)=>score(b)-score(a))[0]);
       if(!pick){ cc(p,1); log('Appeleile: Counter-Charge 1'); }
@@ -957,37 +1182,37 @@ async function onPlaced(p,u,c,opt){
   if(u.id==='santhi2') await santhiPlaced(p,u,false);
   if(u.id==='bdark') await bdarkPlaced(p,u,false);
   if(EZ(u) && c!=='VC' && c[0]==='F'){ const cm=p.drop.find(x=>x.id==='cosmor'); const free=opt.byVG && VY(p.f.VC);
-    if(cm && (free||upN(p)) && await yes(p,`Flare Cosmor (Drop): ${free?'(ฟรี) ':'CB1 '}เรียกลงแถวหลังแถวตั้งเดียวกัน?`)){ if(!free) cb(p,1); p.drop.splice(p.drop.indexOf(cm),1); log('Flare Cosmor: เรียกจาก Drop'); await place(p,cm,COL[c]); } }
-  if(u.id==='fanvare' && p.soul.length){ const ez=units(p).filter(([cc,x])=>EZ(x)); if(ez.length && await yes(p,'Fanvare: SB1 ให้ Ezerwur และตัวเองได้พลังเพิ่ม?')){ sb(p,1);
+    if(cm && (free||upN(p)) && await yes(p,`Flare Cosmor (Drop): ${free?'(ฟรี) ':'CB1 '}เรียกลงแถวหลังแถวตั้งเดียวกัน?`)){ if(!free) await cb(p,1); p.drop.splice(p.drop.indexOf(cm),1); log('Flare Cosmor: เรียกจาก Drop'); await place(p,cm,COL[c]); } }
+  if(u.id==='fanvare' && p.soul.length){ const ez=units(p).filter(([cc,x])=>EZ(x)); if(ez.length && await yes(p,'Fanvare: SB1 ให้ Ezerwur และตัวเองได้พลังเพิ่ม?')){ await sb(p,1);
       const v=gradeOf(opp(p).f.VC)>=3?10000:5000; let cc; if(p.ai) cc=ez[0][0]; else cc=await bpFor(p,0,'Fanvare: เลือกยูนิต Ezerwur',ez.map(x=>x[0]),false);
       if(cc&&p.f[cc]) p.f[cc].pt+=v; u.pt+=v; log(`Fanvare: Ezerwur และ Fanvare +${v}`); } }
   if(u.id==='enwing' && hasVyG3(p) && p.en>=3){ const d=opp(p); const rs=RCS.filter(x=>d.f[x]&&!bfProtected(d,d.f[x]));
     if(rs.length && await yes(p,'Enwing: Energy-Blast 3 Bind แนวหลังคู่แข่ง?')){ p.en-=3; let t; if(p.ai) t=rs.sort((a,b)=>d.f[b].c.g-d.f[a].c.g)[0]; else t=await bpFor(p,1,'Enwing: เลือกแนวหลังคู่แข่งที่จะ Bind',rs,false);
       if(t&&d.f[t]){ const x=d.f[t]; d.f[t]=null; d.bind.push(fresh(x)); d.rgLostT=G.turn; log(`Enwing: Bind ${x.c.s}`); } } }
-  if(u.id==='nirmihn' && upN(p) && await yes(p,'Nirmihn: CB1 ดู 7 ใบบนเด็ค หาเกรด 3+?', !p.hand.some(x=>x.c.g>=3&&isUnit(x)))){ cb(p,1);
+  if(u.id==='nirmihn' && upN(p) && await yes(p,'Nirmihn: CB1 ดู 7 ใบบนเด็ค หาเกรด 3+?', !p.hand.some(x=>x.c.g>=3&&isUnit(x)))){ await cb(p,1);
     const pick=await searchDeck(p,7,x=>isUnit(x)&&x.c.g>=3,'Nirmihn: เลือกการ์ดเกรด 3+ ขึ้นมือ'); if(!pick){ cc(p,1); log('Nirmihn: Counter-Charge 1'); } }
   if(u.id==='doloris' && G.phase==='main' && p.deck.length){ const top=p.deck.slice(0,5); let x; if(p.ai) x=top.slice().sort((a,b)=>(a.c.song?-1:0)-(b.c.song?-1:0)||val(a)-val(b))[0]; else { const r=await pickCards(p,'Doloris: เลือก 1 ใบทิ้งลง Drop',top,{min:1,max:1}); x=top[r[0]]; }
     p.deck.splice(p.deck.indexOf(x),1); p.drop.push(x); shuffle(p.deck); log(`Doloris: ทิ้ง ${x.c.s}`); }
-  if(u.id==='mortis2' && G.phase==='main' && hasAMVG(p) && upN(p) && await yes(p,'Mortis: CB1 ดู 5 ใบบนเด็ค หาการ์ด Ave Mujica?', upN(p)>=2)){ cb(p,1); const pick=await searchDeck(p,5,x=>AM(x),'Mortis: เลือกการ์ด Ave Mujica ขึ้นมือ'); if(!pick) log('Mortis: ไม่ได้การ์ด'); }
+  if(u.id==='mortis2' && G.phase==='main' && hasAMVG(p) && upN(p) && await yes(p,'Mortis: CB1 ดู 5 ใบบนเด็ค หาการ์ด Ave Mujica?', upN(p)>=2)){ await cb(p,1); const pick=await searchDeck(p,5,x=>AM(x),'Mortis: เลือกการ์ด Ave Mujica ขึ้นมือ'); if(!pick) log('Mortis: ไม่ได้การ์ด'); }
   if(u.id==='fern' && hasFrVG(p) && (upN(p)||p.en>=3) && await yes(p,'Fern: CB1 หรือ Energy-Blast 3 เพื่อจั่ว 1?', p.en>=5||upN(p)>=2)){
-    if(p.en>=3 && (p.ai||!upN(p)||await askP(p,'Fern: จ่ายด้วยอะไร','',[{l:'Energy-Blast 3',v:true,pri:1},{l:'CB1',v:false}]))) p.en-=3; else cb(p,1); draw(p,1); log('Fern: จั่ว 1'); }
+    if(p.en>=3 && (p.ai||!upN(p)||await askP(p,'Fern: จ่ายด้วยอะไร','',[{l:'Energy-Blast 3',v:true,pri:1},{l:'CB1',v:false}]))) p.en-=3; else await cb(p,1); draw(p,1); log('Fern: จั่ว 1'); }
   if(u.id==='frieren2' && !u.abil===false){}
   if(u.id==='frieren2' && opt.fromHand && p.normalT===G.turn && upN(p) && await yes(p,'Frieren: CB1 ดู 5 ใบบนเด็ค?')){
-    cb(p,1); const lim=gradeOf(p.f.VC); const top=p.deck.slice(0,5), cand=top.filter(x=>x.c.g<=lim&&(isUnit(x)||x.c.kind==='normal')); let pick=null;
+    await cb(p,1); const lim=gradeOf(p.f.VC); const top=p.deck.slice(0,5), cand=top.filter(x=>x.c.g<=lim&&(isUnit(x)||x.c.kind==='normal')); let pick=null;
     if(cand.length){ if(p.ai) pick=cand.find(x=>x.c.kind==='normal')||cand.filter(x=>!x.c.trig&&!x.c.sent).sort((a,b)=>score(b)-score(a))[0]||null; else { const r=await pickCards(p,'Frieren: เลือกการ์ด',cand,{min:0,max:1}); pick=r.length?cand[r[0]]:null; } }
     if(pick){ p.deck.splice(p.deck.indexOf(pick),1); if(isUnit(pick)){ shuffle(p.deck); const c2=await chooseCallCircle(p,pick); log(`Frieren: เรียก ${pick.c.s}`); await place(p,pick,c2); } else { p.hand.push(pick); shuffle(p.deck); log(`Frieren: นำ ${pick.c.s} ขึ้นมือ`); } } else shuffle(p.deck); }
   if(u.id==='barrierfr' && hasFrVG(p)){ const top=p.deck.slice(0,5), cand=top.filter(x=>x.c.kind==='normal'&&FRT(x)); let pick=null;
     if(cand.length){ if(p.ai) pick=cand[0]; else { const r=await pickCards(p,'Barrier Analysis: เลือก Normal Order ของ Frieren ขึ้นมือ',cand,{min:0,max:1}); pick=r.length?cand[r[0]]:null; } }
     if(pick){ p.deck.splice(p.deck.indexOf(pick),1); p.hand.push(pick); log(`Barrier Analysis: นำ ${pick.c.s} ขึ้นมือ`);
       let pay=false; if(upN(p)) pay=p.ai?upN(p)>=2:await askP(p,'Barrier Analysis: จ่าย CB1? (ถ้าไม่จ่าย ต้องนำการ์ดจากมือลง Soul 1 ใบ)','',[{l:'จ่าย CB1',v:true,pri:1},{l:'นำการ์ดจากมือลง Soul',v:false}]);
-      if(pay) cb(p,1); else { const rh=realHand(p); if(rh.length){ let x; if(p.ai) x=lowest(rh); else { const r=await pickCards(p,'เลือกการ์ดจากมือลง Soul',rh,{min:1,max:1}); x=rh[r[0]]; } p.hand.splice(p.hand.indexOf(x),1); p.soul.push(fresh(x)); } } }
+      if(pay) await cb(p,1); else { const rh=realHand(p); if(rh.length){ let x; if(p.ai) x=lowest(rh); else { const r=await pickCards(p,'เลือกการ์ดจากมือลง Soul',rh,{min:1,max:1}); x=rh[r[0]]; } p.hand.splice(p.hand.indexOf(x),1); p.soul.push(fresh(x)); } } }
     shuffle(p.deck); }
   if(u.id==='sein' && hasFrVG(p) && p.dmg.some(d=>!d.up) && await yes(p,'Sein: Counter-Charge 1?')){ cc(p,1); log('Sein: Counter-Charge 1'); }
   if(u.id==='nevan' && hasRenVG(p) && p.en>=3 && realHand(p).length && await yes(p,'Nevan: Energy-Blast 3 และนำการ์ดจากมือลง Soul 1 ใบ เพื่อจั่ว 2?')){
     p.en-=3; const rh=realHand(p); let x; if(p.ai) x=lowest(rh); else { const r=await pickCards(p,'Nevan: เลือกการ์ดจากมือลง Soul',rh,{min:1,max:1}); x=rh[r[0]]; }
     p.hand.splice(p.hand.indexOf(x),1); p.soul.push(fresh(x)); draw(p,2); log('Nevan: จั่ว 2'); }
   if(u.id==='macha' && hasRenVG(p) && upN(p) && await yes(p,'Macha: CB1 ใช้สกิล?')){
-    cb(p,1); const pool=[...p.deck.map(x=>({x,z:'deck'})),...p.drop.map(x=>({x,z:'drop'}))].filter(o=>isUnit(o.x)&&((REN(o.x)&&o.x.c.g<=1)||o.x.id==='bdark'));
+    await cb(p,1); const pool=[...p.deck.map(x=>({x,z:'deck'})),...p.drop.map(x=>({x,z:'drop'}))].filter(o=>isUnit(o.x)&&((REN(o.x)&&o.x.c.g<=1)||o.x.id==='bdark'));
     let opt; if(p.ai) opt=pool.some(o=>o.x.id==='bdark'||(!o.x.c.trig&&!o.x.c.sent))?'call':'draw'; else { const o=[{l:'จั่ว 1',v:'draw'}]; if(pool.length) o.unshift({l:'ค้นยูนิตไอคอน Ren เกรด ≤1 หรือ Blaster Dark เรียกขึ้น (RC)',v:'call',pri:1}); opt=await askP(p,'Macha: เลือกหนึ่งอย่าง','',o); }
     if(opt==='draw'){ draw(p,1); log('Macha: จั่ว 1'); }
     else { let o; if(p.ai) o=pool.find(y=>y.x.id==='bdark')||pool.filter(y=>!y.x.c.trig&&!y.x.c.sent).sort((a,b)=>score(b.x)-score(a.x))[0]||pool[0]; else { const r=await pickCards(p,'Macha: เลือกยูนิตเรียกขึ้น (RC)',pool.map(y=>y.x),{min:1,max:1}); o=pool[r[0]]; }
@@ -1003,7 +1228,7 @@ async function onPlaced(p,u,c,opt){
     const canCB=upN(p)>=1, canEB=AL(p.f.VC)&&p.en>=3;
     if((canCB||canEB) && await yes(p,'Shurikt: จ่าย CB1 (หรือ EB3) ดู 5 ใบบนเด็ค?')){
       let how; if(p.ai) how=canEB&&p.en>=5?'eb':(canCB?'cb':'eb'); else if(canCB&&canEB) how=await askP(p,'Shurikt: จ่ายด้วยอะไร','',[{l:'CB1',v:'cb',pri:1},{l:'Energy-Blast 3',v:'eb'}]); else how=canCB?'cb':'eb';
-      if(how==='cb') cb(p,1); else p.en-=3;
+      if(how==='cb') await cb(p,1); else p.en-=3;
       const lim=gradeOf(p.f.VC); const top=p.deck.slice(0,5), cand=top.filter(x=>x.c.n!==u.c.n&&(x.c.cm||x.c.gaku||(isUnit(x)&&x.c.g<=lim)));
       let pick=null; if(cand.length){ if(p.ai) pick=cand.find(x=>x.c.gaku)||cand.filter(x=>isUnit(x)&&!x.c.trig&&!x.c.sent).sort((a,b)=>score(b)-score(a))[0]||cand.find(x=>x.c.cm)||null;
         else { const r=await pickCards(p,'Shurikt: เลือกเปิด 1 ใบ (ไม่เลือก = จั่ว 1)',cand,{min:0,max:1}); pick=r.length?cand[r[0]]:null; } }
@@ -1032,7 +1257,7 @@ async function onPlaced(p,u,c,opt){
   if(u.id==='cablish' && G.phase!=='battle' && hasMyunG3(p) && upN(p)){
     const cand=p.drop.filter(x=>isUnit(x)&&!x.c.trig&&!x.c.sent&&x.c.n!==u.c.n);
     if(cand.length && await yes(p,'Cablish: CB1 เรียกยูนิตจาก Drop?')){
-      cb(p,1); let pick;
+      await cb(p,1); let pick;
       if(p.ai) pick=cand.slice().sort((a,b)=>score(b)-score(a))[0]; else { const r=await pickCards(p,'Cablish: เลือกยูนิตจาก Drop เรียกขึ้น (RC)',cand,{min:1,max:1}); pick=cand[r[0]]; }
       p.drop.splice(p.drop.indexOf(pick),1); const c2=await chooseCallCircle(p,pick); log(`Cablish: เรียก ${pick.c.s}`); await place(p,pick,c2);
       const d=opp(p); const oc=d.drop.filter(x=>isUnit(x)&&!x.c.trig&&!x.c.sent); const mc=p.drop.filter(x=>MY(x));
@@ -1049,7 +1274,7 @@ async function onPlaced(p,u,c,opt){
   const bfv = p.f.VC && BF(p.f.VC);
   if(u.id==='noce') await engageFromDrop(p,2,x=>BF(x)&&x.c.n!==u.c.n,'Noce');
   if(u.id==='swera' && bfv && upN(p) && await yes(p,'Swera: CB1 ดู 2 ใบบนเด็ค เลือก 1 ใบขึ้นมือ?')){
-    cb(p,1); await sweraLook(p); if(p.f.VC.c.g>=3 && p.f[c]===u){ u.pt+=5000; u.shT+=5000; log('Swera Power/Shield +5000'); } }
+    await cb(p,1); await sweraLook(p); if(p.f.VC.c.g>=3 && p.f[c]===u){ u.pt+=5000; u.shT+=5000; log('Swera Power/Shield +5000'); } }
   if(u.id==='pinesse' && bfv && u.abil){
     u.boostT=G.turn; const d=opp(p); const rs=RCS.filter(x=>d.f[x] && !bfProtected(d,d.f[x]));
     if(rs.length){ let tc; if(p.ai) tc=rs.sort((a,b)=>d.f[b].c.sh-d.f[a].c.sh)[0]; else tc=await bpFor(p,1,'Pinesse: เลือกแนวหลังคู่แข่ง Shield -5000',rs,false);
@@ -1064,7 +1289,7 @@ async function onPlaced(p,u,c,opt){
   }
   if(u.id==='nilberis' && opt.byVG && p.f.VC.c.g>=3){ u.pt+=10000; log('Nilberis +10000'); }
   if(u.id==='spiral' && p.persona && upN(p) && await yes(p,'Spiral Cutie Angel: CB1 ดู 2 ใบบนเด็ค เลือก 1 ใบขึ้นมือ?')){
-    cb(p,1); await lookTake(p,2,'Spiral Cutie Angel');
+    await cb(p,1); await lookTake(p,2,'Spiral Cutie Angel');
   }
   if(u.id==='tolpaz' && await tolpazCost(p)){
     const lim=p.f.VC.c.g; const top=p.deck.slice(0,5), cand=top.filter(x=>isUnit(x)&&x.c.g<=lim);
@@ -1107,7 +1332,7 @@ const hasMermaidG3VG = p => p.f.VC && p.f.VC.c.g>=3 && p.f.VC.c.race==='Mermaid'
 async function lucciel(p){
   const ok = p.ride.some(x=>x.c.persona) || (p.f.VC && p.f.VC.c.persona);
   if(ok && p.soul.length && await yes(p,'Lucciel: SB1 รับ Persona Shield ticket?')){
-    sb(p,1); p.hand.push(mk('pshield')); log(`${p.short} ได้ Persona Shield ticket`);
+    await sb(p,1); p.hand.push(mk('pshield')); log(`${p.short} ได้ Persona Shield ticket`);
   }
 }
 async function ride(p,u){
@@ -1178,7 +1403,7 @@ async function ride(p,u){
   if(old.id==='ventesta' && u.id==='ascensior'){ p.soul.splice(p.soul.indexOf(old),1); const c=await chooseCallCircle(p,old); log('Ventesta: เรียกตัวเองขึ้น (RC) และ Soul-Charge 1'); await place(p,old,c);
     if(p.deck.length) p.soul.push(fresh(p.deck.shift())); }
   if(old.id==='sedna' && u.id==='aqua' && p.soul.length>1 && await yes(p,'Sedna: SB1 ดู 7 ใบบน หาเกรด 2+ ขึ้นมือ?')){
-    sb(p,1); await searchDeck(p,7,x=>isUnit(x)&&x.c.g>=2,'Sedna: เลือกยูนิตเกรด 2+ ขึ้นมือ');
+    await sb(p,1); await searchDeck(p,7,x=>isUnit(x)&&x.c.g>=2,'Sedna: เลือกยูนิตเกรด 2+ ขึ้นมือ');
   }
   if(old.id==='aqua' && u.c.g===3 && u.c.race==='Mermaid') await searchDeck(p,5,x=>isUnit(x)&&x.c.g>=2,'Aqua: เลือกยูนิตเกรด 2+ ขึ้นมือ');
   if(old.id==='ascensior' && u.c.g===3 && /Rezael/.test(u.c.n)){
@@ -1195,7 +1420,7 @@ async function payRideCost(p,d,fromRD=true){ p.hand.splice(p.hand.indexOf(d),1);
   if(d.id==='falhart') await valshCost(p,'draw');
   await onDiscard(p,d,false);
   if(d.id==='spiral' && p.soul.length && await yes(p,'Spiral Cutie Angel: SB1 และนำการ์ดนี้ไว้ใต้เด็คเพื่อจั่ว 1?')){
-    sb(p,1); p.drop.splice(p.drop.indexOf(d),1); p.deck.push(d); draw(p,1); log('Spiral Cutie Angel: จั่ว 1'); } }
+    await sb(p,1); p.drop.splice(p.drop.indexOf(d),1); p.deck.push(d); draw(p,1); log('Spiral Cutie Angel: จั่ว 1'); } }
 function rideOptions(p){
   const vc=p.f.VC;
   if(p.noRide) return {next:null,fromHand:[]};
@@ -1208,10 +1433,10 @@ function rideOptions(p){
 // ---- triggers & checks ----
 async function applyTrigger(p,u,ctx){
   const t=u.c.trig; await sleep(250);
-  if(t==='front'){ FRONT.forEach(c=>{ if(p.f[c]) p.f[c].pt+=10000; }); log('Front Trigger: แถวหน้า +10000'); return; }
+  if(t==='front'){ FRONT.forEach(c=>{ if(p.f[c]){ p.f[c].pt+=10000; emitFx({fx:'pow',pi:p.i,c,txt:'+10000',t:'front'}); } }); log('Front Trigger: แถวหน้า +10000'); return; }
   if(t==='over'){
     p.rm.push(u); draw(p,1);
-    const c=await chooseUnitFor(p,'Over Trigger: เลือกยูนิตรับ +100,000,000',ctx); if(c&&p.f[c]) p.f[c].pt+=100000000;
+    const c=await chooseUnitFor(p,'Over Trigger: เลือกยูนิตรับ +100,000,000',ctx); if(c&&p.f[c]){ p.f[c].pt+=100000000; emitFx({fx:'pow',pi:p.i,c,txt:'+100,000,000',t:'over'}); }
     log('Over Trigger! จั่ว 1 และ +100,000,000');
     if(ctx==='drive' && u.id==='dragveda' && p.f.VC){ p.f.VC.rest=false; log('Dragveda: Stand แวนการ์ด'); }
     if(ctx==='drive' && u.id==='grizael'){ p.grizael=true; log('Grizael: ตลอดไฟต์ ในเทิร์นเรา แนวหลังทั้งหมด +10000'); }
@@ -1242,17 +1467,17 @@ async function applyTrigger(p,u,ctx){
     }
     return;
   }
-  if(t==='crit'){ const c1=await chooseUnitFor(p,'Critical Trigger: เลือกยูนิตรับ Critical +1',ctx); if(c1&&p.f[c1]) p.f[c1].ct+=1; }
-  const c2=await chooseUnitFor(p,`${TRN[t]} Trigger: เลือกยูนิตรับ +10000`,ctx); if(c2&&p.f[c2]) p.f[c2].pt+=10000;
+  if(t==='crit'){ const c1=await chooseUnitFor(p,'Critical Trigger: เลือกยูนิตรับ Critical +1',ctx); if(c1&&p.f[c1]){ p.f[c1].ct+=1; emitFx({fx:'pow',pi:p.i,c:c1,txt:'★+1',t:'crit'}); } }
+  const c2=await chooseUnitFor(p,`${TRN[t]} Trigger: เลือกยูนิตรับ +10000`,ctx); if(c2&&p.f[c2]){ p.f[c2].pt+=10000; emitFx({fx:'pow',pi:p.i,c:c2,txt:'+10000',t}); }
   if(t==='draw') draw(p,1);
-  if(t==='heal' && p.dmg.length && p.dmg.length>=opp(p).dmg.length) heal(p,'Heal Trigger');
+  if(t==='heal' && p.dmg.length && p.dmg.length>=opp(p).dmg.length) await heal(p,'Heal Trigger');
   log(`${TRN[t]} Trigger ทำงาน`);
 }
 async function revealCard(p,u,kind,n,of){
   G.reveal={u,p,kind,n,of,rid:++G.rid}; fx('flip'); render();
   await sleep(kind==='drive'?1050:850);
   log(`${kind==='drive'?'Drive check':p.short+' Damage check'}${of>1?` ${n}/${of}`:''}: ${u.c.s}${u.c.trig?' ['+TRN[u.c.trig]+'!]':''}`);
-  if(u.c.trig){ fx(u.c.trig); await sleep(650); } else await sleep(kind==='drive'?350:250);
+  if(u.c.trig){ fx(u.c.trig); emitFx({fx:'trig',t:u.c.trig}); await sleep(650); await fxWait(250); } else await sleep(kind==='drive'?350:250);
   if(!p.ai){ if(kind==='drive') await coach('drive'); else await coach('damage'); if(u.c.trig) await coach('trigger'); }
 }
 async function driveCheck(p,n=1,of=1){
@@ -1269,7 +1494,7 @@ async function damageCheck(p,n=1,of=1){
   if(u.c.trig){
     p.trigT=G.turn;
     await applyTrigger(p,u,'damage');
-    if(u.c.trig!=='heal' && p.rzHeal && p.dmg.length>=5){ heal(p,'Divine Skill ของ Rezael'); p.rzHeal=false; }
+    if(u.c.trig!=='heal' && p.rzHeal && p.dmg.length>=5){ await heal(p,'Divine Skill ของ Rezael'); p.rzHeal=false; }
   }
   G.reveal=null;
   if(u.c.trig==='over'){ render(); return; }
@@ -1324,7 +1549,7 @@ async function doAct(p,k){
     if(rs.length){ let t; if(p.ai) t=rs.sort((a,b)=>d.f[b].c.g-d.f[a].c.g)[0]; else t=await bpFor(p,1,'Vyrgilla: เลือกแนวหลังคู่แข่งที่จะ Bind',rs,false); if(t&&d.f[t]){ const x=d.f[t]; d.f[t]=null; d.bind.push(fresh(x)); d.rgLostT=G.turn; log(`Vyrgilla: Bind ${x.c.s}`); } }
     const cand=p.drop.filter(x=>isUnit(x)&&x.c.g===2); if(cand.length){ let x; if(p.ai) x=cand.find(y=>EZ(y))||cand[0]; else { const r=await pickCards(p,'Vyrgilla: เลือกยูนิตเกรด 2 จาก Drop เรียกขึ้น (RC)',cand,{min:0,max:1}); x=r.length?cand[r[0]]:null; }
       if(x){ p.drop.splice(p.drop.indexOf(x),1); const c=await chooseCallCircle(p,x); log(`Vyrgilla: เรียก ${x.c.s}`); await place(p,x,c,{byVG:true}); } } return; }
-  if(k==='rewrite'){ const a=p.hand.find(x=>x.id==='altknight'); const rw=p.f.VC; p.hand.splice(p.hand.indexOf(a),1);
+  if(k==='rewrite'){ await cutin(p,'REWRITE','Rewrite Form: Altknight'); const a=p.hand.find(x=>x.id==='altknight'); const rw=p.f.VC; p.hand.splice(p.hand.indexOf(a),1);
     p.f.VC=null; p.bind.push(fresh(rw)); p.altRewrite=rw; fresh(a); a.placedTurn=G.turn; p.f.VC=a; p.rodeTurn=G.turn; p.altT=G.turn;
     log('REWRITE! Bind Rewrite the Star → ไรด์ Vyrgilla "Rewrite Form: Altknight"'); fx('persona'); await rideFxShow('persona',[a],{ai:p.ai,who:p.short,pi:p.i,clan:'de'});
     const gal=[...p.deck.filter(x=>x.c.race==='Galaxian'&&isUnit(x)).map(x=>({x,z:'deck'})),...p.drop.filter(x=>x.c.race==='Galaxian'&&isUnit(x)).map(x=>({x,z:'drop'}))];
@@ -1339,35 +1564,35 @@ async function doAct(p,k){
     const pick=await searchDeck(p,7,y=>y.c.g>=3&&y.c.n!==p.f.VC.c.n,'Summit Flare: เลือกการ์ดเกรด 3+ ขึ้นมือ');
     if(!pick){ p.drop.splice(p.drop.indexOf(x),1); p.hand.push(x); log('Summit Flare: ไม่ได้การ์ด · กลับขึ้นมือ'); } return; }
   if(k==='impAct'){ const cand=p.drop.filter(x=>isUnit(x)&&/Mortis|睦/.test(x.c.n)); let x; if(p.ai) x=cand.sort((a,b)=>score(b)-score(a))[0]; else { const r=await pickCards(p,'Imprisoned XII: เลือกยูนิต Mortis จาก Drop',cand,{min:1,max:1}); x=cand[r[0]]; }
-    cb(p,1); p.en-=3; p.drop.splice(p.drop.indexOf(x),1); const c=await chooseCallCircle(p,x); log(`Imprisoned XII: เรียก ${x.c.s}`); await place(p,x,c); return; }
+    await cb(p,1); p.en-=3; p.drop.splice(p.drop.indexOf(x),1); const c=await chooseCallCircle(p,x); log(`Imprisoned XII: เรียก ${x.c.s}`); await place(p,x,c); return; }
   if(k==='oblAct'){ const lim=gradeOf(p.f.VC); const pool=[...p.deck.filter(x=>x.c.song&&AM(x)&&x.c.g<=lim).map(x=>({x,z:'deck'})),...p.drop.filter(x=>x.c.song&&AM(x)&&x.c.g<=lim).map(x=>({x,z:'drop'}))]; if(!pool.length) return;
     let o; if(p.ai){ const want=RCS.filter(c=>p.f[c]&&AM(p.f[c])).length>=2?'musica':(p.drop.some(x=>isUnit(x)&&AM(x))?'crucifix':'killkiss'); o=pool.find(y=>y.x.id===want)||pool[0]; }
     else { const r=await pickCards(p,'Oblivionis: เลือกการ์ด Music ที่จะเล่น',pool.map(y=>y.x),{min:1,max:1}); o=pool[r[0]]; }
-    p.used.add('oblAct'); cb(p,1); await playSong(p,o.x,o.z); if(o.z==='deck') shuffle(p.deck); return; }
+    p.used.add('oblAct'); await cb(p,1); await playSong(p,o.x,o.z); if(o.z==='deck') shuffle(p.deck); return; }
   if(k.startsWith('tim:')){ const c=k.slice(4), w=p.f[c]; if(!w) return; const pool=[...p.drop.filter(x=>isUnit(x)&&x.c.g<=3&&x.c.n!==w.c.n).map(x=>({x,z:'drop'})),...p.bind.filter(x=>isUnit(x)&&x.c.g<=3&&x.c.n!==w.c.n).map(x=>({x,z:'bind'}))]; if(!pool.length) return;
     let o; if(p.ai) o=pool.sort((a,b)=>score(b.x)-score(a.x))[0]; else { const r=await pickCards(p,'Timoris: เลือกยูนิตเรียกขึ้น (RC)',pool.map(y=>y.x),{min:1,max:1}); o=pool[r[0]]; }
     p.used.add('tim'+w.uid); p.en-=3; p[o.z].splice(p[o.z].indexOf(o.x),1); const cc2=await chooseCallCircle(p,o.x); log(`Timoris: เรียก ${o.x.c.s}`); await place(p,o.x,cc2); if(!hasAMVG(p) && p.f[c]===w){ p.f[c]=null; await retire(p,w); } return; }
-  if(k==='frA'){ p.used.add('frA'); cb(p,1); const n=grimN(p); let t=`Frieren: Grimoire ${n} ใบ`;
+  if(k==='frA'){ p.used.add('frA'); await cb(p,1); const n=grimN(p); if(n>=5) await cutin(p,'GRIMOIRE',`Grimoire ${n} ใบ`); let t=`Frieren: Grimoire ${n} ใบ`;
     if(n>=3){ draw(p,1); t+=' · จั่ว 1'; } if(n>=5){ p.frFront=G.turn; t+=' · แถวหน้า +5000'; } if(n>=7){ p.f.VC.dt=(p.f.VC.dt||0)+1; t+=' · Drive +1'; } log(t); return; }
   if(k==='frB'){ const gs=p.oz.filter(o=>o.c.grim&&o.c.kind==='set'); let picks;
     if(p.ai){ const pri=['grimIce','grimFlower','grimLev','grimMik','grimLost']; picks=gs.filter(x=>pri.includes(x.id)&&!(x.id==='grimFlower'&&!RCS.some(c=>!p.f[c]))).sort((a,b)=>pri.indexOf(a.id)-pri.indexOf(b.id)).slice(0,Math.min(p.soul.length,2)); if(!picks.length) return; }
     else { const r=await pickCards(p,'Frieren: เลือก Grimoire (จ่าย SB เท่าจำนวนที่เลือก)',gs,{min:1,max:Math.min(gs.length,p.soul.length)}); picks=r.map(i=>gs[i]); }
-    if(!picks.length) return; p.used.add('frB'); sb(p,picks.length); log(`Frieren: SB${picks.length} · ${picks.map(x=>x.c.s).join(', ')}`);
+    if(!picks.length) return; p.used.add('frB'); await sb(p,picks.length); log(`Frieren: SB${picks.length} · ${picks.map(x=>x.c.s).join(', ')}`);
     for(const g of picks) await grimAuto(p,g); return; }
   if(k.startsWith('sein:')){ const c=k.slice(5), w=p.f[c]; if(!w) return; p.used.add('sein'+w.uid); p.f[c]=null; p.soul.push(fresh(w)); p.en=Math.min(10,p.en+3); log('Sein: ลง Soul · Energy-Charge 3'); return; }
-  if(k==='pbd'){ const rs=RCS.filter(c=>p.f[c]&&REN(p.f[c])); let picks=[];
+  if(k==='pbd'){ if(acts(p).some(a=>a.k==='pbd')) await cutin(p,'PHANTOM BLASTER','Abyss Dragon'); const rs=RCS.filter(c=>p.f[c]&&REN(p.f[c])); let picks=[];
     if(p.ai){ const nv=rs.find(c=>p.f[c].id==='nevan'); if(nv) picks=[nv]; else picks=rs.sort((a,b)=>(p.f[a].rest?0:1)-(p.f[b].rest?0:1)||score(p.f[a])-score(p.f[b])).slice(0,2); }
     else { const r=await pickCards(p,'Phantom Blaster: เลือกแนวหลังไอคอน Ren ที่จะ Retire (Nevan นับเป็น 2)',rs.map(c=>p.f[c]),{min:1,max:2,validate:sel=>sel.reduce((n,i)=>n+(p.f[rs[i]].id==='nevan'?2:1),0)>=2}); picks=r.map(i=>rs[i]); if(!picks.length) return; }
     if(picks.reduce((n,c)=>n+(p.f[c].id==='nevan'?2:1),0)<2) return;
-    p.used.add('pbd'); cb(p,1); let n=0;
+    p.used.add('pbd'); await cb(p,1); let n=0;
     for(const c of picks){ const u=p.f[c]; n+=u.id==='nevan'?2:1; p.f[c]=null; await retire(p,u); }
     if(p.renRetT!==G.turn){ p.renRetT=G.turn; p.renRet=0; } p.renRet+=n;
     const d=opp(p); const ors=RCS.filter(c=>d.f[c]&&!bfProtected(d,d.f[c]));
     if(ors.length){ let c; if(p.ai) c=ors.sort((a,b)=>d.f[b].c.g-d.f[a].c.g)[0]; else c=await bpFor(p,1,'Phantom Blaster: เลือกแนวหลังคู่แข่งที่จะ Retire',ors,false); if(c&&d.f[c]){ const t=d.f[c]; d.f[c]=null; await retire(d,t); log(`Phantom Blaster: Retire ${t.c.s}`); } }
     p.f.VC.pt+=10000; p.f.VC.ct+=1; d.f.VC.pt-=5000; fx('persona'); log('Phantom Blaster: +10000 / ★+1 · แวนการ์ดคู่แข่ง -5000'); return; }
-  if(k==='charon'){ const x=p.drop.find(y=>y.id==='charon'); if(!x) return; cb(p,1); p.drop.splice(p.drop.indexOf(x),1); const c=await chooseCallCircle(p,x); log('Charon: เรียกจาก Drop'); await place(p,x,c); if(p.f[c]===x && gradeOf(opp(p).f.VC)>=3) x.pt+=5000; return; }
+  if(k==='charon'){ const x=p.drop.find(y=>y.id==='charon'); if(!x) return; await cb(p,1); p.drop.splice(p.drop.indexOf(x),1); const c=await chooseCallCircle(p,x); log('Charon: เรียกจาก Drop'); await place(p,x,c); if(p.f[c]===x && gradeOf(opp(p).f.VC)>=3) x.pt+=5000; return; }
   if(k==='charonCC'){ const xs=p.drop.filter(y=>y.id==='charon').slice(0,2); xs.forEach(x=>{ p.drop.splice(p.drop.indexOf(x),1); p.rm.push(x); }); cc(p,1); log('Charon: นำออก 2 ใบ · Counter-Charge 1'); return; }
-  if(k==='javelin'){ const x=p.soul.find(y=>y.id==='javelin')||p.drop.find(y=>y.id==='javelin'); const z=p.soul.includes(x)?p.soul:p.drop; cb(p,1); z.splice(z.indexOf(x),1); p.ride.push(fresh(x));
+  if(k==='javelin'){ const x=p.soul.find(y=>y.id==='javelin')||p.drop.find(y=>y.id==='javelin'); const z=p.soul.includes(x)?p.soul:p.drop; await cb(p,1); z.splice(z.indexOf(x),1); p.ride.push(fresh(x));
     const pool=[...p.deck.filter(y=>y.id==='bdark').map(y=>({y,z:'deck'})),...p.drop.filter(y=>y.id==='bdark').map(y=>({y,z:'drop'}))]; const o=pool[0];
     if(o){ p[o.z].splice(p[o.z].indexOf(o.y),1); p.hand.push(o.y); } shuffle(p.deck); log('Javelin: กลับ Ride deck · นำ Blaster Dark ขึ้นมือ'); return; }
   if(k==='bonfire'){ const x=p.hand.find(y=>y.id==='bonfire')||p.drop.find(y=>y.id==='bonfire'); const z=p.hand.includes(x)?p.hand:p.drop; z.splice(z.indexOf(x),1); p.rm.push(x); p.regalis=true; p.orders++;
@@ -1381,11 +1606,11 @@ async function doAct(p,k){
   if(k.startsWith('shu:')){ const c=k.slice(4), w=p.f[c]; if(!w) return; p.used.add('shu'+w.uid); w.rest=true; w.pt+=5000; p.f.VC.pt+=5000; log('Shurikt: Rest · แวนการ์ดและShurikt +5000'); return; }
   if(k==='piriel'){ const x=p.drop.find(y=>y.id==='piriel'); if(!x) return; const free=p.oz.filter(o=>o.c.gaku&&!o.rest);
     let how; if(p.ai) how=free.length>=2?'rest':'cb'; else { const o=[]; if(upN(p)) o.push({l:'CB1',v:'cb',pri:1}); if(free.length>=2) o.push({l:'Rest Instrument ใน Order zone 2 ใบ',v:'rest'}); o.push({l:'ยกเลิก',v:null}); how=await askP(p,'Piriel: จ่ายด้วยอะไร','',o); }
-    if(!how) return; if(how==='cb') cb(p,1); else free.slice(0,2).forEach(o=>o.rest=true);
+    if(!how) return; if(how==='cb') await cb(p,1); else free.slice(0,2).forEach(o=>o.rest=true);
     p.drop.splice(p.drop.indexOf(x),1); const c=await chooseCallCircle(p,x); log('Piriel: เรียกจาก Drop'); await place(p,x,c); return; }
   if(k==='duo'){ await duoLegion(p); return; }
   if(k==='santhiRide'){ const x=p.soul.find(y=>y.id==='santhi1')||p.drop.find(y=>y.id==='santhi1'); const z=p.soul.includes(x)?p.soul:p.drop;
-    cb(p,1); z.splice(z.indexOf(x),1); p.bind.push(fresh(x)); const l=p.deck.find(y=>y.id==='lubna3'); p.deck.splice(p.deck.indexOf(l),1); shuffle(p.deck);
+    await cb(p,1); z.splice(z.indexOf(x),1); p.bind.push(fresh(x)); const l=p.deck.find(y=>y.id==='lubna3'); p.deck.splice(p.deck.indexOf(l),1); shuffle(p.deck);
     log('Santhi: Bind แล้วไรด์ Lubna จากเด็ค'); await ride(p,l); p.f.VC.rest=false; return; }
   if(k==='kira'){ const x=p.hand.find(y=>y.id==='kirakesshou')||p.drop.find(y=>y.id==='kirakesshou'); if(!x) return;
     const z=p.hand.includes(x)?p.hand:p.drop; z.splice(z.indexOf(x),1); p.rm.push(x); p.regalis=true; log('Radiant Crystal: นำออกจากเกม');
@@ -1404,13 +1629,13 @@ async function doAct(p,k){
     const rest=p.drop.filter(x=>MY(x)&&x.c.g<=2); if(!rest.length) return; let x;
     if(p.ai) x=rest[0]; else { const r=await pickCards(p,'เลือก Myun เกรด 2 หรือต่ำกว่าขึ้นมือ',rest,{min:1,max:1}); x=rest[r[0]]; }
     p.drop.splice(p.drop.indexOf(x),1); p.hand.push(x); log(`คืน Myun 3 ใบเข้า Ride deck · นำ ${x.c.s} ขึ้นมือ`); return; }
-  if(k==='magnolia'){ p.used.add('magAct'); sb(p,1);
+  if(k==='magnolia'){ p.used.add('magAct'); await sb(p,1);
     const rs=RCS.filter(c=>p.f[c]&&c[0]==='B'); let picks;
     if(p.ai) picks=rs.slice().sort((a,b)=>power(p,p.f[b],b)-power(p,p.f[a],a)).slice(0,2);
     else { const all=RCS.filter(c=>p.f[c]); const r=await pickCards(p,'Magnolia: เลือกแนวหลังที่โจมตีจากแถวหลังได้ (สูงสุด 2)',all.map(c=>p.f[c]),{min:0,max:2}); picks=r.map(i=>all[i]); }
     p.backAtk=new Set(picks.map(c=>p.f[c].uid)); log(`Magnolia: ${picks.map(c=>p.f[c].c.s).join(', ')||'-'} โจมตีจากแถวหลังได้เทิร์นนี้`);
     if(opp(p).f.VC.c.g>=3 && upN(p) && await yes(p,'Magnolia: จ่าย CB1 เพิ่ม ให้แถวหลัง +10000 และเกรด/Drive +1?')){
-      cb(p,1); p.magBack=G.turn; p.f.VC.gup=G.turn+1; log('Magnolia: แถวหลัง +10000 · เกรด +1 / Drive +1 (Triple Drive)'); fx('persona'); } }
+      await cb(p,1); p.magBack=G.turn; p.f.VC.gup=G.turn+1; log('Magnolia: แถวหลัง +10000 · เกรด +1 / Drive +1 (Triple Drive)'); fx('persona'); } }
   if(k==='simiess'){ const x=p.drop.find(y=>y.id==='simiess'); if(x){ p.en-=2; p.drop.splice(p.drop.indexOf(x),1); const c=await chooseCallCircle(p,x); log('Simiess: เรียกจาก Drop'); await place(p,x,c); } }
   if(k==='cmdmg'){ const i=p.dmg.findIndex(d=>d.u.id==='crimson'); if(i>=0 && p.deck.length){ const d0=p.dmg.splice(i,1)[0]; p.drop.push(fresh(d0.u)); p.dmg.splice(i,0,{u:fresh(p.deck.shift()),up:true}); log('Crimson Moonlight: สลับลง Drop · ได้ Damage หงายใหม่ 1 ใบ'); } }
   if(k==='matesDrop'){ const x=p.drop.find(y=>y.id==='mates'); if(x && canOrder(p,x)) await playLMOrder(p,x,true); }
@@ -1420,19 +1645,20 @@ async function doAct(p,k){
         picks=cand.slice().sort((a,b)=>((pri[b.id]||0)-(have.has(b.id)?3:0))-((pri[a.id]||0)-(have.has(a.id)?3:0))).slice(0,2); }
       else { const r=await pickCards(p,'Garden: เลือก Bel-Fiore จาก 7 ใบบนเพื่อ Engage (สูงสุด 2)',cand,{min:0,max:2}); picks=r.map(i=>cand[i]); } }
     picks.forEach(x=>p.deck.splice(p.deck.indexOf(x),1)); shuffle(p.deck); await engage(p,picks,'Garden'); if(!picks.length) log('Garden: ไม่ได้ Engage การ์ด'); }
-  if(k==='maier'){ p.used.add('maierAct'); cb(p,1); const n=await callEngaged(p,opp(p).f.VC.c.g,()=>true,'Maier',{byVG:true});
+  if(k==='maier'){ await cutin(p,'BEL-FIORE','Maier · Garden'); p.used.add('maierAct'); await cb(p,1); const n=await callEngaged(p,opp(p).f.VC.c.g,()=>true,'Maier',{byVG:true});
     if(p.persona){ p.f.VC.ct+=1; log('Maier Critical +1'); } }
-  if(k==='muevi'){ p.used.add('mueviAct'); sb(p,1); await callEngaged(p,1,x=>x.c.g<=2&&BF(x),'Muevi',{byVG:true}); }
+  if(k==='muevi'){ p.used.add('mueviAct'); await sb(p,1); await callEngaged(p,1,x=>x.c.g<=2&&BF(x),'Muevi',{byVG:true}); }
   if(k==='nebulaDrop'){ const neb=p.drop.find(x=>x.id==='nebula'); if(neb && canOrder(p,neb)) await playNormalOrder(p,neb,true); }
   if(k==='eg'){ p.used.add('eg'); p.en-=7; draw(p,1); log(`${p.short} Energy-Blast 7 จั่ว 1`); }
   if(k==='divine'){
-    p.divine=true; sb(p,1);
+    await cutin(p,'DIVINE SKILL','Fated One of Miracles');
+    p.divine=true; await sb(p,1);
     const cr=p.drop.filter(u=>u.c.trig==='crit'); p.drop=p.drop.filter(u=>u.c.trig!=='crit');
     p.deck.push(...cr); shuffle(p.deck); p.f.VC.dt=(p.f.VC.dt||0)+1; p.rzHeal=true;
     log(`Divine Skill! คืน Critical ${cr.length} ใบเข้าเด็ค แวนการ์ด Drive +1 จนจบเทิร์น`);
   }
   if(k==='prism'){
-    p.used.add('prism'); sb(p,1);
+    p.used.add('prism'); await sb(p,1);
     let c;
     const ms=units(p).filter(([c,u])=>u.c.race==='Mermaid');
     if(p.ai) c=(ms.find(([c])=>c==='VC')||ms[0])[0];
@@ -1470,12 +1696,12 @@ async function onAttack(p,A,attC,tgtC){
     if(tgtC==='VC' && (A.id==='rez'||A.id==='vita')) await rezaelCall(p,A);
     if(A.id==='kairiL') await kairiAttack(p,A);
     if(A.id==='vyrg3' && upN(p)){ const rs=RCS.filter(c=>p.f[c]&&p.f[c].rest&&p.f[c].c.g===2);
-      if(rs.length && await yes(p,'Vyrgilla: CB1 Stand แนวหลังเกรด 2 ของเรา?', true)){ cb(p,1); let c; if(p.ai) c=rs.sort((a,b)=>(EZ(p.f[b])?1:0)-(EZ(p.f[a])?1:0))[0]; else c=await bpFor(p,0,'Vyrgilla: เลือกแนวหลังเกรด 2 ที่จะ Stand',rs,false); if(c) await vyStand(p,c); } }
+      if(rs.length && await yes(p,'Vyrgilla: CB1 Stand แนวหลังเกรด 2 ของเรา?', true)){ await cb(p,1); let c; if(p.ai) c=rs.sort((a,b)=>(EZ(p.f[b])?1:0)-(EZ(p.f[a])?1:0))[0]; else c=await bpFor(p,0,'Vyrgilla: เลือกแนวหลังเกรด 2 ที่จะ Stand',rs,false); if(c) await vyStand(p,c); } }
     if(A.id==='altknight' && p.altT===G.turn && !p.used.has('altAtk') && upN(p) && FRONT.some(c=>c!=='VC'&&p.f[c]&&p.f[c].rest) && await yes(p,'Altknight: CB1 Stand แนวหลังแถวหน้าทั้งหมด (Drive -1)?', true)){
-      p.used.add('altAtk'); cb(p,1); A.dm=(A.dmT===G.turn?(A.dm||0):0)+1; A.dmT=G.turn; for(const c of ['FL','FR']) if(p.f[c]&&p.f[c].rest) await vyStand(p,c); }
-    if(A.id==='obl3' && p.songT===G.turn && !p.used.has('oblUnlock') && RCS.some(c=>p.lk[c])){ p.used.add('oblUnlock'); log('Oblivionis: Unlock ทั้งหมด'); await unlockAll(p,true); }
+      p.used.add('altAtk'); await cb(p,1); A.dm=(A.dmT===G.turn?(A.dm||0):0)+1; A.dmT=G.turn; for(const c of ['FL','FR']) if(p.f[c]&&p.f[c].rest) await vyStand(p,c); }
+    if(A.id==='obl3' && p.songT===G.turn && !p.used.has('oblUnlock') && RCS.some(c=>p.lk[c])){ p.used.add('oblUnlock'); await cutin(p,'UNLOCK','Ave Mujica'); log('Oblivionis: Unlock ทั้งหมด'); await unlockAll(p,true); }
     if(hasRenG3(p)){ for(const c of RCS){ const w=p.f[c]; if(!w||w.id!=='bdark'||!w.rest||p.used.has('bds'+w.uid)||!p.soul.length) continue;
-      if(await yes(p,'Blaster Dark: SB1 เพื่อ Stand?', true)){ p.used.add('bds'+w.uid); sb(p,1); w.rest=false; if(p.renRetT===G.turn&&p.renRet>=2){ w.bdDrive=G.turn; log('Blaster Dark: Stand (โจมตีครั้งถัดไปได้ Drive check)'); } else log('Blaster Dark: Stand'); } } }
+      if(await yes(p,'Blaster Dark: SB1 เพื่อ Stand?', true)){ p.used.add('bds'+w.uid); await sb(p,1); w.rest=false; if(p.renRetT===G.turn&&p.renRet>=2){ w.bdDrive=G.turn; log('Blaster Dark: Stand (โจมตีครั้งถัดไปได้ Drive check)'); } else log('Blaster Dark: Stand'); } } }
     if(p.vcAtkTurn!==G.turn){ p.vcAtkTurn=G.turn; p.vcAtk=0; } p.vcAtk++;
     if(p.firstBP!==G.turn) p.firstBP=G.turn;
     if(p.duo && p.duo.id==='santhi2'){
@@ -1500,13 +1726,13 @@ async function onAttack(p,A,attC,tgtC){
       for(const c of RCS){ const w=p.f[c]; if(!w||w.id!=='swera'||p.used.has('swera'+w.uid)||p.en<3) continue;
         if(await yes(p,'Swera: Energy-Blast 3 เพื่อ Stand และ Engage Bel-Fiore จาก Drop?', w.rest)){
           p.used.add('swera'+w.uid); p.en-=3; w.rest=false; log('Swera: Stand');
-          const mate=p.f[COL[c]]; if(mate && mate.id==='sione' && mate.rest && p.soul.length && await yes(p,'Sione: SB1 เพื่อ Stand?')){ sb(p,1); mate.rest=false; log('Sione: Stand'); }
+          const mate=p.f[COL[c]]; if(mate && mate.id==='sione' && mate.rest && p.soul.length && await yes(p,'Sione: SB1 เพื่อ Stand?')){ await sb(p,1); mate.rest=false; log('Sione: Stand'); }
           await engageFromDrop(p,1,BF,'Swera'); } }
     }
   }
   if(attC!=='VC' || true){ for(const c of RCS){ const k=p.f[c]; if(k && k.id==='kiruti' && k===A && hasMyunG3(p)){ k.pt+=5000; log('Kilty +5000'); } } }
   if(attC!=='VC'){
-    if(A.id==='nobia' && hasRezVG(p) && T.c.g>=3 && p.soul.length && await yes(p,'Nobia: SB1 เพื่อ +10000?')){ sb(p,1); A.pb+=10000; log('Nobia +10000'); }
+    if(A.id==='nobia' && hasRezVG(p) && T.c.g>=3 && p.soul.length && await yes(p,'Nobia: SB1 เพื่อ +10000?')){ await sb(p,1); A.pb+=10000; log('Nobia +10000'); }
     if(A.id==='rifistor' && hasRezVG(p)){
       const big = A.byVG && A.placedTurn===G.turn && p.dmg.length>=4;
       A.pb += big?10000:5000; log(`Rifistor +${big?10000:5000}`);
@@ -1514,7 +1740,7 @@ async function onAttack(p,A,attC,tgtC){
     }
     if(A.id==='gabwelius' && p.dmg.length>=4){
       if(A.byFated && A.placedTurn===G.turn && !p.rcDrove && upN(p) && await yes(p,'Gabwelius: CB1 เพื่อ +10000 และทำ Drive check?')){
-        cb(p,1); A.pb+=10000; G.bat.rcDrive=1; p.rcDrove=true; log('Gabwelius +10000 และทำ Drive check 1 ครั้ง');
+        await cb(p,1); A.pb+=10000; G.bat.rcDrive=1; p.rcDrove=true; log('Gabwelius +10000 และทำ Drive check 1 ครั้ง');
       } else { A.pb+=5000; log('Gabwelius +5000'); }
     }
     if(A.id==='lucciel' && T.c.g>=3){ A.pb+=5000; log('Lucciel +5000'); }
@@ -1523,7 +1749,7 @@ async function onAttack(p,A,attC,tgtC){
     if(!G.bat.B && attC!=='VC'){ const mate=p.f[COL[attC]]; if(mate && mate.id==='barrierfr' && hasFrVG(p)){ A.pb+=5000; log('Barrier Analysis: +5000'); } }
     if(A.id==='stark' && p.firstBP!==G.turn){ G.bat.starkFirst=true; }
     if(p.firstBP!==G.turn) p.firstBP=G.turn;
-    if(A.id==='doloris' && attC==='FR' && A.unlockedT===G.turn && upN(p) && await yes(p,'Doloris: CB1 ใช้สกิล (ดาเมจ 4+ ได้ Drive check แทนจั่ว)?')){ cb(p,1);
+    if(A.id==='doloris' && attC==='FR' && A.unlockedT===G.turn && upN(p) && await yes(p,'Doloris: CB1 ใช้สกิล (ดาเมจ 4+ ได้ Drive check แทนจั่ว)?')){ await cb(p,1);
       if(p.dmg.length>=4){ G.bat.rcDrive=1; log('Doloris: ทำ Drive check ในการต่อสู้นี้'); } else { draw(p,1); log('Doloris: จั่ว 1'); } }
     if(EZ(A) && attC!=='VC'){ for(const c of RCS){ const w=p.f[c]; if(w&&w.id==='enwing'){ w.pt+=5000; log('Enwing +5000'); } } }
     if(A.id==='lugos' && hasRenG3(p)){ A.pt+=5000; log('Lugos +5000'); }
@@ -1547,7 +1773,7 @@ async function rezaelCall(p,A){
   const called=[];
   const cand=p.drop.filter(u=>isUnit(u)&&u.c.g<=lim);
   if(upN(p) && cand.length && await yes(p,`${A.c.s}: จ่าย CB1 เรียกการ์ดจาก Drop (เกรดต่างกัน ผลรวมเกรดไม่เกิน ${lim})?`, cand.some(u=>!u.c.trig&&!u.c.sent))){
-    cb(p,1);
+    await cb(p,1);
     let picks=[];
     if(p.ai){
       let best=[],bs=-1;
@@ -1578,6 +1804,7 @@ async function rezaelCall(p,A){
   }
 }
 async function kairiAttack(p,A){
+  await cutin(p,'ENCORE!','Astesice△Live');
   const d=opp(p);
   const rcs=RCS.filter(c=>p.f[c]);
   let ret=[];
@@ -1588,7 +1815,7 @@ async function kairiAttack(p,A){
   for(const c of ret) await returnToHand(p,c,true);
   if(!upN(p)) return;
   if(!(await yes(p,'Kairi: จ่าย CB1 เรียกการ์ดจากมือได้ 2 ใบลงช่องว่าง?', p.hand.some(u=>isUnit(u)&&!u.c.sent&&!u.c.trig) && RCS.some(c=>!p.f[c])))) return;
-  cb(p,1);
+  await cb(p,1);
   for(let k=0;k<2;k++){
     const open=RCS.filter(c=>!p.f[c]); const hu=p.hand.filter(isUnit); if(!open.length||!hu.length) break;
     let u,c;
@@ -1638,7 +1865,7 @@ async function onGC(d,u){
   // abilities when a unit is put on (GC)
   if(!d.f.VC || !BF(d.f.VC)) return;
   if(u.id==='swera' && upN(d) && await yes(d,'Swera: CB1 ดู 2 ใบบนเด็ค เลือก 1 ใบขึ้นมือ?')){
-    cb(d,1); await sweraLook(d); if(d.f.VC.c.g>=3){ u.gsh+=5000; log('Swera Shield +5000'); } }
+    await cb(d,1); await sweraLook(d); if(d.f.VC.c.g>=3){ u.gsh+=5000; log('Swera Shield +5000'); } }
   if(u.id==='pinesse'){
     const a=opp(d); const us=units(a).filter(([c,x])=>!(c!=='VC' && bfProtected(a,x)));
     if(us.length){ let c;
@@ -1683,7 +1910,7 @@ async function callEngaged(p,maxN,filter,who,opt){
 }
 async function playLMOrder(p,u,fromDrop){
   const z=fromDrop?p.drop:p.hand; z.splice(z.indexOf(u),1); p.orders++;
-  if(u.id==='mates'){ if(LM(p.f.VC)) cb(p,1); p.bind.push(fresh(u)); } else p.drop.push(fresh(u));
+  if(u.id==='mates'){ if(LM(p.f.VC)) await cb(p,1); p.bind.push(fresh(u)); } else p.drop.push(fresh(u));
   log(`${p.short} เล่น ${u.c.s}${fromDrop?' จาก Drop':''}`); fx('guard');
   await onOrderPlayed(p);
   const lim=gradeOf(p.f.VC);
@@ -1719,7 +1946,7 @@ async function onDiscard(p,u,byMyun){
   // abilities of a card discarded from hand during its owner's turn
   if(G.active!==p.i) return;
   if(u.id==='cadilla'){ const pick=await searchDeck(p,5,x=>MY(x),'Cadilla: เลือกการ์ด Myun ขึ้นมือ'); if(!pick) log('Cadilla: ไม่พบการ์ด Myun'); }
-  if(u.id==='myun1' && byMyun && upN(p) && await yes(p,'Myun (G1) ถูกทิ้ง: CB1 จั่ว 1?')){ cb(p,1); draw(p,1); log('Myun (G1): จั่ว 1'); }
+  if(u.id==='myun1' && byMyun && upN(p) && await yes(p,'Myun (G1) ถูกทิ้ง: CB1 จั่ว 1?')){ await cb(p,1); draw(p,1); log('Myun (G1): จั่ว 1'); }
   if(byMyun==='vc' && MY(u) && p.f.VC && p.f.VC.id==='myun3' && !p.used.has('myunDis')){
     p.used.add('myunDis'); draw(p,1); p.f.VC.pt+=5000; let t='จั่ว 1 · +5000';
     if(gradeOf(opp(p).f.VC)>=3){ p.f.VC.ct+=1; t+=' · Critical +1'; } log('Myun: '+t); }
@@ -1736,12 +1963,14 @@ async function myunSinno(p){
   const A=d.f[oc]; A.lost=G.turn; A.pt+=5000*gradeOf(d.f.VC); A.rest=true;
   G.battleNo++;
   G.bat={p,d,A,attC:oc,B:null,boostC:null,tgtC:'VC',noHit:false,noSent:false,rcDrive:0,own:d,charm:true};
-  log(`Sin Skill! ${p.short} ยึด ${A.c.s} ให้โจมตี ${d.f.VC.c.s}`); fx('persona'); render(); await sleep(500);
+  await cutin(p,'SIN SKILL',`${A.c.s} → ${d.f.VC.c.s}`);
+  log(`Sin Skill! ${p.short} ยึด ${A.c.s} ให้โจมตี ${d.f.VC.c.s}`); render(); emitFx({fx:'atk',pi:d.i,c:oc,tpi:d.i,tc:'VC'}); await sleep(500);
   for(const c of RCS){ const k=p.f[c]; if(k && k.id==='kiruti' && hasMyunG3(p)){ k.pt+=5000; log('Kilty +5000'); } }
   if(d.ai){ await aiGuard(d); render(); await sleep(350); } else await humanGuard(d);
   if(G.over) return;
   const atk=atkPower(), dp=defPower(); const hit=!G.bat.noHit && atk>=dp;
   log(`${atk.toLocaleString()} ปะทะ ${dp.toLocaleString()}: ${hit?'Hit!':(G.bat.noHit?'กันด้วย Sentinel':'ไม่โดน')}`); if(!hit) fx('block');
+  emitFx({fx:hit?'hit':'blk',pi:d.i,c:'VC'}); await fxWait(hit?420:340);
   if(hit){ d.vgHit=G.turn; const n=crit(A); for(let k=0;k<n&&!G.over;k++) await damageCheck(d,k+1,n); }
   if(G.over) return;
   await closeBattle();
@@ -1752,7 +1981,7 @@ async function bdarkPlaced(p,u,onVC){
   const canCB=upN(p)>=1, canEB=p.en>=3; if(!canCB&&!canEB) return;
   if(!(await yes(p,'Blaster Dark: CB1 หรือ Energy-Blast 3 เพื่อ Retire แนวหลังคู่แข่ง?'))) return;
   let how; if(p.ai) how=canEB?'eb':'cb'; else if(canCB&&canEB) how=await askP(p,'Blaster Dark: จ่ายด้วยอะไร','',[{l:'CB1',v:'cb',pri:1},{l:'Energy-Blast 3',v:'eb'}]); else how=canCB?'cb':'eb';
-  if(how==='cb') cb(p,1); else p.en-=3; p.onlyRen=true;
+  if(how==='cb') await cb(p,1); else p.en-=3; p.onlyRen=true;
   const d=opp(p); const rs=RCS.filter(c=>d.f[c]&&!bfProtected(d,d.f[c])); let c=null;
   if(rs.length){ if(p.ai) c=rs.sort((a,b)=>d.f[b].c.g-d.f[a].c.g)[0]; else c=await bpFor(p,1,'Blaster Dark: เลือกแนวหลังคู่แข่งที่จะ Retire',rs,!onVC?false:true); }
   if(c&&d.f[c]){ const t=d.f[c]; d.f[c]=null; await retire(d,t); log(`Blaster Dark: Retire ${t.c.s}`); }
@@ -1762,7 +1991,7 @@ async function santhiPlaced(p,u,onVC){
   if(!p.f.VC || !LB(p.f.VC)) return;
   if(!onVC && !upN(p)) return;
   if(!(await yes(p,`Santhi: ${onVC?'(ฟรี) ':'CB1 '}ใช้สกิลตอนลงสนาม?`))) return;
-  if(!onVC) cb(p,1);
+  if(!onVC) await cb(p,1);
   const d=opp(p); const rs=RCS.filter(c=>d.f[c]&&!bfProtected(d,d.f[c])); const canLook=G.phase!=='battle' && p.deck.length;
   let opt=null;
   if(p.ai) opt = canLook && RCS.some(c=>!p.f[c]) ? 'look' : (rs.length?'ret':null);
@@ -1797,9 +2026,9 @@ async function unlockAll(p,inBattle){
   for(const [c,u] of got){
     if(p.f[c]!==u) continue;
     if(u.id==='mortis2' && c==='FL'){ const v=gradeOf(opp(p).f.VC)>=3?10000:5000; if(p.mortisBuffT!==G.turn){ p.mortisBuffT=G.turn; p.mortisBuff=0; } p.mortisBuff+=v; log(`Mortis: แนวหลัง Ave Mujica แถวหน้า +${v}`); }
-    if(u.id==='timoris' && c==='BR' && p.soul.length>=2 && await yes(p,'Timoris: SB2 เพื่อ Counter-Charge 1?', p.dmg.some(d=>!d.up))){ sb(p,2); cc(p,1); if(gradeOf(opp(p).f.VC)>=3) u.pt+=5000; log('Timoris: CC1'+(gradeOf(opp(p).f.VC)>=3?' · +5000':'')); }
+    if(u.id==='timoris' && c==='BR' && p.soul.length>=2 && await yes(p,'Timoris: SB2 เพื่อ Counter-Charge 1?', p.dmg.some(d=>!d.up))){ await sb(p,2); cc(p,1); if(gradeOf(opp(p).f.VC)>=3) u.pt+=5000; log('Timoris: CC1'+(gradeOf(opp(p).f.VC)>=3?' · +5000':'')); }
     if(u.id==='amoris' && c==='BL' && upN(p)){ const d=opp(p); const rs=RCS.filter(x=>d.f[x]&&!bfProtected(d,d.f[x]));
-      if(rs.length && await yes(p,'Amoris: CB1 เพื่อ Retire แนวหลังคู่แข่ง?')){ cb(p,1); let t; if(p.ai) t=rs.sort((a,b)=>d.f[b].c.g-d.f[a].c.g)[0]; else t=await bpFor(p,1,'Amoris: เลือกแนวหลังคู่แข่งที่จะ Retire',rs,false); if(t&&d.f[t]){ const x=d.f[t]; d.f[t]=null; await retire(d,x); log(`Amoris: Retire ${x.c.s}`); } } }
+      if(rs.length && await yes(p,'Amoris: CB1 เพื่อ Retire แนวหลังคู่แข่ง?')){ await cb(p,1); let t; if(p.ai) t=rs.sort((a,b)=>d.f[b].c.g-d.f[a].c.g)[0]; else t=await bpFor(p,1,'Amoris: เลือกแนวหลังคู่แข่งที่จะ Retire',rs,false); if(t&&d.f[t]){ const x=d.f[t]; d.f[t]=null; await retire(d,x); log(`Amoris: Retire ${x.c.s}`); } } }
     if(/Mortis/.test(u.c.n) && p.f.FL && p.f.FL.id==='mortis2'){ const m4=p.hand.find(x=>x.id==='mortis4')||p.drop.find(x=>x.id==='mortis4');
       if(m4 && await yes(p,'Stage Puppet Mortis: Bind “Obedient Mortis” ที่หน้าซ้าย เพื่อเรียกการ์ดนี้ลงหน้าซ้าย?', true)){
         const z=p.hand.includes(m4)?p.hand:p.drop; z.splice(z.indexOf(m4),1); const mo=p.f.FL; p.f.FL=null; p.bind.push(fresh(mo)); log('Stage Puppet Mortis: Bind Obedient Mortis');
@@ -1819,7 +2048,7 @@ async function playSong(p,u,from){
     const m4=p.deck.find(x=>x.id==='mortis4');
     if(m4 && await yes(p,'Imprisoned XII: ค้น Mortis เกรด 4 มาไรด์?', true)){
       p.deck.splice(p.deck.indexOf(m4),1); shuffle(p.deck); await ride(p,m4); p.f.VC.rest=false;
-      p.song=null; p.oz.push(fresh(u)); log('Imprisoned XII: ไรด์ Mortis · ย้ายไป Order zone');
+      p.song=null; p.oz.push(fresh(u)); log('Imprisoned XII: ไรด์ Mortis · ย้ายไป Order zone'); await cutin(p,'IMPRISONED XII','Mortis');
       for(const c of RCS){ const x=p.f[c]; if(x && !/Mortis|睦/.test(x.c.n)){ p.f[c]=null; await retire(p,x); } }
       p.mortCostT=G.turn; log('Imprisoned XII: Retire แนวหลังที่ไม่ใช่ Mortis · เทิร์นนี้สกิล [AUTO] ของแวนการ์ดลด CB1');
     } else shuffle(p.deck);
@@ -1841,7 +2070,7 @@ async function vyStand(p,c){
 }
 async function playUlt(p,u,fromDrop){
   const z=fromDrop?p.drop:p.hand; z.splice(z.indexOf(u),1); p.orders++; p.normalT=G.turn; p.ultT=G.turn; p.drop.push(fresh(u));
-  if(u.id==='bscross') sb(p,1); else cb(p,1);
+  if(u.id==='bscross') await sb(p,1); else await cb(p,1);
   log(`${p.short} เล่น ${u.c.s} (Ultimate Skill)`); fx('persona'); await onOrderPlayed(p);
   if(u.id==='bscross'){ const ez=units(p).filter(([c,x])=>EZ(x)); if(ez.length){ let c; if(p.ai) c=ez[0][0]; else c=await bpFor(p,0,'Blazing Star Cross: เลือกยูนิต Ezerwur',ez.map(x=>x[0]),false);
       if(c&&p.f[c]){ p.f[c].pt+=10000; if(gradeOf(opp(p).f.VC)>=3) p.f[c].bscT=G.turn; log(`Blazing Star Cross: ${p.f[c].c.s} +10000`); } } }
@@ -1863,7 +2092,7 @@ async function valshCost(p,mode){
   if(p.ai) how=canEB?'eb':'cb';
   else { const o=[]; if(canCB) o.push({l:'จ่าย CB1',v:'cb',pri:1}); if(canEB) o.push({l:'จ่าย Energy-Blast 3',v:'eb'}); o.push({l:'ไม่ใช้',v:null});
     how=await askP(p,`Valsheblan: ${mode==='search'?'ค้นการ์ด Crimson Moon ขึ้นมือ':'จั่ว 1'}?`,'',o); }
-  if(!how) return; if(how==='cb') cb(p,1); else p.en-=3;
+  if(!how) return; if(how==='cb') await cb(p,1); else p.en-=3;
   if(mode==='draw'){ draw(p,1); log('Valsheblan: จั่ว 1'); }
   else { const x=p.deck.find(y=>y.c.cm); if(x){ p.deck.splice(p.deck.indexOf(x),1); p.hand.push(x); log(`Valsheblan: นำ ${x.c.s} ขึ้นมือ`); } shuffle(p.deck); }
 }
@@ -1885,7 +2114,7 @@ async function playNormalOrder(p,u,fromDrop){
     p.frFront=G.turn; p.f.VC.ct+=1; log('Judradjim: แถวหน้าทั้งหมด +5000 · แวนการ์ด Critical +1');
     await onNormalOrder(p); return; }
   if(u.id==='crimson'||u.id==='mates'){ await playLMOrder(p,u,fromDrop); await onNormalOrder(p); return; }
-  if(u.id==='sweet'){ p.hand.splice(p.hand.indexOf(u),1); p.orders++; cb(p,1); p.drop.push(fresh(u)); log(`${p.short} เล่น Sweet×Sweet`); await onOrderPlayed(p);
+  if(u.id==='sweet'){ p.hand.splice(p.hand.indexOf(u),1); p.orders++; await cb(p,1); p.drop.push(fresh(u)); log(`${p.short} เล่น Sweet×Sweet`); await onOrderPlayed(p);
     const top=p.deck.slice(0,5), cand=top.filter(isUnit); let pick=null;
     if(cand.length){ if(p.ai) pick=cand.filter(x=>!x.c.trig&&!x.c.sent).sort((a,b)=>score(b)-score(a))[0]||null; else { const r=await pickCards(p,'Sweet×Sweet: เลือกยูนิตเรียกขึ้น (RC)',cand,{min:0,max:1}); pick=r.length?cand[r[0]]:null; } }
     if(pick){ p.deck.splice(p.deck.indexOf(pick),1); shuffle(p.deck); const c=await chooseCallCircle(p,pick); log(`Sweet×Sweet: เรียก ${pick.c.s}`); await place(p,pick,c); } else shuffle(p.deck);
@@ -1909,7 +2138,8 @@ async function doAttack(p,attC,boostC,tgtC){
   if(A.atkT!==G.turn){ A.atkT=G.turn; A.atkN=0; } A.atkN++;
   G.bat={p,d,A,attC,B,boostC,tgtC,noHit:false,noSent:false,rcDrive:A.bdDrive===G.turn&&attC!=='VC'?1:0};
   log(`${p.short}: ${A.c.s}${B?' (Boost '+B.c.s+')':''} โจมตี ${d.f[tgtC].c.s}`); fx('attack');
-  await sleep(300);
+  emitFx({fx:'atk',pi:p.i,c:attC,tpi:d.i,tc:tgtC});
+  await sleep(300); await fxWait(260);
   await onAttack(p,A,attC,tgtC); if(G.over) return;
   if(B && p.f[boostC]!==B) G.bat.B=B=null;
   if(B && B.id==='malpiti' && boostC==='BC' && altReveal(p)){
@@ -1939,7 +2169,7 @@ async function doAttack(p,attC,boostC,tgtC){
       let picks=null;
       if(d.ai){ const lethal=d.dmg.length+crit(G.bat.A)>=6 || d.dmg.length>=4; picks=bfs.filter(c=>d.f[c].rest || lethal); if(!picks.length) picks=null; }
       else if(await yes(d,'Maier ถูกโจมตี: SB1 ย้ายแนวหลัง Bel-Fiore ไป (GC)?')){ const r=await pickCards(d,'เลือกแนวหลัง Bel-Fiore ที่จะย้ายไป (GC)',bfs.map(c=>d.f[c]),{min:1,max:bfs.length}); picks=r.map(i=>bfs[i]); }
-      if(picks && picks.length){ d.used.add('maierDef'); sb(d,1);
+      if(picks && picks.length){ d.used.add('maierDef'); await sb(d,1);
         for(const c of picks){ const u=d.f[c]; moveToGC(d,u,c); log(`Maier: ${u.c.s} ย้ายไป (GC)`); await onGC(d,u); } fx('guard'); render(); }
     }
   }
@@ -1953,6 +2183,7 @@ async function doAttack(p,attC,boostC,tgtC){
   const T=d.f[tgtC];
   const atk=atkPower(), dp=defPower();
   const hit = !G.bat.noHit && atk>=dp; if(!hit) fx('block'); else if(tgtC!=='VC') fx('retire');
+  emitFx({fx:hit?'hit':'blk',pi:d.i,c:tgtC}); await fxWait(hit?420:340);
   log(`${atk.toLocaleString()} ปะทะ ${dp.toLocaleString()}: ${hit?'Hit!':(G.bat.noHit?'กันด้วย Sentinel':'ไม่โดน')}`);
   if(hit){
     if(tgtC==='VC'){ d.vgHit=G.turn; let n=crit(A); if(d.transph===G.turn && atk>=100000000) n=Math.max(0,n-1); for(let k=0;k<n&&!G.over;k++) await damageCheck(d,k+1,n); }
@@ -1969,7 +2200,7 @@ async function closeBattle(){
   // end-of-battle abilities
   if(b.B && p.f[b.boostC]===b.B){
     if(b.B.id==='yuika' && b.attC!=='VC' && p.f[b.attC]===b.A && p.soul.length && await yes(p,`Yuika: SB1 คืน ${b.A.c.s} ขึ้นมือ?`, b.A.c.g>=2)){
-      sb(p,1); await returnToHand(p,b.attC,false); }
+      await sb(p,1); await returnToHand(p,b.attC,false); }
     if((b.B.id==='edwige'||b.B.id==='bladefeather'||b.B.id==='stemdev'||b.B.id==='lyrics') && await yes(p,`${b.B.c.s}: นำยูนิตนี้ลง Soul ให้ยูนิต 1 ตัว +2000?`, true)){
       const e=b.B; p.f[b.boostC]=null; p.soul.push(fresh(e));
       const c=await chooseUnitFor(p,'เลือกยูนิตรับ +2000','drive'); if(c&&p.f[c]){ p.f[c].pt+=2000; } log(`${e.c.s} ลง Soul +2000`); }
@@ -1993,7 +2224,7 @@ async function closeBattle(){
   if(b.attC!=='VC' && b.A.id==='alpin' && p.f[b.attC]===b.A && hasMagVG(p) && p.en>=3 && await yes(p,'Alpin: Energy-Blast 3 และ Retire ยูนิตนี้ เพื่อ Counter-Charge 1 และ Soul-Charge 1?', p.dmg.some(d=>!d.up))){
     p.en-=3; p.f[b.attC]=null; await retire(p,b.A); cc(p,1); if(p.deck.length) p.soul.push(fresh(p.deck.shift())); log('Alpin: Retire · CC1 · SC1'); }
   if(!b.charm && b.attC!=='VC' && b.A.vst===G.turn && p.f[b.attC]===b.A && !p.used.has('vst'+b.A.uid)){ p.used.add('vst'+b.A.uid); b.A.rest=false; log(`${b.A.c.s} Stand (Valnout)`); }
-  if(b.starkFirst && p.f[b.attC]===b.A && hasFrVG(p) && gradeOf(p.f.VC)>=3 && p.soul.length>=2 && await yes(p,'Stark: SB2 เพื่อ Stand?', true)){ sb(p,2); b.A.rest=false; log('Stark: Stand'); }
+  if(b.starkFirst && p.f[b.attC]===b.A && hasFrVG(p) && gradeOf(p.f.VC)>=3 && p.soul.length>=2 && await yes(p,'Stark: SB2 เพื่อ Stand?', true)){ await sb(p,2); b.A.rest=false; log('Stark: Stand'); }
   if(!b.charm && hasAMG3(p) && p.f.VC.id==='obl3'){
     if(b.attC!=='VC' && p.f[b.attC]===b.A && AM(b.A) && gradeOf(b.A)<=3) lockUnit(p,b.attC);
     if(b.B && p.f[b.boostC]===b.B && AM(b.B) && gradeOf(b.B)<=3) lockUnit(p,b.boostC); }
@@ -2002,7 +2233,7 @@ async function closeBattle(){
     const pool=[...p.hand.filter(x=>isUnit(x)&&/Mortis|睦/.test(x.c.n)).map(x=>({x,z:'hand'})),...RCS.filter(c=>p.f[c]&&/Mortis|睦/.test(p.f[c].c.n)).map(c=>({x:p.f[c],c}))];
     if(pool.length>=2 && upN(p)>=cbN && await yes(p,`Mortis: ${cbN?'CB1 และ ':''}Bind ยูนิต Mortis 2 ใบ เพื่อ Stand แวนการ์ด?`, true)){
       let picks; if(p.ai) picks=pool.slice(0,2); else { const r=await pickCards(p,'Mortis: เลือกยูนิต 睦/Mortis 2 ใบที่จะ Bind',pool.map(o=>o.x),{min:2,max:2}); picks=r.map(i=>pool[i]); }
-      p.used.add('m4stand'); if(cbN) cb(p,1);
+      p.used.add('m4stand'); if(cbN) await cb(p,1);
       for(const o of picks){ if(o.c){ p.f[o.c]=null; } else p.hand.splice(p.hand.indexOf(o.x),1); p.bind.push(fresh(o.x)); }
       b.A.rest=false; b.A.dm=(b.A.dmT===G.turn?(b.A.dm||0):0)+3-(gradeOf(opp(p).f.VC)>=3?1:0); b.A.dmT=G.turn;
       log('Mortis: Bind 2 ใบ · Stand แวนการ์ด (Drive -3'+(gradeOf(opp(p).f.VC)>=3?' +1':'')+')'); fx('ride'); } }
@@ -2016,10 +2247,10 @@ async function closeBattle(){
     const pool=[...p.hand.filter(x=>x.c.cm).map(x=>({x,z:'hand'})),...p.soul.filter(x=>x.c.cm).map(x=>({x,z:'soul'})),...p.drop.filter(x=>x.c.cm).map(x=>({x,z:'drop'}))];
     if(pool.length && await yes(p,'Fantôme Skill: CB1 และ Bind การ์ด Crimson Moon 1 ใบ เพื่อเล่น Battle phase เพิ่ม?', true)){
       let o; if(p.ai) o=pool.find(y=>y.z==='drop')||pool.find(y=>y.z==='soul')||pool[0]; else { const r=await pickCards(p,'เลือกการ์ด Crimson Moon ที่จะ Bind',pool.map(y=>y.x),{min:1,max:1}); o=pool[r[0]]; }
-      cb(p,1); const z=p[o.z]; z.splice(z.indexOf(o.x),1); p.bind.push(fresh(o.x)); p.used.add('altFan'); p.extraBP=true; fx('perfect'); log('Fantôme Skill! จะได้ Battle phase เพิ่มอีก 1 รอบ'); } }
+      await cb(p,1); const z=p[o.z]; z.splice(z.indexOf(o.x),1); p.bind.push(fresh(o.x)); p.used.add('altFan'); p.extraBP=true; fx('perfect'); await cutin(p,'FANTÔME SKILL','Battle phase เพิ่ม'); log('Fantôme Skill! จะได้ Battle phase เพิ่มอีก 1 รอบ'); } }
   if(b.malpiti && b.B && p.f[b.boostC]===b.B){ const e=b.B; p.f[b.boostC]=null; p.soul.push(fresh(e)); draw(p,1); log('Malpiti: ลง Soul · จั่ว 1'); }
   if(b.attC==='VC' && !b.charm && p.f.VC===b.A && b.A.id==='lubna3' && !p.used.has('lubStand') && upN(p) && await yes(p,'Lubna: CB1 Stand แวนการ์ด (เทิร์นนี้ Drive เหลือ 1)?', true)){
-    p.used.add('lubStand'); cb(p,1); b.A.rest=false; b.A.driveFix=G.turn; log('Lubna: Stand · Drive เหลือ 1'); }
+    p.used.add('lubStand'); await cb(p,1); b.A.rest=false; b.A.driveFix=G.turn; log('Lubna: Stand · Drive เหลือ 1'); }
   if(b.franRet){
     const others=RCS.filter(c=>p.f[c] && p.f[c]!==b.A);
     if(others.length){ let c;
@@ -2065,7 +2296,7 @@ async function applyGuard(d,xs){
       if(x.u.id==='warflag'){ T.pb+=15000; let t=`${d.short} Battle Flag: ${T.c.s} +15000`;
         if(d.second && !d.flagTicket){ d.flagTicket=true; d.hand.push(mk('pshield')); t+=' · ได้ Persona Shield'; }
         if(opp(d).persona){ T.pb+=5000; t+=' · +5000'; } log(t); }
-      if(x.u.id==='transphere'){ cb(d,1); d.regalis=true; T.pb+=25000; d.transph=G.turn; log(`${d.short} Evergreen Transphere: ${T.c.s} +25000`); }
+      if(x.u.id==='transphere'){ await cb(d,1); d.regalis=true; T.pb+=25000; d.transph=G.turn; log(`${d.short} Evergreen Transphere: ${T.c.s} +25000`); }
       if(x.u.id==='stille'){ const v=d.vgHit===G.turn?30000:(b.attC!=='VC'?20000:10000); T.pb+=v; log(`${d.short} Stille Nacht: ${T.c.s} +${v}`); }
     } else if(x.t==='ticket'){
       d.hand.splice(d.hand.indexOf(x.u),1); d.gc.push(fresh(x.u)); T.pb+=10000; d.orderLimit=Math.max(d.orderLimit,2); log(`${d.short} Persona Shield: ${T.c.s} +10000`);
@@ -2073,8 +2304,8 @@ async function applyGuard(d,xs){
       if(x.u.id==='falhart' && !x.c) await valshCost(d,'draw');
       if(x.u.id==='puppeteer' && (upN(d)||d.en>=2)){ const big=gradeOf(d.f.VC)<gradeOf(opp(d).f.VC)&&gradeOf(opp(d).f.VC)>=3; const v=big?15000:10000;
         let how=null; if(d.ai) how=d.en>=2?'eb':'cb'; else { const o=[]; if(upN(d)) o.push({l:'CB1',v:'cb',pri:1}); if(d.en>=2) o.push({l:'Energy-Blast 2',v:'eb'}); o.push({l:'ไม่ใช้',v:null}); how=await askP(d,`Puppeteer: Shield +${v}?`,'',o); }
-        if(how){ if(how==='cb') cb(d,1); else d.en-=2; x.u.gsh+=v; log(`Puppeteer: Shield +${v}`); } }
-      if(x.u.id==='leilon' && x.c && gradeOf(opp(d).f.VC)>=3 && d.soul.length && await yes(d,'Leilon: SB1 ได้ Shield +5000?', true)){ sb(d,1); x.u.gsh+=5000; log('Leilon: Shield +5000'); } if(x.u.id==='tolpaz' && !x.c && await tolpazCost(d)){ x.u.gsh+=15000; log('Tolpaz: Shield +15000'); } }
+        if(how){ if(how==='cb') await cb(d,1); else d.en-=2; x.u.gsh+=v; log(`Puppeteer: Shield +${v}`); } }
+      if(x.u.id==='leilon' && x.c && gradeOf(opp(d).f.VC)>=3 && d.soul.length && await yes(d,'Leilon: SB1 ได้ Shield +5000?', true)){ await sb(d,1); x.u.gsh+=5000; log('Leilon: Shield +5000'); } if(x.u.id==='tolpaz' && !x.c && await tolpazCost(d)){ x.u.gsh+=15000; log('Tolpaz: Shield +15000'); } }
   }
   const units2=xs.filter(x=>x.t==='unit'||x.t==='icpt'||x.t==='sent');
   if(units2.length) log(`${d.short} การ์ด: ${units2.map(x=>x.u.c.s+(x.c?' (Intercept)':'')).join(', ')}`);
@@ -2114,7 +2345,7 @@ async function aiGuard(d){
 // ---- AI turn parts ----
 async function aiRide(p){
   const vc=p.f.VC, {next,fromHand}=rideOptions(p);
-  if(next && vc.id==='vyrg1' && upN(p)){ cb(p,1); log(`${p.short} จ่าย CB1 แทนการทิ้งการ์ด`); p.ride.splice(p.ride.indexOf(next),1); await ride(p,next); return; }
+  if(next && vc.id==='vyrg1' && upN(p)){ await cb(p,1); log(`${p.short} จ่าย CB1 แทนการทิ้งการ์ด`); p.ride.splice(p.ride.indexOf(next),1); await ride(p,next); return; }
   if(next && realHand(p).length){
     const d=lowest(p.hand); await payRideCost(p,d);
     p.ride.splice(p.ride.indexOf(next),1); await ride(p,next); return;
@@ -2221,7 +2452,7 @@ async function endPhase(p){
       else { const r=await pickCards(p,'Fantôme Skill: เลือกการ์ด Crimson Moon ที่จะ Bind (1–2 ใบ)',pool.map(o=>o.x),{min:1,max:2}); picks=r.map(i=>pool[i]); }
       for(const o of picks){ const z=p[o.z]; z.splice(z.indexOf(o.x),1); p.bind.push(fresh(o.x)); }
       const n=picks.length; p.magShield={until:G.turn+1,n}; fx('perfect');
-      log(`Fantôme Skill! Bind ${n} ใบ · LettiaMateS Shield +${5000*n} จนจบเทิร์นคู่แข่ง`);
+      await cutin(p,'FANTÔME SKILL',`Shield +${5000*n}`); log(`Fantôme Skill! Bind ${n} ใบ · LettiaMateS Shield +${5000*n} จนจบเทิร์นคู่แข่ง`);
       const rs=RCS.filter(c=>p.f[c]&&!p.f[c].c.sent); let ret=[];
       if(rs.length){ if(p.ai) ret=rs.filter(c=>p.f[c].rest).sort((a,b)=>p.f[b].c.g-p.f[a].c.g).slice(0,n);
         else { const r=await pickCards(p,`Fantôme Skill: เลือกแนวหลังคืนขึ้นมือได้ ${n} ใบ`,rs.map(c=>p.f[c]),{min:0,max:n}); ret=r.map(i=>rs[i]); } }
@@ -2253,7 +2484,7 @@ async function humanRide(p){
   if(!opts.length) return;
   opts.push({l:'ไม่ Ride เทิร์นนี้',v:'skip'});
   const v=await askP(p,'Ride phase',`แวนการ์ดตอนนี้: ${vc.c.s} (G${vc.c.g})`,opts);
-  if(v==='rd' && vc.id==='vyrg1' && upN(p) && await askP(p,'Rising Star: จ่ายค่าไรด์ด้วยอะไร','',[{l:'CB1 (ไม่ต้องทิ้งการ์ด)',v:true,pri:1},{l:'ทิ้งการ์ดจากมือ 1 ใบ',v:false}])){ cb(p,1); log(`${p.short} จ่าย CB1 แทนการทิ้งการ์ด`); p.ride.splice(p.ride.indexOf(next),1); await ride(p,next); return; }
+  if(v==='rd' && vc.id==='vyrg1' && upN(p) && await askP(p,'Rising Star: จ่ายค่าไรด์ด้วยอะไร','',[{l:'CB1 (ไม่ต้องทิ้งการ์ด)',v:true,pri:1},{l:'ทิ้งการ์ดจากมือ 1 ใบ',v:false}])){ await cb(p,1); log(`${p.short} จ่าย CB1 แทนการทิ้งการ์ด`); p.ride.splice(p.ride.indexOf(next),1); await ride(p,next); return; }
   if(v==='rd'){
     const rh=realHand(p); const r=await pickCards(p,'เลือกการ์ดที่จะทิ้งเป็นค่า Ride',rh,{min:1,max:1});
     await payRideCost(p,rh[r[0]]);
@@ -2289,8 +2520,10 @@ async function humanAttack(c){
 
 // ---- game flow ----
 async function startGame(myDeck,oppDeck,first,aiBoth=false,online=false,tutorial=false){
+  if(typeof FLY!=='undefined') FLY.prevZones=null;
   G={tutorial,uid:1,turn:1,active:0,phase:'setup',battleNo:0,busy:true,over:false,log:[],bat:null,reveal:null,next:null,p:[],fxq:[],fxid:0,rid:0};
   G.p=[newPlayer(0,myDeck,aiBoth),newPlayer(1,oppDeck,true)];
+  for(const pl of G.p){ pl.deckTrig={}; for(const u of pl.deck) if(u.c.trig) pl.deckTrig[u.c.trig]=1; }
   if(online){ const a=G.p[0], b=G.p[1]; b.ai=false; b.remote=true; a.short='โฮสต์'; b.short='เพื่อน'; a.name='โฮสต์ · '+DECKS[myDeck].name; b.name='เพื่อน · '+DECKS[oppDeck].name; G.online=true; }
   G.first = first==='me'?0 : first==='opp'?1 : (Math.random()<.5?0:1);
   G.p[1-G.first].second=true;
@@ -2433,12 +2666,12 @@ function drawArrow(){
   const b=G&&G.bat; if(!b){ if(sv) sv.remove(); return; }
   const a=app.querySelector(`[data-cir="${(b.own||b.p).i}-${b.attC}"]`), t=app.querySelector(`[data-cir="${b.d.i}-${b.tgtC}"]`);
   if(!a||!t){ if(sv) sv.remove(); return; }
-  const R=app.getBoundingClientRect(), ra=a.getBoundingClientRect(), rt=t.getBoundingClientRect();
-  const x1=ra.left+ra.width/2-R.left, y1=ra.top+ra.height/2-R.top, x2=rt.left+rt.width/2-R.left, y2=rt.top+rt.height/2-R.top;
+  const R=app.getBoundingClientRect(), ra=a.getBoundingClientRect(), rt=t.getBoundingClientRect(); const Z=parseFloat(getComputedStyle(app).zoom)||1;
+  const x1=(ra.left+ra.width/2-R.left)/Z, y1=(ra.top+ra.height/2-R.top)/Z, x2=(rt.left+rt.width/2-R.left)/Z, y2=(rt.top+rt.height/2-R.top)/Z;
   const dx=x2-x1, dy=y2-y1, L=Math.hypot(dx,dy)||1, k=46/L;
   const sx=x1+dx*k, sy=y1+dy*k, ex=x2-dx*k, ey=y2-dy*k;
   if(!sv){ sv=document.createElementNS('http://www.w3.org/2000/svg','svg'); sv.id='arw'; app.appendChild(sv); }
-  sv.setAttribute('width',R.width); sv.setAttribute('height',app.scrollHeight);
+  sv.setAttribute('width',R.width/Z); sv.setAttribute('height',app.scrollHeight);
   sv.innerHTML=`<defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--atk)"/></marker></defs>
     <line x1="${sx}" y1="${sy}" x2="${ex}" y2="${ey}" stroke="var(--atk)" stroke-width="5" stroke-linecap="round" marker-end="url(#ah)" class="aline"/>`;
 }
@@ -2465,7 +2698,7 @@ function bgmStart(name){ const c=actx(); if(!c) return; bgmStop(true);
   toastTrack(); render(); }
 function bgmStop(quick){ if(!BGM.timer) return; clearInterval(BGM.timer); BGM.timer=null; const g=BGM.gain, c=SND.ctx;
   if(g&&c){ g.gain.setTargetAtTime(0.0001,c.currentTime,quick?0.08:0.25); setTimeout(()=>g.disconnect(),1200); } BGM.gain=null; BGM.dist=null; }
-function bgmLive(){ return BGM.on && G && G.p && G.p.length && !G.over && G.phase!=='setup'; }
+function bgmLive(){ return BGM.on && !SND.muted && G && G.p && G.p.length && !G.over && G.phase!=='setup'; }
 function bgmSync(){ if(bgmLive()){ if(!BGM.timer && SND.ctx) bgmStart(); } else if(BGM.timer) bgmStop(); }
 function bgmNextTrack(){ BGM.idx++; if(BGM.idx>=BGM.order.length) bgmShuffle(); bgmStart(BGM.order[BGM.idx]); }
 function toggleBgm(){ // tap: next track; after the last track in the cycle -> off; tap again -> on
@@ -2473,7 +2706,7 @@ function toggleBgm(){ // tap: next track; after the last track in the cycle -> o
   else if(BGM.timer){ BGM.on=false; bgmStop(); }
   try{ localStorage.setItem('vg-bgm',BGM.on?'1':'0'); }catch(e){}
   if(BGM.on) actx(); bgmSync(); render(); }
-function bgmLabel(){ return !BGM.on?'<s>🎵</s>':'🎵 '+(BGM.cur&&BGM.timer?TRACKS[BGM.cur].name:''); }
+function bgmLabel(){ return !BGM.on?'<s>🎵</s>':'🎵<span class="bgmn"> '+(BGM.cur&&BGM.timer?TRACKS[BGM.cur].name:'')+'</span>'; }
 function toastTrack(){ if(typeof document==='undefined'||!BGM.cur) return; let el=document.getElementById('toast');
   if(!el){ el=document.createElement('div'); el.id='toast'; document.body.appendChild(el); }
   el.textContent='♪ '+TRACKS[BGM.cur].name; el.className='show'; clearTimeout(el._t); el._t=setTimeout(()=>{ el.className=''; },3000); }
@@ -2574,13 +2807,142 @@ function voicePrime(){ voiceLoad(); }
 function toggleVoice(){ VOICE.on=!VOICE.on; try{ localStorage.setItem('vg-voice',VOICE.on?'1':'0'); }catch(e){} if(VOICE.on){ voiceLoad(); setTimeout(()=>playVoice('persona'),150); } render(); }
 function voiceFor(kind){ if(kind==='persona'||kind==='standup'||kind==='duo'||kind==='ride') playVoice(kind); }
 
+/* ---- Animation level (full / mid / short / off) ---- */
+const ANIM={lv:'full'};
+try{ ANIM.lv = (typeof localStorage!=='undefined' && localStorage.getItem('vg-anim')) || 'full'; }catch(e){}
+const ANIMK=()=>({full:1,mid:.6,short:.35,off:0})[ANIM.lv]??1;
+function setAnim(lv){ ANIM.lv=lv; try{ localStorage.setItem("vg-anim",lv); }catch(e){} if(typeof document!=="undefined") document.body.dataset.anim=lv; render(); }
+if(typeof document!=="undefined" && document.body) document.body.dataset.anim=ANIM.lv;
+
+/* ---- Card flights between zones (FLIP) ---- */
+const FLY={prevZones:null};
+function zoneMap(){
+  const m={};
+  for(const p of G.p){
+    const put=(arr,z)=>{ for(const u of arr||[]) if(u && u.uid>0) m[u.uid]={pi:p.i,z}; };
+    put(p.deck,'deck'); put(p.hand,'hand'); put(p.soul,'soul'); put(p.drop,'drop'); put(p.bind,'bind'); put(p.rm,'rm'); put(p.ride,'ride');
+    put((p.dmg||[]).map(d=>d.u),'dmg'); put(p.gc,'gc'); put(p.oz,'oz'); put(p.engaged,'oz');
+    for(const c in p.f){ const u=p.f[c]; if(u&&u.uid>0) m[u.uid]={pi:p.i,z:'field',c}; }
+    if(p.duo&&p.duo.uid>0) m[p.duo.uid]={pi:p.i,z:'field'};
+  }
+  return m;
+}
+function anchorRect(z){
+  if(!z) return null; const i=z.pi; let sel=null;
+  if(z.z==='deck'||z.z==='ride') sel=`[data-anc="deck-${i}"]`; else if(z.z==='hand') sel=(i===0?'.hand':`[data-anc="hand-${i}"]`);
+  else if(z.z==='drop'||z.z==='rm') sel=`[data-pile="drop-${i}"]`; else if(z.z==='soul') sel=`[data-pile="soul-${i}"]`;
+  else if(z.z==='dmg') sel=`[data-pile="dmg-${i}"]`; else if(z.z==='bind') sel=`[data-pile="bind-${i}"]`;
+  else if(z.z==='gc') sel='.mid'; else if(z.z==='oz') sel=`[data-anc="deck-${i}"]`;
+  const el=sel&&document.querySelector('#app '+sel); return el?el.getBoundingClientRect():null;
+}
+function flyCapture(){
+  const k=ANIMK(); if(!k||!G||!G.p.length) return null;
+  const old={}; document.querySelectorAll('#app [data-uid]').forEach(el=>{ const id=el.dataset.uid; if(old[id]) return; const r=el.getBoundingClientRect(); if(r.width>2) old[id]={r,ow:el.offsetWidth,html:el.outerHTML}; });
+  return old;
+}
+function flyAfter(old){
+  const k=ANIMK(); const nz=zoneMap(); const pz=FLY.prevZones; FLY.prevZones=nz;
+  if(!old||!k||!pz) return;
+  const D=430*k, seen=new Set();
+  document.querySelectorAll('#app [data-uid]').forEach(el=>{
+    const id=el.dataset.uid; if(seen.has(id)) return; seen.add(id);
+    const r=el.getBoundingClientRect(); if(r.width<3) return;
+    const a0=pz[id], a1=nz[id]; if(old[id] && a0 && a1 && a0.pi===a1.pi && a0.z===a1.z && a0.c===a1.c) return;
+    let from=old[id]?old[id].r:null, fresh=false;
+    if(!from){ from=anchorRect(pz[id]); fresh=true; if(!from) return; }
+    const dx=(from.left+from.width/2)-(r.left+r.width/2), dy=(from.top+from.height/2)-(r.top+r.height/2);
+    if(!fresh && Math.abs(dx)<4 && Math.abs(dy)<4) return;
+    const base=(getComputedStyle(el).transform||'none'); const bs=base==='none'?'':' '+base;
+    const ow=old[id]&&old[id].ow||from.width, nw=el.offsetWidth||r.width;
+    const s0=fresh?Math.max(.25,Math.min(1,from.width/r.width)):((ow/nw)||1);
+    try{ el.animate([{transform:`translate(${dx}px,${dy}px) scale(${s0})${bs}`,opacity:fresh?.35:1},{transform:base,opacity:1}],{duration:D,easing:'cubic-bezier(.2,.8,.25,1)'}); }catch(e){}
+  });
+  // cards that left the screen fly to their new zone
+  for(const id in old){ if(seen.has(id)) continue; const to=anchorRect(nz[id]); if(!to) continue;
+    const o=old[id], g=document.createElement('div'); g.className='flyghost'; g.innerHTML=o.html; const c=g.firstElementChild; if(!c) continue;
+    Object.assign(g.style,{left:o.r.left+'px',top:o.r.top+'px',width:o.r.width+'px',height:o.r.height+'px'}); c.style.width='100%'; c.style.height='100%';
+    document.body.appendChild(g);
+    const dx=(to.left+to.width/2)-(o.r.left+o.r.width/2), dy=(to.top+to.height/2)-(o.r.top+o.r.height/2);
+    try{ const a=g.animate([{transform:'none',opacity:1},{transform:`translate(${dx}px,${dy}px) scale(.3) rotate(${nz[id].z==='drop'?-14:0}deg)`,opacity:.15}],{duration:D*1.1,easing:'cubic-bezier(.5,0,.7,1)'}); a.onfinish=()=>g.remove(); }catch(e){ g.remove(); }
+    setTimeout(()=>g.remove(),D*1.4+80);
+  }
+}
+
+/* ---- Battle & trigger effects (canvas particles + DOM overlays) ---- */
+const FXL={cv:null,ctx:null,parts:[],raf:0};
+function fxCanvas(){ if(FXL.cv) return FXL.ctx; const cv=document.createElement('canvas'); cv.id='fxc'; document.body.appendChild(cv); FXL.cv=cv; FXL.ctx=cv.getContext('2d');
+  const rs=()=>{ const d=Math.min(2,window.devicePixelRatio||1); cv.width=innerWidth*d; cv.height=innerHeight*d; cv.style.width=innerWidth+'px'; cv.style.height=innerHeight+'px'; FXL.ctx.setTransform(d,0,0,d,0,0); }; rs(); addEventListener('resize',rs); return FXL.ctx; }
+function burst(x,y,o={}){
+  const k=ANIMK(); if(!k||!HAS_DOM) return; fxCanvas(); const n=Math.round((o.n||30)*Math.min(1,k+.2));
+  for(let i=0;i<n;i++){ const a=o.dir!==undefined?o.dir+(Math.random()-.5)*(o.spread||1):Math.random()*Math.PI*2, v=(o.spd||4)*(.4+Math.random());
+    FXL.parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-(o.up||0),g:o.grav??.08,life:(o.life||50)*(.7+Math.random()*.6),age:0,sz:(o.size||3)*(.6+Math.random()*.8),col:(o.colors||['#fff'])[i%(o.colors||['#fff']).length],shape:o.shape||'dot',rot:Math.random()*6});}
+  if(!FXL.raf) FXL.raf=requestAnimationFrame(fxLoop);
+}
+function bolt(x1,y1,x2,y2,col){ const k=ANIMK(); if(!k||!HAS_DOM) return; fxCanvas(); FXL.parts.push({bolt:true,x1,y1,x2,y2,col,life:16,age:0,seed:Math.random()}); if(!FXL.raf) FXL.raf=requestAnimationFrame(fxLoop); }
+function fxLoop(){
+  const c=FXL.ctx; c.clearRect(0,0,innerWidth,innerHeight); c.globalCompositeOperation='lighter';
+  FXL.parts=FXL.parts.filter(p=>p.age++<p.life);
+  for(const p of FXL.parts){ const t=1-p.age/p.life; c.globalAlpha=Math.max(0,t);
+    if(p.bolt){ c.strokeStyle=p.col; c.lineWidth=3*t+1; c.shadowColor=p.col; c.shadowBlur=14; c.beginPath(); c.moveTo(p.x1,p.y1); const n=8;
+      for(let i=1;i<=n;i++){ const f=i/n, jx=(i<n)?(Math.sin(p.seed*99+i*7.1)*22):0; c.lineTo(p.x1+(p.x2-p.x1)*f+jx,p.y1+(p.y2-p.y1)*f); } c.stroke(); c.shadowBlur=0; continue; }
+    p.x+=p.vx; p.y+=p.vy; p.vy+=p.g; p.vx*=.985; p.rot+=.1; c.fillStyle=p.col;
+    if(p.shape==='star'){ c.save(); c.translate(p.x,p.y); c.rotate(p.rot); c.beginPath(); for(let i=0;i<10;i++){ const r=i%2?p.sz*.45:p.sz*1.4, a=i*Math.PI/5; c.lineTo(Math.cos(a)*r,Math.sin(a)*r);} c.closePath(); c.fill(); c.restore(); }
+    else if(p.shape==='plus'){ c.fillRect(p.x-p.sz*1.3,p.y-p.sz*.35,p.sz*2.6,p.sz*.7); c.fillRect(p.x-p.sz*.35,p.y-p.sz*1.3,p.sz*.7,p.sz*2.6); }
+    else { c.beginPath(); c.arc(p.x,p.y,p.sz,0,7); c.fill(); } }
+  c.globalAlpha=1; c.globalCompositeOperation='source-over';
+  FXL.raf = FXL.parts.length ? requestAnimationFrame(fxLoop) : 0; if(!FXL.raf) c.clearRect(0,0,innerWidth,innerHeight);
+}
+function cirEl(pi,c){ return document.querySelector(`#app [data-cir="${pi}-${c}"]`); }
+function cirCenter(pi,c){ const e=cirEl(pi,c); if(!e) return null; const r=e.getBoundingClientRect(); return {x:r.left+r.width/2,y:r.top+r.height/2,r}; }
+function floatText(x,y,txt,cls){ if(!ANIMK()) return; const e=document.createElement('div'); e.className='ftxt '+(cls||''); e.textContent=txt; e.style.left=x+'px'; e.style.top=y+'px'; document.body.appendChild(e); setTimeout(()=>e.remove(),1300); }
+function screenShake(px){ const a=document.getElementById('app'); if(!a||!ANIMK()) return; a.animate([{transform:'translate(0,0)'},{transform:`translate(${-px}px,${px/2}px)`},{transform:`translate(${px}px,${-px/2}px)`},{transform:`translate(${-px/2}px,0)`},{transform:'translate(0,0)'}],{duration:320}); }
+const TRIG_COL={crit:['#ffe066','#ffd000','#fff6c2'],draw:['#7fc8ff','#3b8cff','#d8eeff'],heal:['#7dffa8','#2bd36b','#e2ffe9'],front:['#ff8a5c','#ff3d3d','#ffd0b8'],over:['#ff5ec4','#ffd23f','#5ef0ff','#a07bff','#7dff8a']};
+function runFx(e){
+  if(!HAS_DOM) return; const k=ANIMK();
+  if(e.fx==='cut'){ cutinShow(e); return; }
+  if(!k) return;
+  if(e.fx==='atk'){ const a=cirCenter(e.pi,e.c), t=cirCenter(e.tpi,e.tc); if(!a||!t) return; const card=cirEl(e.pi,e.c).querySelector('.cd'); const dx=(t.x-a.x)*.38, dy=(t.y-a.y)*.38;
+    if(card){ const base=getComputedStyle(card).transform; const bs=base==='none'?'':' '+base; card.animate([{transform:base},{transform:`translate(${-dx*.12}px,${-dy*.12}px) scale(1.05)${bs}`,offset:.25},{transform:`translate(${dx}px,${dy}px) scale(1.16)${bs}`,offset:.62},{transform:base}],{duration:520*k,easing:'ease-in-out'}); }
+    setTimeout(()=>burst(a.x+dx,a.y+dy,{n:14,colors:['#fff','#ffd9a8'],spd:3,life:22,size:2.2,grav:0}),300*k); return; }
+  if(e.fx==='hit'){ const t=cirCenter(e.pi,e.c); if(!t) return; const el=cirEl(e.pi,e.c);
+    el.animate([{transform:'translate(0,0)'},{transform:'translate(-6px,2px)'},{transform:'translate(6px,-2px)'},{transform:'translate(-3px,0)'},{transform:'translate(0,0)'}],{duration:340});
+    el.animate([{boxShadow:'0 0 0 0 rgba(255,80,60,.9)'},{boxShadow:'0 0 40px 14px rgba(255,80,60,0)'}],{duration:520});
+    burst(t.x,t.y,{n:20,colors:['#ff5a3c','#ffb347','#fff2c4'],spd:3.5,life:30,size:2.4,grav:.1});
+    floatText(t.x,t.y-t.r.height*.35,e.c==='VC'?'HIT!':'RETIRE','hit'); return; }
+  if(e.fx==='blk'){ const t=cirCenter(e.pi,e.c); if(!t) return; const ring=document.createElement('div'); ring.className='shieldfx'; Object.assign(ring.style,{left:t.x+'px',top:t.y+'px'}); document.body.appendChild(ring); setTimeout(()=>ring.remove(),800);
+    burst(t.x,t.y,{n:12,colors:['#8fd3ff','#ffffff','#5aa8ff'],spd:2.6,life:26,size:2,grav:0}); floatText(t.x,t.y-t.r.height*.35,'GUARD!','blk'); return; }
+  if(e.fx==='pow'){ const t=cirCenter(e.pi,e.c); if(!t) return; floatText(t.x,t.y,e.txt,'pow '+(e.t||''));
+    burst(t.x,t.y,{n:8,colors:TRIG_COL[e.t]||['#fff'],spd:1.8,life:24,size:2,up:1,grav:-.02}); const el=cirEl(e.pi,e.c).querySelector('.cd');
+    if(el) el.animate([{filter:'brightness(1.35)'},{filter:'none'}],{duration:500}); return; }
+  if(e.fx==='trig'){ const fe=document.querySelector('#flip .fcard, #flip .cd, #flip'); const fr=fe?fe.getBoundingClientRect():null; const cx=fr&&fr.width?fr.left+fr.width/2:innerWidth/2, cy=fr&&fr.height?fr.top+fr.height/2:innerHeight*.45, cols=TRIG_COL[e.t]||['#fff'];
+    const fl=document.createElement('div'); fl.className='trigglow t-'+e.t; Object.assign(fl.style,{left:cx+'px',top:cy+'px'}); document.body.appendChild(fl); setTimeout(()=>fl.remove(),800);
+    if(e.t==='crit'){ bolt(cx-10,cy-120,cx,cy-30,'#ffe066'); bolt(cx+16,cy-110,cx+6,cy-30,'#ffe066'); burst(cx,cy,{n:22,colors:cols,shape:'star',spd:3.2,life:34,size:3,grav:.04}); }
+    else if(e.t==='draw'){ burst(cx,cy,{n:18,colors:cols,spd:2.6,life:30,size:2.2,grav:0}); }
+    else if(e.t==='heal'){ for(let i=0;i<10;i++) burst(cx+(Math.random()-.5)*110,cy+40+Math.random()*30,{n:1,colors:cols,shape:'plus',spd:.4,up:1.6,life:48,size:3.4,grav:-.02}); }
+    else if(e.t==='front'){ burst(cx,cy,{n:14,colors:cols,dir:0,spread:.35,spd:5,life:26,size:2.4,grav:0}); burst(cx,cy,{n:14,colors:cols,dir:Math.PI,spread:.35,spd:5,life:26,size:2.4,grav:0}); }
+    else if(e.t==='over'){ burst(cx,cy,{n:50,colors:cols,shape:'star',spd:5,life:46,size:3.4,grav:.04}); }
+    return; }
+}
+function emitFx(e){
+  if(!HAS_DOM) return;
+  if(NET.role==='host' && G){ G.anims=(G.anims||[]).slice(-14); G.animId=(G.animId||0)+1; G.anims.push(Object.assign({},e,{id:G.animId})); hostSend(); }
+  runFx(e);
+}
+async function fxWait(ms){ if(HAS_DOM && ANIMK()) await sleep(Math.round(ms*ANIMK())); }
+function cutinShow(e){
+  const k=Math.max(.5,ANIMK()); const im=IMG[e.cid]; const el=document.createElement('div'); el.className='cutin c-'+(e.clan||'nu');
+  el.innerHTML=`<div class="cband"><div class="cart"${im?` style="background-image:url(${im})"`:''}></div><div class="ctxt"><b>${esc(e.title)}</b>${e.sub?`<small>${esc(e.sub)}</small>`:''}</div></div>`;
+  el.style.setProperty('--dur',Math.round(1250*k)+'ms'); document.body.appendChild(el); fx('persona'); el.onclick=()=>el.remove(); setTimeout(()=>el.remove(),1300*k+60);
+}
+async function cutin(p,title,sub){ if(!HAS_DOM) return; const v=p.f.VC; emitFx({fx:'cut',title,sub,cid:v&&v.id,clan:v&&v.c.clan}); await sleep(Math.round(1150*Math.max(.5,ANIMK()))); }
+
 /* ---- Ride / Persona / Stand up / D-Duo cut-in effects ---- */
 function rideFxShow(kind,cards,opt={}){
   if(!HAS_DOM) return Promise.resolve();
   const el=document.getElementById('rfx'); if(!el) return Promise.resolve();
   const reduce=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   let dur={ride:1000,persona:1550,standup:1750,duo:VOICE.on?2100:1450}[kind]||1000;
-  if(opt.ai) dur*=0.6; if(reduce) dur=600; dur*=SLEEP;
+  if(opt.ai) dur*=0.6; if(reduce) dur=600; dur*=SLEEP; dur*=Math.max(.45,ANIMK()||.45);
   if(dur<=0) return Promise.resolve();
   const clan=opt.clan||(cards[0]&&cards[0].c.clan)||'nu';
   const big=u=>`<div class="rcard">${cardHTML(u)}</div>`;
@@ -2594,7 +2956,7 @@ function rideFxShow(kind,cards,opt={}){
       +(kind==='persona'?'<div class="rtitle big">PERSONA RIDE!</div>':'<div class="rtitle">RIDE!</div>')
       +`<div class="rname"><small>${esc(opt.who||'')}</small> ${esc(u.c.n)} <b>G${u.c.g}</b></div>`;
   }
-  if(NET.role==='host' && G){ G.anims=(G.anims||[]).slice(-6); G.animId=(G.animId||0)+1; G.anims.push({id:G.animId,kind,ids:cards.map(u=>u&&u.id),clan,pi:opt.pi}); hostSend(); }
+  if(NET.role==='host' && G){ G.anims=(G.anims||[]).slice(-14); G.animId=(G.animId||0)+1; G.anims.push({id:G.animId,kind,ids:cards.map(u=>u&&u.id),clan,pi:opt.pi}); hostSend(); }
   el.innerHTML=inner; el.className='on '+kind+' c-'+clan+(reduce?' rm':''); el.style.setProperty('--dur',dur+'ms');
   voiceFor(kind);
   return new Promise(res=>{
@@ -2628,13 +2990,39 @@ function lessonSheet(i,then){
   sheetEl.querySelector('#ln').onclick=()=>{ if(i<LESSONS.length-1) lessonSheet(i+1,then); else { closeSheet(); then&&then(); } };
 }
 const GLOSS=[['VC / แวนการ์ด','การ์ดตรงกลางแถวหน้า ตัวแทนของเรา ถูกตีโดน = ได้ดาเมจ'],['RC / แนวหลัง (Rear-guard)','ยูนิตใน 5 ช่องที่เหลือ'],['Ride','วางแวนการ์ดเกรดถัดไปทับตัวเดิม'],['Call','วางยูนิตจากมือลงช่องแนวหลัง'],['Boost','ยูนิตเกรด 0/1 แถวหลัง บวกพลังให้ตัวข้างหน้าตอนตี'],['Intercept','ยูนิตเกรด 2 แถวหน้า ย้ายไปช่วย Guard'],['Sentinel','การ์ดกันได้ 100% (มีตัว S)'],['Shield','ค่าป้องกันของการ์ดตอนใช้ Guard'],['Critical (★)','จำนวนดาเมจที่ทำได้เมื่อตีโดนแวนการ์ด'],['Drive check','เปิดการ์ดบนเด็คตอนแวนการ์ดตี ลุ้นทริกเกอร์'],['Damage check','เปิดการ์ดลง Damage zone ตอนโดนตี'],['Soul','การ์ดใต้แวนการ์ด (ตัวที่ถูกไรด์ทับ)'],['Drop','กองทิ้ง'],['Bind','โซนการ์ดที่ถูกนำออกชั่วคราว'],['CB / SB / EB','ค่าใช้จ่าย: คว่ำดาเมจ / ทิ้ง Soul / ใช้ Energy'],['Persona Ride','ไรด์เกรด 3 ชื่อเดียวกันทับ: แถวหน้า +10000 และจั่ว 1'],['Order','การ์ดคำสั่ง (ไม่ใช่ยูนิต) เล่นได้เทิร์นละ 1 ใบ'],['Rest / Stand','ตะแคง (ใช้แล้ว) / ตั้ง (พร้อมใช้)']];
+function menuSheet(){
+  const on=(b,a,b2)=>b?a:b2;
+  const songName=BGM.on&&BGM.cur&&BGM.timer?TRACKS[BGM.cur].name:'';
+  openSheet(`<h2>เมนู</h2><div class="menu">
+    <button class="btn mrow" data-m="mute"><span>${SND.muted?'🔇':'🔊'} เสียงทั้งหมด</span><b class="${SND.muted?'off':'on'}">${SND.muted?'ปิด':'เปิด'}</b></button>
+    <button class="btn mrow" data-m="bgm"><span>🎵 เพลงประกอบ${songName?` <small>${esc(songName)}</small>`:''}</span><b class="${BGM.on?'on':'off'}">${BGM.on?'เปิด':'ปิด'}</b></button>
+    ${BGM.on&&!SND.muted?'<button class="btn mrow" data-m="next"><span>⏭ เปลี่ยนเพลง</span></button>':''}
+    <button class="btn mrow" data-m="voice"><span>🗣 เสียงพากย์</span><b class="${VOICE.on?'on':'off'}">${VOICE.on?'เปิด':'ปิด'}</b></button>
+    <button class="btn mrow" data-m="log"><span>📜 บันทึกเกม</span><b>${document.body.classList.contains('showlog')?'แสดงอยู่':'ดู'}</b></button>
+    <button class="btn mrow" data-m="help"><span>❓ คู่มือ · Playmat · แอนิเมชัน</span></button>
+    ${G&&!G.over?'<button class="btn mrow danger" data-m="exit"><span>🚪 ออกจากเกม</span></button>':''}
+  </div><div class="opts"><button class="btn pri" id="mclose">ปิดเมนู</button></div>`);
+  sheetEl.querySelector('#mclose').onclick=closeSheet;
+  sheetEl.querySelectorAll('[data-m]').forEach(b=>b.onclick=async()=>{ const m=b.dataset.m;
+    if(m==='mute'){ toggleMute(); bgmSync(); }
+    if(m==='bgm'){ BGM.on=!BGM.on; try{ localStorage.setItem('vg-bgm',BGM.on?'1':'0'); }catch(e){} if(BGM.on){ actx(); bgmShuffle(); } else bgmStop(); bgmSync(); }
+    if(m==='next'&&BGM.timer) bgmNextTrack();
+    if(m==='voice') toggleVoice();
+    if(m==='log'){ closeSheet(); document.body.classList.toggle('showlog'); const lg=document.getElementById('log'); if(lg) lg.scrollTop=lg.scrollHeight; return; }
+    if(m==='help'){ helpSheet(); return; }
+    if(m==='exit'){ const v=await ask('ออกจากเกม?',NET.role?'อีกฝ่ายจะเห็นว่าคุณออกจากเกม และเกมนี้จะจบทันที':'เกมนี้จะจบและกลับไปหน้าแรก',[{l:'ออกจากเกม',v:true,pri:1},{l:'เล่นต่อ',v:false}]); if(v){ if(NET.role) netSend('x',{}); setTimeout(()=>location.reload(),NET.role?900:150); } else menuSheet(); return; }
+    render(); menuSheet(); });
+}
 function helpSheet(){
-  openSheet(`<h2>คู่มือ</h2><div class="opts"><button class="btn pri" id="hl">ดูบทเรียนพื้นฐาน</button></div><ul class="dl gl">${GLOSS.map(([a,b])=>`<li><b>${a}</b><span class="dq">${b}</span></li>`).join('')}</ul><div class="opts"><button class="btn" id="hc">ปิด</button></div>`);
+  const lvs=[['full','เต็ม'],['mid','กลาง'],['short','ย่อ'],['off','ปิด']];
+  openSheet(`<h2>คู่มือ</h2><div class="lbl">Playmat ของคุณ</div><div class="seg wrap" id="matsel">${MATS.map(([v,l])=>`<button class="btn" data-mat="${v}" aria-pressed="${MYMAT===v}">${l}</button>`).join('')}</div><div class="lbl">ระดับแอนิเมชัน</div><div class="seg" id="anlv">${lvs.map(([v,l])=>`<button class="btn" data-lv="${v}" aria-pressed="${ANIM.lv===v}">${l}</button>`).join('')}</div><div class="opts"><button class="btn pri" id="hl">ดูบทเรียนพื้นฐาน</button></div><ul class="dl gl">${GLOSS.map(([a,b])=>`<li><b>${a}</b><span class="dq">${b}</span></li>`).join('')}</ul><div class="opts"><button class="btn" id="hc">ปิด</button></div>`);
   sheetEl.querySelector('#hl').onclick=()=>lessonSheet(0,null); sheetEl.querySelector('#hc').onclick=closeSheet;
+  sheetEl.querySelectorAll('[data-mat]').forEach(b=>b.onclick=()=>{ MYMAT=b.dataset.mat; try{ localStorage.setItem('vg-mat',MYMAT); }catch(e){} sheetEl.querySelectorAll('[data-mat]').forEach(x=>x.setAttribute('aria-pressed',x===b)); render(); });
+  sheetEl.querySelectorAll('[data-lv]').forEach(b=>b.onclick=()=>{ setAnim(b.dataset.lv); sheetEl.querySelectorAll('[data-lv]').forEach(x=>x.setAttribute('aria-pressed',x===b)); });
 }
 const COACH_TXT={
   mull:['เริ่มเกม: เปลี่ยนการ์ดในมือ','นี่คือ 5 ใบแรกในมือ ถ้ามีใบไหนไม่อยากได้ แตะเลือกแล้วกดยืนยันเพื่อสุ่มใบใหม่ (ครั้งเดียว)\nมือใหม่แนะนำ: กดยืนยันเลยโดยไม่ต้องเลือก',['.hand']],
-  standup:['Stand up! Vanguard!','การ์ดกลางกระดานคือ <b>แวนการ์ดเกรด 0</b> ของเรา (ล่าง) และของคู่แข่ง (บน)\nแถบ <b>ดาเมจ 0/6</b> ใต้กระดาน ถ้าเต็ม 6 = แพ้',['[data-cir="0-VC"]','.side.me .dmg']],
+  standup:['Stand up! Vanguard!','การ์ดกลางกระดานคือ <b>แวนการ์ดเกรด 0</b> ของเรา (ล่าง) และของคู่แข่ง (บน)\nแถบ <b>ดาเมจ 0/6</b> ใต้กระดาน ถ้าเต็ม 6 = แพ้',['[data-cir="0-VC"]','.side.me .dmgz']],
   ride:['Ride phase','เลือกไรด์แวนการ์ดเกรดถัดไป แนะนำ <b>“Ride จาก Ride Deck”</b> (ปุ่มแรก) แล้วเลือกการ์ดในมือ 1 ใบที่จะทิ้งเป็นค่าไรด์\nยิ่งเกรดสูง แวนการ์ดยิ่งแรง',['[data-cir="0-VC"]']],
   main:['Main phase: Call ยูนิต','แตะการ์ดในมือ → กด <b>Call ลงสนาม</b> → แตะช่องที่เรืองแสงสีเขียว\n• เกรด 2–3 วางแถวหน้าไว้ตี\n• เกรด 0–1 วางแถวหลังไว้บูสต์\n• เก็บการ์ดในมือไว้กันบ้าง 2–3 ใบ\nเสร็จแล้วกดปุ่มขวาล่างไปต่อ',['.hand','#bar']],
   turn1:['เทิร์นแรกของคนเล่นก่อน','คนที่เล่นก่อน <b>โจมตีไม่ได้ในเทิร์นแรก</b> Call ยูนิตเตรียมไว้ แล้วกด “จบเทิร์น”',['#bar']],
@@ -2643,8 +3031,8 @@ const COACH_TXT={
   drive:['Drive check','แวนการ์ดตี → เปิดการ์ดบนเด็คลุ้น <b>ทริกเกอร์</b> การ์ดที่เปิดจะขึ้นมือเราด้วย',['#flip']],
   trigger:['ได้ทริกเกอร์!','แตะเลือกยูนิตที่จะรับพลัง +10000 (และ ★ ถ้าเป็น Critical)\nเทคนิค: ให้ตัวที่ <b>กำลังตีอยู่</b> หรือตัวที่ยังไม่ได้ตีในเทิร์นนี้',[]],
   guard:['ถูกโจมตี! เลือก Guard','ด้านบนบอกพลังตีกับพลังป้องกัน ถ้า <b>“ขาดอีก ...”</b> แปลว่าจะโดน\nแตะการ์ดในมือเพื่อเพิ่ม Shield (ตัวเลขใต้การ์ด) จนขึ้น <b>“กันได้”</b> แล้วกด Guard\n• ดาเมจยังน้อย (0–3) ปล่อยให้โดนได้ เก็บการ์ดไว้\n• ใกล้แพ้ (4–5) ควรกันให้ได้',[]],
-  damage:['Damage check','โดนตีแวนการ์ด → การ์ดบนเด็คลง <b>Damage zone</b> ครบ 6 ใบ = แพ้\nการ์ดดาเมจที่หงายอยู่ใช้จ่ายค่า <b>CB</b> ของสกิลได้ด้วย',['.side.me .dmg']],
-  persona:['Persona Ride!','ไรด์เกรด 3 ชื่อเดียวกันทับ = <b>Persona Ride</b>\nได้จั่ว 1 และแถวหน้าทุกตัว +10000 ในเทิร์นนี้ ตีแรงสุดคือตอนนี้!',['.side.me .row']],
+  damage:['Damage check','โดนตีแวนการ์ด → การ์ดบนเด็คลง <b>Damage zone</b> ครบ 6 ใบ = แพ้\nการ์ดดาเมจที่หงายอยู่ใช้จ่ายค่า <b>CB</b> ของสกิลได้ด้วย',['.side.me .dmgz']],
+  persona:['Persona Ride!','ไรด์เกรด 3 ชื่อเดียวกันทับ = <b>Persona Ride</b>\nได้จั่ว 1 และแถวหน้าทุกตัว +10000 ในเทิร์นนี้ ตีแรงสุดคือตอนนี้!',['.side.me .mat']],
 };
 const COACH={done:new Set(),hl:[]};
 function coach(key){
@@ -2678,13 +3066,13 @@ function cardHTML(u,o={}){
   const st=im?` style="background-image:url(${im})"`:'';
   const tag = c.trig?`<span class="tg t-${c.trig}">${TL[c.trig]}</span>` : c.sent?'<span class="tg t-sent">S</span>':'';
   if(c.kind!=='unit'){
-    const k={blitz:'Blitz',set:'Set Order',ticket:'Ticket'}[c.kind];
-    return `<div class="${cls} ord" ${o.data||''}${st}><span class="gr">${c.kind==='ticket'?'T':'G'+c.g}</span>${c.sent?'<span class="tg t-sent">S</span>':''}<span class="nm">${esc(c.s)}</span><span class="kd">${k}</span></div>`;
+    const k={blitz:'Blitz',set:'Set Order',ticket:'Ticket',normal:'Order'}[c.kind]||'';
+    return `<div class="${cls} ord" ${o.data||''}${u.uid>0?` data-uid="${u.uid}"`:''}${st}><span class="gr">${c.kind==='ticket'?'T':'G'+c.g}</span>${c.sent?'<span class="tg t-sent">S</span>':''}<span class="nm">${esc(c.s)}</span><span class="kd">${k}</span></div>`;
   }
   let ic='';
   if(o.p && o.c && o.c[0]==='B' && !c.boost && canBoost(o.p,u,o.c)) ic='<span class="sk gr2">B+</span>';
   else if(c.boost) ic='<span class="sk">B</span>'; else if(c.intercept) ic='<span class="sk">I</span>';
-  return `<div class="${cls}" ${o.data||''}${st}>${ic}<span class="gr">G${c.g}</span>${tag}<span class="nm">${esc(c.s)}</span>${cr>1?`<span class="crit">★${cr}</span>`:''}<span class="pw${up?' up':''}">${fmt(pw)}</span></div>`;
+  return `<div class="${cls}" ${o.data||''}${u.uid>0?` data-uid="${u.uid}"`:''}${st}>${ic}<span class="gr">G${c.g}</span>${tag}<span class="nm">${esc(c.s)}</span>${cr>1?`<span class="crit">★${cr}</span>`:''}<span class="pw${up?' up':''}">${fmt(pw)}</span></div>`;
 }
 /* ---- card images: stored only in this browser (IndexedDB) ---- */
 const IMG = {};
@@ -2805,29 +3193,53 @@ function showEnd(){
     sheetEl.querySelector('#look').onclick=()=>closeSheet();
   },400);
 }
+/* ---- Playmat & card backs ---- */
+const MATS=[['auto','อัตโนมัติ (ตามเนชั่น)'],['kr','ชมพู'],['rz','ทอง'],['ds','คราม'],['de','แดงส้ม'],['bd','แดงเข้ม'],['nu','ม่วง']];
+let MYMAT='auto'; try{ MYMAT=(typeof localStorage!=='undefined'&&localStorage.getItem('vg-mat'))||'auto'; }catch(e){}
+const matFor=(p,isOpp)=>(!isOpp&&MYMAT!=='auto'&&MATS.some(m=>m[0]===MYMAT))?MYMAT:p.clan;
+const backImg=clan=>IMG['back-'+clan]||null;
+const backStyle=clan=>{ const b=backImg(clan); return b?`background-image:url(${b})`:''; };
+// zone boxes on a playmat (fractions of width / height, player's own orientation)
+const MZ={circ:{FL:[.303,.395],VC:[.5,.395],FR:[.697,.395],BL:[.303,.8],BC:[.5,.8],BR:[.697,.8]},
+  order:[.053,.045,.154,.30],dmg:[.053,.47,.154,.50],deck:[.818,.268,.11,.30],drop:[.818,.628,.11,.30],ride:[.952,.268,.045,.30],trig:[.775,.095,.18,.10]};
+const MZT={circ:{FL:[.30,.28],VC:[.5,.28],FR:[.70,.28],BL:[.30,.76],BC:[.5,.76],BR:[.70,.76]},
+  order:[.02,.045,.145,.27],dmg:[.02,.37,.145,.6],deck:[.835,.045,.145,.33],drop:[.835,.42,.145,.33],ride:[.86,.06,0,0],trig:[.835,.8,.145,.17]};
+const wideBoard=()=>HAS_DOM && matchMedia('(orientation:landscape) and (min-width:820px) and (min-height:560px)').matches;
+function mzPos(box,isOpp){ let [x,y,w,hh]=box; if(isOpp){ x=1-x-w; y=1-y-hh; } return `left:${x*100}%;top:${y*100}%;width:${w*100}%;height:${hh*100}%`; }
+function mcPos(pt,isOpp){ let [x,y]=pt; if(isOpp){ x=1-x; y=1-y; } return `left:${x*100}%;top:${y*100}%`; }
+const TRIG_ORDER=['crit','draw','heal','front','over'];
 function sideHTML(p,isOpp){
-  const rows = isOpp ? [['BR','BC','BL'],['FR','VC','FL']] : [['FL','VC','FR'],['BL','BC','BR']];
   const myTurn = !G.busy && !G.over && G.active===0 && !isOpp;
-  const board = rows.map(r=>`<div class="row">${r.map(c=>{
+  const Z=wideBoard()?MZ:MZT;
+  const circ = ['FL','VC','FR','BL','BC','BR'].map(c=>{
     const u=p.f[c];
     const can = myTurn && G.phase==='battle' && u && canAttackFrom(p,c);
     const pk = UIPICK && UIPICK.side===p.i && UIPICK.list.includes(c);
     const b=G.bat; let role='';
     if(b){ if((b.own||b.p)===p && c===b.attC) role='atk'; else if(b.p===p && b.B && c===b.boostC) role='bst'; else if(b.d===p && c===b.tgtC) role='tgt'; }
     const pf = G.pflash && G.pflash.i===p.i && Date.now()<G.pflash.until && FRONT.includes(c) && u ? 'pf' : '';
-    return `<div class="cir ${c==='VC'?'vc':''} ${can&&!UIPICK?'can':''} ${pk?'pick':''} ${role} ${pf}" data-cir="${p.i}-${c}">${role?`<span class="role">${{atk:'โจมตี',bst:'Boost',tgt:'เป้าหมาย'}[role]}</span>`:''}${u?cardHTML(u,{p,c,rest:true}):(p.lk&&p.lk[c])?`<div class="cd lockd"><span class="nm">LOCK</span></div>`:(c==='BC'&&p.song)?`<div class="songc">${cardHTML(p.song)}</div>`:`<span class="el">${CNAME[c]}</span>`}${c==='VC'&&p.duo?`<div class="duo">${cardHTML(p.duo)}</div>`:''}</div>`;
-  }).join('')}</div>`).join('');
-  const dmg = `<div class="dmg" data-pile="dmg-${p.i}"><span class="dl">ดาเมจ <b>${p.dmg.length}</b>/6</span>${p.dmg.map(d=>`<span class="mini ${d.up?d.u.c.clan:'down'}">${d.u.c.trig?TL[d.u.c.trig]:''}</span>`).join('')}</div>`;
+    return `<div class="cir ${c==='VC'?'vc':''} ${can&&!UIPICK?'can':''} ${pk?'pick':''} ${role} ${pf}" data-cir="${p.i}-${c}" data-l="${c==='VC'?'V':'R'}" style="${mcPos(Z.circ[c],isOpp)}">${role?`<span class="role">${{atk:'โจมตี',bst:'Boost',tgt:'เป้าหมาย'}[role]}</span>`:''}${u?cardHTML(u,{p,c,rest:true}):(p.lk&&p.lk[c])?`<div class="cd lockd" style="${backStyle(p.clan)}"><span class="nm">LOCK</span></div>`:(c==='BC'&&p.song)?`<div class="songc">${cardHTML(p.song)}</div>`:''}${c==='VC'&&p.duo?`<div class="duo">${cardHTML(p.duo)}</div>`:''}${c==='VC'&&p.soul.length?`<span class="soulb" data-pile="soul-${p.i}">Soul ${p.soul.length}</span>`:''}</div>`;
+  }).join('');
+  const slots=[0,1,2,3,4,5].map(k=>{ const d=p.dmg[k]; if(!d) return `<div class="dslot"><span>${k+1}</span></div>`;
+    const im=d.up?IMG[d.u.c.id]:null; const st=d.up?(im?`background-image:url(${im})`:''):backStyle(p.clan);
+    return `<div class="dslot on ${d.up?'up '+d.u.c.clan:'down'}" style="${st}">${d.up&&d.u.c.trig?`<i class="tl t-${d.u.c.trig}">${TL[d.u.c.trig]}</i>`:''}</div>`; }).join('');
+  const dmgZ=`<div class="mz dmgz" data-pile="dmg-${p.i}" style="${mzPos(Z.dmg,isOpp)}">${slots}<span class="mzl">ดาเมจ ${p.dmg.length}/6</span></div>`;
+  const oz=[...p.oz,...(p.garden?[p.garden]:[])];
+  const ordZ=`<div class="mz ordz" ${oz.length?`data-pile="oz-${p.i}"`:''} style="${mzPos(Z.order,isOpp)}">${oz.length?oz.slice(-2).map(o=>cardHTML(o)).join(''):''}<span class="mzl">Order${oz.length?' '+oz.length:''}</span></div>`;
+  const deckZ=`<div class="mz deckz" data-anc="deck-${p.i}" style="${mzPos(Z.deck,isOpp)}"><div class="pilecard" style="${backStyle(p.clan)}"></div><span class="cnt">${p.deck.length}</span><span class="mzl">Deck</span>${Z===MZT&&p.ride.length?`<span class="rideb" data-pile="ride-${p.i}">Ride ${p.ride.length}</span>`:''}</div>`;
+  const top=p.drop[p.drop.length-1];
+  const dropZ=`<div class="mz dropz" data-pile="drop-${p.i}" style="${mzPos(Z.drop,isOpp)}">${top?`<div class="pilecard" style="${IMG[top.c.id]?`background-image:url(${IMG[top.c.id]})`:''}"></div>`:''}<span class="cnt">${p.drop.length}</span><span class="mzl">Drop</span></div>`;
+  const rideZ=(Z===MZ&&p.ride.length)?`<div class="mz ridez" data-pile="ride-${p.i}" style="${mzPos(MZ.ride,isOpp)}"><span>R</span><b>${p.ride.length}</b></div>`:'';
+  let tc={}; for(const u of p.deck) if(u&&u.c&&u.c.trig) tc[u.c.trig]=(tc[u.c.trig]||0)+1; if(p.trigLeft && p.deck.some(u=>!u)) tc=p.trigLeft;
+  const trigZ=`<div class="mz trigz" style="${mzPos(Z.trig,isOpp)}">${TRIG_ORDER.filter(t=>tc[t]!==undefined||(p.deckTrig&&p.deckTrig[t])).map(t=>`<span class="tcz t-${t}">${TL[t]}<b>${tc[t]||0}</b></span>`).join('')}</div>`;
+  const mk=matFor(p,isOpp);
+  const mat=`<div class="mat ${isOpp?'opp':'me'} ${Z===MZT?'tall':'wide'} gen c-${mk}"><div class="matbg"></div><div class="mz ordbox" style="display:none"></div>${circ}${ordZ}${dmgZ}${deckZ}${dropZ}${rideZ}${trigZ}</div>`;
   const info = `<div class="info"><span class="who ${p.clan}">${esc(p.name)}</span>
-    <span class="pile">มือ <b>${p.hand.length}</b></span>
-    <span class="pile">เด็ค <b>${p.deck.length}</b></span>
-    <span class="pile" data-pile="soul-${p.i}">Soul <b>${p.soul.length}</b></span>
-    <span class="pile" data-pile="drop-${p.i}">Drop <b>${p.drop.length}</b></span>
+    <span class="pile" data-anc="hand-${p.i}">มือ <b>${p.hand.length}</b></span>
     <span class="pile en">Energy <b>${p.en}</b></span>
-    ${p.ride.length?`<span class="pile" data-pile="ride-${p.i}">Ride deck <b>${p.ride.length}</b></span>`:''}
-    ${p.oz.length?`<span class="pile">Order: <b>${p.oz.map(o=>esc(o.c.s)).join(', ')}</b></span>`:''}${p.garden?`<span class="pile gdn" data-pile="gdn-${p.i}">Garden${p.garden.rest?' (Rest)':''} <b>${p.engaged.length}</b></span>`:''}${p.bind&&p.bind.length?`<span class="pile" data-pile="bind-${p.i}">Bind <b>${p.bind.length}</b></span>`:''}
+    ${p.garden?`<span class="pile gdn" data-pile="gdn-${p.i}">Garden${p.garden.rest?' (Rest)':''} <b>${p.engaged.length}</b></span>`:''}${p.bind&&p.bind.length?`<span class="pile" data-pile="bind-${p.i}">Bind <b>${p.bind.length}</b></span>`:''}
     ${p.persona?'<span class="flag">Persona</span>':''}${p.divine?'<span class="flag">Divine ใช้แล้ว</span>':''}</div>`;
-  return isOpp ? `<section class="side opp">${info}${dmg}${board}</section>` : `<section class="side me">${board}${dmg}${info}</section>`;
+  return isOpp ? `<section class="side opp">${info}${mat}</section>` : `<section class="side me">${mat}${info}</section>`;
 }
 const PH = {setup:'เตรียมเกม',stand:'Stand',draw:'Draw',ride:'Ride',main:'Main',battle:'Battle',end:'End'};
 let shownRid=-1;
@@ -2841,7 +3253,7 @@ function renderReveal(){
   const title = (r.kind==='damage'?'DAMAGE CHECK':'DRIVE CHECK')+(r.of>1?` ${r.n}/${r.of}`:'');
   const t=r.u.c.trig;
   el.innerHTML=`<div class="ft"><span>${who}</span><b>${title}</b></div>
-    <div class="fc"><div class="face back"></div><div class="face front">${cardHTML(r.u)}</div></div>
+    <div class="fc"><div class="face back" style="${backStyle(r.p.clan)}"></div><div class="face front">${cardHTML(r.u)}</div></div>
     ${t?`<div class="tb t-${t}">${TRN[t]}${t==='over'?'!!':'!'}</div>`:''}`;
   el.className='flip'; void el.offsetWidth; el.className='flip on '+(r.kind||'');
 }
@@ -2850,16 +3262,20 @@ function render(){
   if(NET.role==='host') hostSend();
   const me=G.p[0], op=G.p[1];
   const b=G.bat;
+  const myT=G.active===0&&!G.over&&!G.busy&&!!G.next; const hint=!myT?'':G.phase==='main'?'แตะการ์ดในมือเพื่อ Call · กดปุ่มขวาล่างเมื่อพร้อม':G.phase==='battle'?'แตะยูนิตที่มีวงเรืองแสงเพื่อโจมตี':'';
   let mid=`<div class="ph"><span class="phase">${PH[G.phase]||''}</span><span class="tn">เทิร์น ${G.turn} · ${G.active===0?'คุณ':'คู่แข่ง'}</span></div>`;
-  const exitBtn=`<button class="btn ex snd" data-bar="help" aria-label="คู่มือ">?</button><button class="btn ex sn2" data-bar="bgm" aria-label="เปลี่ยนเพลง">${bgmLabel()}</button><button class="btn ex sn2" data-bar="voice" aria-label="เสียงพากย์">${VOICE.on?'🗣':'<s>🗣</s>'}</button><button class="btn ex sn2" data-bar="mute" aria-label="เสียง">${SND.muted?'🔇':'🔊'}</button><button class="btn ex" data-bar="exit">ออก</button>`;
+  const exitBtn=`<button class="btn ex menub" data-bar="menu" aria-label="เมนู">☰ เมนู</button>`;
   let mr='';
   renderReveal();
   if(b){ const T=b.d.f[b.tgtC]; mr+=`<div class="who2"><b class="${b.p.clan}">${esc(b.p.short)}</b> ${esc(b.A.c.s)}${b.B?` <small>+Boost ${esc(b.B.c.s)}</small>`:''} <span class="arr">➜</span> <b class="${b.d.clan}">${esc(b.d.short)}</b> ${T?esc(T.c.s):''}</div>`; }
   if(b){ const gcs=b.d.gc; mr+=`<div class="bt"><span class="vs2"><b>${fmt(atkPower())}</b> ปะทะ <b>${fmt(defPower())}</b></span>${gcs.length?`<div class="gc">${gcs.map(u=>cardHTML(u)).join('')}</div>`:''}</div>`; }
-  document.getElementById('app').innerHTML = sideHTML(op,true) + `<div class="mid">${mid}${mr}${G.over?'':exitBtn}</div>` + sideHTML(me,false)
-    + `<div class="handwrap"><div class="hl">มือของคุณ (${me.hand.length})</div><div class="hand">${me.hand.map((u,i)=>cardHTML(u,{data:`data-hand="${i}"`})).join('')||'<span class="el">ไม่มีการ์ดในมือ</span>'}</div></div>`
+  const flyOld=flyCapture();
+  document.getElementById('app').innerHTML = `<div class="table3d" data-me="${me.clan}" data-op="${op.clan}">` + sideHTML(op,true) + `<div class="mid">${mid}${mr}${G.over?'':exitBtn}</div>` + sideHTML(me,false) + `</div>`
+    + `<div class="handwrap">${hint&&!G.bat&&!UIPICK?`<div class="hintbox">💡 ${hint}</div>`:''}<div class="hl">มือของคุณ (${me.hand.length})</div><div class="hand">${me.hand.map((u,i)=>cardHTML(u,{data:`data-hand="${i}"`})).join('')||'<span class="el">ไม่มีการ์ดในมือ</span>'}</div></div>`
     + `<div id="log">${G.log.slice(-40).map(l=>`<div>${esc(l)}</div>`).join('')}</div>`;
   const lg=document.getElementById('log'); lg.scrollTop=lg.scrollHeight;
+  flyAfter(flyOld);
+  document.body.dataset.myclan=me.clan;
   drawArrow(); document.body.classList.toggle('picking',!!UIPICK); bgmSync(); applyCoachHL();
   playFx();
   // bar
@@ -2880,7 +3296,7 @@ async function onTap(e){
   if(UIPICK){
     const t2=e.target.closest('[data-cir],[data-bar]'); if(!t2) return;
     if(t2.dataset.bar==='pickcancel' && UIPICK.cancel){ ui('deselect'); const r=UIPICK.res; UIPICK=null; render(); r(null); return; }
-    if(t2.dataset.bar==='mute'||t2.dataset.bar==='bgm'||t2.dataset.bar==='voice'||t2.dataset.bar==='help'){} else {
+    if(t2.dataset.bar==='mute'||t2.dataset.bar==='bgm'||t2.dataset.bar==='voice'||t2.dataset.bar==='help'||t2.dataset.bar==='log'||t2.dataset.bar==='menu'){} else {
       if(!t2.dataset.cir) return;
       const [pi,c]=t2.dataset.cir.split('-');
       if(+pi===UIPICK.side && UIPICK.list.includes(c)){ ui('select'); const r=UIPICK.res; UIPICK=null; render(); r(c); }
@@ -2902,6 +3318,8 @@ async function onTap(e){
       render(); return; }
     if(a==='voice'){ toggleVoice(); return; }
     if(a==='help'){ helpSheet(); return; }
+    if(a==='menu'){ menuSheet(); return; }
+    if(a==='log'){ document.body.classList.toggle('showlog'); const lg=document.getElementById('log'); if(lg) lg.scrollTop=lg.scrollHeight; return; }
     if(a==='exit'){ const v=await ask('ออกจากเกม?',NET.role?'อีกฝ่ายจะเห็นว่าคุณออกจากเกม และเกมนี้จะจบทันที':'เกมนี้จะจบและกลับไปหน้าแรก',[{l:'ออกจากเกม',v:true,pri:1},{l:'เล่นต่อ',v:false}]); if(v){ if(NET.role) netSend('x',{}); setTimeout(()=>location.reload(),900); } return; }
     if(G.busy||!G.next) return;
     if(a==='next'){ if(NET.role==='guest'){ G.next=null; render(); netSend('i',{k:'next'}); return; } const r=G.next; G.next=null; r(); return; }
@@ -2915,8 +3333,8 @@ async function onTap(e){
   }
   if(t.dataset.pile){
     const [z,pi]=t.dataset.pile.split('-'); const p=G.p[+pi];
-    const L={dmg:p.dmg.map(d=>d.u),soul:p.soul,drop:p.drop,ride:p.ride,gdn:p.engaged,bind:p.bind}[z]; if(!L) return;
-    const nm={dmg:'Damage zone',soul:'Soul',drop:'Drop',ride:'Ride deck',gdn:'Garden (Engage)',bind:'Bind zone'}[z];
+    const L={dmg:p.dmg.map(d=>d.u),soul:p.soul,drop:p.drop,ride:p.ride,gdn:p.engaged,bind:p.bind,oz:[...p.oz,...(p.garden?[p.garden]:[])]}[z]; if(!L) return;
+    const nm={dmg:'Damage zone',soul:'Soul',drop:'Drop',ride:'Ride deck',gdn:'Garden (Engage)',bind:'Bind zone',oz:'Order zone'}[z];
     if(!L.length) return;
     await localPickCards(p,`${nm} ของ${p.short} (${L.length})`,L,{min:0,max:0});
     return;
@@ -2972,7 +3390,7 @@ function ser(v,hideArr){
 }
 const HOST_ONLY=new Set(['remote','ai']);
 function snapPlayer(p,hideHand){ const o={}; for(const k in p){ const v=p[k]; if(typeof v==='function'||HOST_ONLY.has(k)) continue;
-    if(k==='deck'){ o.deckN=v.length; if(!hideHand) o.deckIds=v.map(u=>u.id).sort(); continue; } if(k==='hand' && hideHand){ o.handN=v.length; continue; } o[k]=ser(v); } return o; }
+    if(k==='deck'){ o.deckN=v.length; if(!hideHand) o.deckIds=v.map(u=>u.id).sort(); const tl={}; for(const u of v) if(u&&u.c.trig) tl[u.c.trig]=(tl[u.c.trig]||0)+1; o.trigLeft=tl; continue; } if(k==='hand' && hideHand){ o.handN=v.length; continue; } o[k]=ser(v); } return o; }
 function snapshot(){ const b=G.bat;
   return {turn:G.turn,active:G.active,phase:G.phase,battleNo:G.battleNo,over:G.over,winner:G.winner,why:G.why,log:G.log.slice(-14),busy:G.busy,
     waiting:G.next?G.active:-1, fxq:(G.fxq||[]).slice(-10), fxid:G.fxid, anims:G.anims||[],
@@ -3037,7 +3455,9 @@ function guestStateStr(str){
   document.getElementById('start').hidden=true; document.getElementById('app').hidden=false;
   if(!NET.started){ NET.started=true; shownAnim=Math.max(0,...(st.anims||[]).map(x=>x.id)); }
   G=deser(st); render();
-  for(const an of (st.anims||[])){ if(an.id<=shownAnim) continue; shownAnim=an.id; const cards=an.ids.map(id=>id?Object.assign(DU({uid:0,id})):null); rideFxShow(an.kind,cards,{clan:an.clan,who:an.pi===1?'คุณ':'เพื่อน'}); }
+  for(const an of (st.anims||[])){ if(typeof an.id!=='number'||an.id<=shownAnim) continue; shownAnim=an.id;
+    if(an.fx){ const e=Object.assign({},an); if(e.pi!==undefined) e.pi=1-e.pi; if(e.tpi!==undefined) e.tpi=1-e.tpi; runFx(e); continue; }
+    const cards=an.ids.map(id=>id?Object.assign(DU({uid:0,id})):null); rideFxShow(an.kind,cards,{clan:an.clan,who:an.pi===1?'คุณ':'เพื่อน'}); }
   if(G.over && !NET.endShown){ NET.endShown=true; showEnd(); }
 }
 function netLost(left){ if(NET.lost||(G&&G.over)) return; NET.lost=true; openSheet(`<h2>${left?'อีกฝ่ายออกจากเกม':'การเชื่อมต่อหลุด'}</h2><div class="txt">${left?'อีกฝ่ายกดออกจากเกมแล้ว':'อีกฝ่ายปิดหน้านี้หรือเน็ตหลุด'} เกมนี้เล่นต่อไม่ได้</div><div class="opts"><button class="btn pri" id="rl">กลับหน้าแรก</button></div>`); sheetEl.querySelector('#rl').onclick=()=>location.reload(); }
@@ -3077,6 +3497,7 @@ function deckListHTML(key){
     <div class="txt">ที่มารายการการ์ด: ${D.src||''}\nข้อความการ์ด: en.cf-vanguard.com/cardlist</div><div class="txt">✓ สกิลครบตามข้อความการ์ด · ~ ใส่บางส่วนหรือมีสมมติฐาน · – ใช้ค่าพลังมาตรฐาน ยังไม่ใส่สกิล</div><div class="opts"><button class="btn" id="cls">ปิด</button></div>`;
 }
 function initUI(){
+  { let wb=null; addEventListener('resize',()=>{ const n=wideBoard(); if(n!==wb){ wb=n; if(G&&G.p&&G.p.length) render(); } }); }
   document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible' && NET.role==='host' && G && G.p && G.p.length){ NET.lastState=''; sendStateNow(); for(const k in PEND) netSend('p',PEND[k].msg); } });
   document.addEventListener('pointerdown',()=>{ actx(); voicePrime(); },{passive:true});
   sheetEl=document.getElementById('sheet'); wrapEl=document.getElementById('wrap');
