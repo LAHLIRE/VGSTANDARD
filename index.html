@@ -506,6 +506,36 @@ body[data-anim="off"] .table3d .side{background:none!important}
 #handview .hvcards .cd{width:92px;height:128px;cursor:pointer;font-size:11px}#handview .hvcards .cd .pw{font-size:15px}#handview .hvcards .cd .gr{font-size:13px}
 #handview .hvdesc{white-space:pre-line;font-size:13px;color:var(--ink);background:var(--mat);border-radius:10px;padding:8px 10px;margin-top:10px}
 #handview .hvnote{font-size:11.5px;color:var(--muted);margin-top:8px}
+
+/* ===== PC landscape: bigger board, hand peeks from the bottom ===== */
+@media (orientation:landscape) and (min-width:820px) and (min-height:560px){
+  #app{grid-template-columns:minmax(0,1fr) minmax(220px,280px);grid-template-rows:auto;padding:4px 16px 0;gap:4px 14px}
+  #app>.table3d{grid-row:1;width:min(100%,calc((100vh - 262px) * .98))}
+  #app>#log{grid-column:2;grid-row:1;height:calc(100vh - 76px)}
+  #app>.handwrap{position:fixed;left:16px;right:310px;bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:12;margin:0;pointer-events:none;display:flex;flex-direction:column;align-items:center;clip-path:inset(-400px -40px 0 -40px)}
+  #app>.handwrap .hl{display:none}
+  #app>.handwrap .hintbox{pointer-events:auto}
+  #app>.handwrap .hand .cd{pointer-events:auto}
+  #app>.handwrap .hand{pointer-events:none;flex-wrap:nowrap!important;justify-content:center;overflow:visible;padding:0;gap:4px;max-width:100%}
+  #app>.handwrap .hand .cd{width:clamp(84px,10vh,124px);height:auto;aspect-ratio:72/100;transform:translateY(66%);transition:transform .18s ease,box-shadow .18s ease;box-shadow:0 -4px 14px rgba(0,0,0,.35)}
+  #app>.handwrap .hand .cd:hover,#app>.handwrap .hand .cd:focus-visible,#app>.handwrap .hand .cd.sel{transform:translateY(-4%) scale(1.15);z-index:3}
+  #app>.handwrap .hand .cd .pw{font-size:15px}
+  .table3d .mid{min-height:0;padding:4px 10px;margin:3px 0;gap:2px 10px}
+  .table3d .mid .who2{width:auto;flex:1 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .table3d .mid .bt{flex:0 0 auto}
+  .table3d .mid .gc .cd{width:34px;height:47px}
+}
+/* phone portrait: keep battle info from covering our board */
+@media (orientation:portrait) and (max-width:700px){
+  .table3d.hasbat .mat.tall{width:min(100%,calc((100vh - 318px) * .725));width:min(100%,calc((100dvh - 318px) * .725))}
+  .table3d.hasbat .mid{flex-shrink:0;flex-wrap:wrap;padding-right:74px}
+  .table3d.hasbat .mid .btn.ex{position:absolute;right:6px;top:50%;transform:translateY(-50%)}
+  .table3d .mid .bt{display:flex;flex-wrap:nowrap;align-items:center;gap:6px;min-width:0}
+  .table3d .mid .gc{flex-wrap:nowrap;overflow-x:auto;min-width:0}
+  .table3d .mid .gc .cd{width:28px;height:39px;font-size:6px}
+  .table3d .mid .gc .cd .pw{font-size:8px}.table3d .mid .gc .cd .gr{font-size:8px}
+  .table3d .mid .who2{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
 </style>
 </head>
 <body>
@@ -3757,7 +3787,7 @@ function render(){
   if(b){ const T=b.d.f[b.tgtC]; mr+=`<div class="who2"><b class="${b.p.clan}">${esc(b.p.short)}</b> ${esc(b.A.c.s)}${b.B?` <small>+Boost ${esc(b.B.c.s)}</small>`:''} <span class="arr">➜</span> <b class="${b.d.clan}">${esc(b.d.short)}</b> ${T?esc(T.c.s):''}</div>`; }
   if(b){ const gcs=b.d.gc; mr+=`<div class="bt"><span class="vs2"><b>${fmt(atkPower())}</b> ปะทะ <b>${fmt(defPower())}</b></span>${gcs.length?`<div class="gc">${gcs.map(u=>cardHTML(u)).join('')}</div>`:''}</div>`; }
   const flyOld=flyCapture();
-  document.getElementById('app').innerHTML = `<div class="table3d" data-me="${me.clan}" data-op="${op.clan}">` + sideHTML(op,true) + `<div class="mid">${mid}${mr}${G.over?'':exitBtn}</div>` + sideHTML(me,false) + `</div>`
+  document.getElementById('app').innerHTML = `<div class="table3d${b?' hasbat':''}" data-me="${me.clan}" data-op="${op.clan}">` + sideHTML(op,true) + `<div class="mid">${mid}${mr}${G.over?'':exitBtn}</div>` + sideHTML(me,false) + `</div>`
     + `<div class="handwrap">${hint&&!G.bat&&!UIPICK?`<div class="hintbox">💡 ${hint}</div>`:''}<div class="hl">มือของคุณ (${me.hand.length})</div><div class="hand">${me.hand.map((u,i)=>cardHTML(u,{data:`data-hand="${i}"`})).join('')||'<span class="el">ไม่มีการ์ดในมือ</span>'}</div></div>`
     + `<div id="log">${G.log.slice(-40).map(l=>`<div>${esc(l)}</div>`).join('')}</div>`;
   const lg=document.getElementById('log'); lg.scrollTop=lg.scrollHeight;
