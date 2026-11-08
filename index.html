@@ -871,7 +871,7 @@ def('grimLev',{n:'Magic to Levitate Objects',s:'Magic: Levitate Objects',clan:'r
 def('journeyTok',{n:'A Silly But Fun Journey',s:'Silly But Fun Journey',clan:'rz',g:0,kind:'ticket',grim:true,fr:true,ok:1,text:'Token ใน Order zone (ยังไม่มีข้อความจริงของ token นี้ ในเกมนับเป็น Grimoire 1 ใบ)'});
 def('plant',{n:'Plant Token',s:'Plant',clan:'rz',g:0,p:5000,sh:0,token:true,boost:false,race:'Plant',ok:1,text:'Token (G0 / Power 5000 / Shield 0 · ค่าที่ตั้งเอง) เมื่อออกจากสนามจะหายไป'});
 
-// ---------- BanG Dream! / Ave Mujica — Lock (呪縛) & Music orders ----------
+// ---------- BanG Dream! / Ave Mujica — Lock  & Music orders ----------
 const AM = u => !!(u && u.c.am);
 const hasAMVG = p => AM(p.f.VC);
 const hasAMG3 = p => AM(p.f.VC) && gradeOf(p.f.VC)>=3;
@@ -883,7 +883,7 @@ def('sakiko',{n:'Resolve to Bear It, Sakiko Togawa',s:'Sakiko',clan:'bd',g:2,am:
 def('obl3',{n:'Noble Oblivionis',s:'Oblivionis',clan:'bd',g:3,persona:true,am:true,race:'Ave Mujica',ok:2,
   text:'[ACT](VC) ถ้าเทิร์นนี้ยังไม่ได้เล่น Order: CB1 ค้นการ์ด Music ของ Ave Mujica จากเด็คหรือ Drop แล้วเล่นทันที\n[AUTO](VC) ตอนจบการต่อสู้ที่แนวหลัง Ave Mujica เกรด 3 หรือต่ำกว่าโจมตีหรือบูสต์: Lock ยูนิตนั้น\n[AUTO](VC)[1/เทิร์น] เมื่อยูนิตนี้โจมตี ถ้าเทิร์นนี้เล่น Music ของ Ave Mujica แล้ว: Unlock การ์ดที่ถูก Lock ทั้งหมด'});
 def('mortis4',{n:'Stage Puppet for You, Mortis',s:'Mortis',clan:'bd',g:4,p:13000,sh:0,am:true,drive:3,race:'Ave Mujica',ok:2,
-  text:'[CONT] ไรด์ได้เฉพาะด้วยสกิลของ “Imprisoned XII” เท่านั้น · Triple Drive\n[CONT](VC) ในเทิร์นของเรา ถ้าแวนการ์ดคู่แข่งเกรด 3+ และใน Bind zone มีการ์ด 睦/Mortis รวม 2 ใบขึ้นไป: +5000 (3 ใบขึ้นไป +15000 แทน)\n[AUTO](VC)[1/เทิร์น] จบการต่อสู้ที่ยูนิตนี้โจมตี: CB1 และ Bind ยูนิต 睦/Mortis จากมือหรือ (RC) รวม 2 ใบ เพื่อ Stand ยูนิตนี้ เทิร์นนี้ Drive -3 ถ้าแวนการ์ดคู่แข่งเกรด 3+ Drive +1 เพิ่ม\n[AUTO](มือ/Drop) ใน Battle phase ของเรา เมื่อยูนิต Mortis ถูก Unlock: Bind “Obedient Mortis” ที่ช่องหน้าซ้าย เพื่อเรียกการ์ดนี้ลงช่องหน้าซ้าย และจบเทิร์นนำการ์ดนี้ไป Bind'});
+  text:'[CONT] ไรด์ได้เฉพาะด้วยสกิลของ “Imprisoned XII” เท่านั้น · Triple Drive\n[CONT](VC) ในเทิร์นของเรา ถ้าแวนการ์ดคู่แข่งเกรด 3+ และใน Bind zone มีการ์ด Mortis รวม 2 ใบขึ้นไป: +5000 (3 ใบขึ้นไป +15000 แทน)\n[AUTO](VC)[1/เทิร์น] จบการต่อสู้ที่ยูนิตนี้โจมตี: CB1 และ Bind ยูนิต Mortis จากมือหรือ (RC) รวม 2 ใบ เพื่อ Stand ยูนิตนี้ เทิร์นนี้ Drive -3 ถ้าแวนการ์ดคู่แข่งเกรด 3+ Drive +1 เพิ่ม\n[AUTO](มือ/Drop) ใน Battle phase ของเรา เมื่อยูนิต Mortis ถูก Unlock: Bind “Obedient Mortis” ที่ช่องหน้าซ้าย เพื่อเรียกการ์ดนี้ลงช่องหน้าซ้าย และจบเทิร์นนำการ์ดนี้ไป Bind'});
 def('doloris',{n:'Kind-hearted Doloris',s:'Doloris',clan:'bd',g:2,am:true,race:'Ave Mujica',ok:2,
   text:'[AUTO] เมื่อวางลง (RC) ใน Main phase: ดู 5 ใบบนเด็ค เลือก 1 ใบทิ้ง แล้วสับเด็ค\n[AUTO](RC หน้าขวา) เมื่อโจมตี ถ้าเทิร์นนี้ยูนิตนี้ถูก Unlock มาแล้ว: CB1 จั่ว 1 ถ้าดาเมจ 4 ใบขึ้นไป ไม่จั่วแต่ทำ Drive check ในการต่อสู้นั้นแทน'});
 def('mortis2',{n:'Obedient Mortis',s:'Mortis',clan:'bd',g:2,am:true,race:'Ave Mujica',ok:2,
@@ -902,7 +902,7 @@ def('killkiss',{n:'KiLLKiSS',s:'KiLLKiSS',clan:'bd',g:1,kind:'normal',song:true,
 def('crucifix',{n:'Crucifix X',s:'Crucifix X',clan:'bd',g:2,kind:'normal',song:true,am:true,ok:2,
   text:'Normal Order (Music) · เล่นแล้ววางที่ช่องหลังกลาง\n[AUTO] เมื่อวางลงที่ช่อง ขณะมีแวนการ์ด Ave Mujica: เรียกยูนิต Ave Mujica ที่ไม่มีชื่อซ้ำกับแนวหลัง จาก Drop ขึ้น (RC) ถ้าแวนการ์ด Ave Mujica เกรด 3+: ทิ้งการ์ดจากมือ 1 ใบ แล้วจบเทิร์นนี้การ์ดที่ Lock อยู่จะไม่ถูก Unlock แต่จะ Unlock ตอนจบเทิร์นถัดไปของคู่แข่งแทน'});
 def('imprisoned',{n:'Imprisoned XII',s:'Imprisoned XII',clan:'bd',g:2,kind:'normal',song:true,am:true,ok:1,
-  text:'Normal Order (Music) · เล่นได้เมื่อแวนการ์ดชื่อมี Oblivionis\n[AUTO] เมื่อวางลงที่ช่อง: ค้น “Stage Puppet for You, Mortis” จากเด็คมาไรด์แบบ Stand แล้วสับ ถ้าไรด์ ย้ายการ์ดนี้ไป Order zone, Retire แนวหลังทั้งหมดที่ชื่อไม่มี Mortis/睦 และเทิร์นนี้ค่าใช้จ่ายสกิล [AUTO] ดั้งเดิมของแวนการ์ดลด CB1\n[CONT](Order zone) เรา Call ยูนิตที่ชื่อไม่มี Mortis/睦 ลง (RC) ไม่ได้\n[ACT](Order zone) CB1 และ Energy-Blast 3: เรียกยูนิตที่ชื่อมี Mortis/睦 จาก Drop ขึ้น (RC) 1 ใบ\n(รูปการ์ดที่ได้มาค่อนข้างเล็ก ข้อความบางส่วนอ่านโดยขยายภาพ)'});
+  text:'Normal Order (Music) · เล่นได้เมื่อแวนการ์ดชื่อมี Oblivionis\n[AUTO] เมื่อวางลงที่ช่อง: ค้น “Stage Puppet for You, Mortis” จากเด็คมาไรด์แบบ Stand แล้วสับ ถ้าไรด์ ย้ายการ์ดนี้ไป Order zone, Retire แนวหลังทั้งหมดที่ชื่อไม่มี Mortis และเทิร์นนี้ค่าใช้จ่ายสกิล [AUTO] ดั้งเดิมของแวนการ์ดลด CB1\n[CONT](Order zone) เรา Call ยูนิตที่ชื่อไม่มี Mortis ลง (RC) ไม่ได้\n[ACT](Order zone) CB1 และ Energy-Blast 3: เรียกยูนิตที่ชื่อมี Mortis จาก Drop ขึ้น (RC) 1 ใบ\n(รูปการ์ดที่ได้มาค่อนข้างเล็ก ข้อความบางส่วนอ่านโดยขยายภาพ)'});
 def('musica',{n:'Musica of the Celestial Sphere',s:'Celestial Musica',clan:'bd',g:3,kind:'normal',song:true,am:true,ok:2,
   text:'Normal Order (Music) · เล่นแล้ววางที่ช่องหลังกลาง\n[AUTO](ช่อง)[1/เทิร์น] เมื่อการ์ดที่ Lock อยู่ถูก Unlock ใน Battle phase ตามจำนวนชื่อ Ave Mujica ที่ถูก Unlock เทิร์นนี้: 2 ชื่อขึ้นไป แวนการ์ด Critical +1 / 4 ชื่อขึ้นไป แวนการ์ด Drive +1 (จนจบเทิร์น)'});
 
@@ -994,21 +994,21 @@ def('mflare',{n:'Mystery Flare Dragon',s:'Mystery Flare',clan:'ds',g:4,p:15000,g
 def('faterider',{n:'Fate Rider Dragon',s:'Fate Rider',clan:'ds',g:4,p:15000,gunit:true,drive:3,race:'Gear Dragon',ok:2,
   text:GTXT+'[AUTO](VC) เมื่อยูนิตนี้โจมตี: CB1 หงาย G Zone 1 ใบ และนำแนวหลัง 1 ใบไว้ใต้เด็ค: ค้นยูนิตเกรด +1 ของใบนั้น เรียกขึ้น (RC) แล้วยูนิตเรา 1 ตัว +5000 ต่อ G Zone หงาย 1 ใบ'});
 
-// ---------- Dragon Empire / Dragonic Overlord (ไอคอน 権) ----------
+// ---------- Dragon Empire / Dragonic Overlord (ไอคอน Authority) ----------
 const KEN = u => !!(u && u.c.ken);
 const hasOvlVG = p => !!(p.f.VC && /Overlord/.test(p.f.VC.c.n));
 function PER(old,u){ return !!(u && u.c.persona && old && old.c.g===3 && u.c.g===3 && (namesOf(old).some(n=>namesOf(u).includes(n)) || (u.c.perKen && KEN(old)))); }
 def('overlord',{n:'Dragonic Overlord',s:'Overlord',clan:'de',g:3,persona:true,perKen:true,ken:true,race:'Flame Dragon',ok:2,
-  text:'[CONT] ไรด์ทับเกรด 3 ไอคอน 権 ชื่ออื่นแบบปกติ ก็นับเป็น Persona Ride\n[AUTO](VC)[1/เทิร์น] จบการต่อสู้ที่ยูนิตนี้โจมตี: CB1 Stand ยูนิตนี้ เทิร์นนี้ Drive -1 · ถ้าเทิร์นนี้ Persona Ride แล้ว นำการ์ดในมือ 1 ใบลง Soul เพิ่มได้ เพื่อ Drive +1 และแถวหน้าทั้งหมด +5000\n[AUTO](RC)[1/เทิร์น] จบการต่อสู้ที่ยูนิตนี้โจมตีแนวหลัง ถ้าแวนการ์ดมีไอคอน 権: Energy-Blast 3 Stand ยูนิตนี้'});
+  text:'[CONT] ไรด์ทับเกรด 3 ไอคอน Authority ชื่ออื่นแบบปกติ ก็นับเป็น Persona Ride\n[AUTO](VC)[1/เทิร์น] จบการต่อสู้ที่ยูนิตนี้โจมตี: CB1 Stand ยูนิตนี้ เทิร์นนี้ Drive -1 · ถ้าเทิร์นนี้ Persona Ride แล้ว นำการ์ดในมือ 1 ใบลง Soul เพิ่มได้ เพื่อ Drive +1 และแถวหน้าทั้งหมด +5000\n[AUTO](RC)[1/เทิร์น] จบการต่อสู้ที่ยูนิตนี้โจมตีแนวหลัง ถ้าแวนการ์ดมีไอคอน Authority: Energy-Blast 3 Stand ยูนิตนี้'});
 def('vortex',{n:'Vortex Dragon',s:'Vortex',clan:'de',g:3,persona:true,perKen:true,ken:true,race:'Flame Dragon',ok:2,
-  text:'[CONT] ไรด์ทับเกรด 3 ไอคอน 権 ชื่ออื่นแบบปกติ ก็นับเป็น Persona Ride\n[ACT](VC)[1/เทิร์น] CB1 + Soul Blast เกรด 3 ไอคอน 権 1 ใบ: Retire แนวหลังแถวหน้าของคู่แข่งทั้งหมด เทิร์นนี้ยูนิตนี้ได้ “[AUTO](VC)[1/เทิร์น] เมื่อโจมตี เลือกแถวตั้ง 1 แถว Stand แนวหลังเราทั้งหมดในแถวนั้น +5000 (ถ้า Persona Ride แล้ว เลือก 2 แถว)”\n[CONT](VC/RC) ในเทิร์นเรา ถ้าแวนการ์ดมีไอคอน 権 คู่แข่งเกรด 3+ และเทิร์นนี้แวนการ์ดเราโจมตีแล้ว 2 ครั้งขึ้นไปหรือแนวหลังคู่แข่งถูก Retire แล้ว: +10000\n[CONT](GC) ถ้าแวนการ์ดมีไอคอน 権: Shield +10000'});
+  text:'[CONT] ไรด์ทับเกรด 3 ไอคอน Authority ชื่ออื่นแบบปกติ ก็นับเป็น Persona Ride\n[ACT](VC)[1/เทิร์น] CB1 + Soul Blast เกรด 3 ไอคอน Authority 1 ใบ: Retire แนวหลังแถวหน้าของคู่แข่งทั้งหมด เทิร์นนี้ยูนิตนี้ได้ “[AUTO](VC)[1/เทิร์น] เมื่อโจมตี เลือกแถวตั้ง 1 แถว Stand แนวหลังเราทั้งหมดในแถวนั้น +5000 (ถ้า Persona Ride แล้ว เลือก 2 แถว)”\n[CONT](VC/RC) ในเทิร์นเรา ถ้าแวนการ์ดมีไอคอน Authority คู่แข่งเกรด 3+ และเทิร์นนี้แวนการ์ดเราโจมตีแล้ว 2 ครั้งขึ้นไปหรือแนวหลังคู่แข่งถูก Retire แล้ว: +10000\n[CONT](GC) ถ้าแวนการ์ดมีไอคอน Authority: Shield +10000'});
 def('nehalem',{n:'Dragon Knight, Nehalem',s:'Nehalem',clan:'de',g:2,ken:true,race:'Human',ok:1,
-  text:'[AUTO] เมื่อวางลง (VC): ดู 7 ใบบนเด็ค เลือกยูนิตไอคอน 権 ที่ไม่ใช่ Sentinel 1 ใบขึ้นมือ แล้วสับ · ถ้าไรด์จากมือ เทิร์นนี้ +5000\n[AUTO](Drop) เมื่อแวนการ์ดเกรด 3+ ไอคอน 権 ถูกวางลง: ถ้าแนวหลังไม่มี Nehalem เรียกการ์ดนี้ขึ้น (RC) ได้ ถ้าเรียก แวนการ์ดและยูนิตนี้ +5000 จนจบเทิร์น\n(ตัวเลือก Bind เพื่อลดค่า Energy-Blast ยังไม่ได้ใส่)'});
+  text:'[AUTO] เมื่อวางลง (VC): ดู 7 ใบบนเด็ค เลือกยูนิตไอคอน Authority ที่ไม่ใช่ Sentinel 1 ใบขึ้นมือ แล้วสับ · ถ้าไรด์จากมือ เทิร์นนี้ +5000\n[AUTO](Drop) เมื่อแวนการ์ดเกรด 3+ ไอคอน Authority ถูกวางลง: ถ้าแนวหลังไม่มี Nehalem เรียกการ์ดนี้ขึ้น (RC) ได้ ถ้าเรียก แวนการ์ดและยูนิตนี้ +5000 จนจบเทิร์น\n(ตัวเลือก Bind เพื่อลดค่า Energy-Blast ยังไม่ได้ใส่)'});
 def('bar',{n:'Embodiment of Armor, Bahr',s:'Bahr',clan:'de',g:1,ken:true,race:'Demon',ok:1,
-  text:'[AUTO] เมื่อวางลง (VC): (เปิดเกรด 3 ไอคอน 権 จาก Ride deck) เรียก Lizard Soldier, Conroe จาก Soul ขึ้น (RC) ไฟต์นี้ Conroe ได้ “[ACT](RC) Retire ยูนิตนี้: ค้นเกรด 1 จากเด็คขึ้นมือ แล้วสับ”\n[AUTO](RC หลังกลาง) เมื่อแวนการ์ดไอคอน 権 Stand ด้วยสกิล: Stand ยูนิตนี้ได้ แล้วจบเทิร์นลง Soul (ยังไม่ได้ใส่)'});
+  text:'[AUTO] เมื่อวางลง (VC): (เปิดเกรด 3 ไอคอน Authority จาก Ride deck) เรียก Lizard Soldier, Conroe จาก Soul ขึ้น (RC) ไฟต์นี้ Conroe ได้ “[ACT](RC) Retire ยูนิตนี้: ค้นเกรด 1 จากเด็คขึ้นมือ แล้วสับ”\n[AUTO](RC หลังกลาง) เมื่อแวนการ์ดไอคอน Authority Stand ด้วยสกิล: Stand ยูนิตนี้ได้ แล้วจบเทิร์นลง Soul (ยังไม่ได้ใส่)'});
 def('conroe',{n:'Lizard Soldier, Conroe',s:'Conroe',clan:'de',g:0,p:6000,ken:true,race:'Dragonman',ok:2,text:'[AUTO] เมื่อถูกไรด์ทับ ถ้าเราเล่นหลัง จั่ว 1'});
 def('berserk',{n:'Berserk Dragon',s:'Berserk',clan:'de',g:2,ken:true,race:'Flame Dragon',ok:2,
-  text:'[AUTO] เมื่อวางลง (VC/RC) ถ้าแวนการ์ดมีไอคอน 権: CB1 หรือ SB2 (ถ้าไรด์จากมือ ไม่ต้องจ่าย) เลือก: จั่ว 1 / Retire แนวหลังคู่แข่ง 1 ใบ · ถ้าแวนการ์ดเกรด 3+ ยูนิตนี้ +5000 จนจบเทิร์น\n[CONT](RC) ในเทิร์นเรา ถ้าแวนการ์ดเกรด 3+ ไอคอน 権: +5000 (ถ้าคู่แข่งเกรด 3+ เป็น +10000 แทน)'});
+  text:'[AUTO] เมื่อวางลง (VC/RC) ถ้าแวนการ์ดมีไอคอน Authority: CB1 หรือ SB2 (ถ้าไรด์จากมือ ไม่ต้องจ่าย) เลือก: จั่ว 1 / Retire แนวหลังคู่แข่ง 1 ใบ · ถ้าแวนการ์ดเกรด 3+ ยูนิตนี้ +5000 จนจบเทิร์น\n[CONT](RC) ในเทิร์นเรา ถ้าแวนการ์ดเกรด 3+ ไอคอน Authority: +5000 (ถ้าคู่แข่งเกรด 3+ เป็น +10000 แทน)'});
 def('perijeacro',{n:'Whirlwind Dragon, Perijeacro',s:'Perijeacro',clan:'de',g:2,race:'Dinodragon',ok:2,
   text:'[AUTO] เมื่อถูกทิ้งจากมือใน Ride phase: เรียกขึ้น (RC) แบบ Rest ได้ (ถ้าแวนการ์ดเกรด 2+ เรียกแบบ Stand)\n[CONT](RC) ถ้าแวนการ์ดเกรด 3+: ได้ Boost และ Intercept จากแถวหลังได้\n[CONT](GC) ถ้าคู่แข่งเกรด 3+: Shield +5000'});
 def('justina',{n:'Blaze Dancer, Justina',s:'Justina',clan:'de',g:1,race:'Human',ok:2,
@@ -1016,7 +1016,7 @@ def('justina',{n:'Blaze Dancer, Justina',s:'Justina',clan:'de',g:1,race:'Human',
 def('nazr',{n:'Dragritter, Nazrdeen',s:'Nazrdeen',clan:'de',g:1,race:'Dragroid',ok:2,
   text:'[AUTO] เมื่อวางลง (RC) จากมือ ถ้าเทิร์นนี้ยังไม่ได้รับ Persona Shield ticket: (เปิดการ์ด Persona Ride จาก Ride deck) หรือถ้าแวนการ์ดมี Persona Ride: รับ Persona Shield ticket 1 ใบ\n[AUTO](RC) เมื่อเราใช้ Persona Shield ticket: SB1 ย้ายยูนิตนี้ไป (GC)'});
 def('elmo',{n:'Fire of Promise, Elmo',s:'Elmo',clan:'de',g:1,ken:true,race:'Salamander',ok:2,
-  text:'[AUTO](RC) จบการต่อสู้ที่ยูนิตนี้บูสต์ ถ้าแวนการ์ดมีไอคอน 権: นำยูนิตนี้ลง Soul แล้วจั่ว 1\n[ACT](Soul) ถ้าแวนการ์ดเกรด 3+ ไอคอน 権 และคู่แข่งเกรด 3+: Bind การ์ดนี้ เทิร์นนี้ Power เดิมของแวนการ์ดเป็น 18000'});
+  text:'[AUTO](RC) จบการต่อสู้ที่ยูนิตนี้บูสต์ ถ้าแวนการ์ดมีไอคอน Authority: นำยูนิตนี้ลง Soul แล้วจั่ว 1\n[ACT](Soul) ถ้าแวนการ์ดเกรด 3+ ไอคอน Authority และคู่แข่งเกรด 3+: Bind การ์ดนี้ เทิร์นนี้ Power เดิมของแวนการ์ดเป็น 18000'});
 def('migdald',{n:'Dragritter, Migdald',s:'Migdald',clan:'de',g:2,race:'Human',ok:2,
   text:'Ace Unit (ใส่ได้ 1 ใบ)\n[Unique Skill — ใช้ได้ครั้งเดียวต่อไฟต์] [AUTO] เมื่อวางลง (RC) นอก Battle phase: เทิร์นนี้ +5000 · Energy-Blast 3: จั่ว 1 เลือกช่องแนวหลังคู่แข่ง 1 ช่อง การ์ดในช่องนั้นเสียสกิล แล้วนำลง Drop\n[AUTO](RC) เมื่อโจมตี ถ้าคู่แข่งเกรด 3+: +5000 ในการต่อสู้นั้น และถ้าคู่แข่งไม่มีแนวหลัง หรือเทิร์นนี้แนวหลังคู่แข่งออกจากช่องด้วยสกิลเรา +5000 อีก'});
 def('barri',{n:'Wyvern Guard, Barri',s:'Barri',clan:'de',g:1,p:6000,sh:0,sent:true,ken:true,race:'Dragonman',ok:2});
@@ -1064,6 +1064,78 @@ async function playOvlOrder(p,u,fromDrop){
   await onNormalOrder(p);
 }
 
+// ---------- Dragon Empire / Lisiafeuille (Gekka · Phantasm) ----------
+const GEN = u => !!(u && u.c.gen), GK = u => !!(u && u.c.gk), KAK = u => !!(u && u.c.kak);
+const LIS = u => !!(u && /Lisiafeuille/.test(u.c.n));
+const hasLisG3 = p => LIS(p.f.VC) && gradeOf(p.f.VC)>=3;
+def('lisia',{n:'Gekka Ninja Princess, Lisiafeuille "Phantom"',s:'Lisiafeuille',clan:'de',g:3,persona:true,gen:true,gk:true,race:'Warbeast/Phantasm',ok:2,
+  text:'[AUTO](VC)[1/เทิร์น] เมื่อโจมตี: CB1 + นำแนวหลัง 2 ใบขึ้นไปลง Soul: ทุก 2 ใบที่ลง Soul ค้นยูนิต “Gekka” จากเด็ค 1 ใบ เรียกขึ้น (RC) ในแถวตั้งเดียวกัน แล้วสับ · ทุก 2 ใบ แถวหน้าทั้งหมด +5000 จนจบเทิร์น\n[Fantôme Skill] [AUTO](VC)[1/เทิร์น] เมื่อถูกโจมตี: Bind การ์ด Scarlet Moon 1 ใบจากมือ Soul หรือ Drop: เลือกการ์ด “Gekka” ชื่อต่างกันจาก Soul กี่ใบก็ได้ เรียกขึ้น (RC)'});
+def('miifa',{n:'Gekka Ninja Fiend, Miifa',s:'Miifa',clan:'de',g:3,persona:true,gen:true,gk:true,race:'Warbeast/Phantasm',ok:2,
+  text:'[AUTO](VC) เมื่อโจมตีเกรด 3+: นำยูนิต “Gekka” จาก Drop ไว้ใต้เด็คได้สูงสุด 2 ใบ ทุก 1 ใบ +5000 ในการต่อสู้นั้น\n[CONT](GC) ถ้าแวนการ์ดเป็น “Gekka”: Shield +10000'});
+def('elber',{n:'Gekka Ninja Fiend, Elberina',s:'Elberina',clan:'de',g:2,gen:true,gk:true,race:'Warbeast/Phantasm',ok:2,
+  text:'[AUTO] เมื่อวางลง (RC) ถ้าแวนการ์ดเป็น “Gekka”: CB1 ดู 7 ใบบนเด็ค เลือกยูนิตเกรดไม่เกินแวนการ์ด ชื่อไม่ใช่ Elberina 1 ใบ เรียกขึ้น (RC) แล้วสับ ถ้าไม่ได้เรียก จั่ว 1\n[CONT](RC) ในเทิร์นเรา ถ้าแวนการ์ดเป็น Lisiafeuille เกรด 3+: +5000\n[AUTO](RC)[1/เทิร์น] จบการต่อสู้ที่ยูนิตนี้โจมตีเกรด 3+ ถ้าเทิร์นนี้ยูนิตนี้ขึ้นมาด้วยสกิลแวนการ์ด Lisiafeuille: Energy-Blast 3 Stand ยูนิตนี้ ถ้า Critical 2+ ได้ +10000 และ Critical เหลือ 1'});
+def('chelna',{n:'Gekka Ninja Fiend, Chelnachika',s:'Chelnachika',clan:'de',g:2,gen:true,gk:true,race:'Warbeast/Phantasm',ok:2,
+  text:'[CONT](RC/GC) ถ้าแวนการ์ดเป็น Lisiafeuille เกรด 3+: Power +5000 / Shield +5000\n[AUTO] เมื่อวางลง (RC): นำการ์ด “Gekka” จาก Drop ไว้ใต้เด็คได้สูงสุด 3 ใบ + SB1: เลือกการ์ด “Gekka” ชื่อไม่ใช่ Chelnachika ที่เกรดเท่ากับจำนวนที่นำไว้ใต้เด็ค จาก Soul หรือ Drop เรียกขึ้น (RC) จบเทิร์นใบนั้นลง Soul'});
+def('lutika',{n:'Gekka Ninja Fiend, Lutika',s:'Lutika',clan:'de',g:2,gen:true,gk:true,race:'Warbeast/Phantasm',ok:2,
+  text:'[AUTO] เมื่อถูกเกรด 3 Lisiafeuille ไรด์ทับ: เลือก 1 ใบจาก Soul หรือ Drop ถ้าเป็นยูนิตปกติ “Gekka” เรียกขึ้น (RC) ถ้าเป็น Normal Order ที่ไม่ใช่ Regalis Piece ขึ้นมือ\n[AUTO] เมื่อลง (GC) ถ้าแวนการ์ดเป็น Lisiafeuille เกรด 3+: นำการ์ด “Gekka” จาก Drop 1 ใบไว้ใต้เด็ค: Shield +5000'});
+def('virea',{n:'Gekka Ninja Fiend, Virea',s:'Virea',clan:'de',g:1,gen:true,gk:true,race:'Warbeast/Phantasm',ok:2,
+  text:'[AUTO] เมื่อถูก Lutika ไรด์ทับ: ค้นการ์ด “Gekka” 1 ใบ และการ์ด Scarlet Moon 1 ใบจากเด็คลง Soul แล้วสับ\n[ACT](Drop) ถ้าแวนการ์ดเป็น Lisiafeuille เกรด 3+ และแนวหลังไม่มี Virea: CB1 เรียกการ์ดนี้ขึ้น (RC) ถ้าคู่แข่งเกรด 3+ +2000 จนจบเทิร์น'});
+def('milis',{n:'Gekka Ninja Fiend, Milis',s:'Milis',clan:'de',g:0,p:6000,gen:true,gk:true,race:'Warbeast/Phantasm',ok:2,text:'[AUTO] เมื่อถูกไรด์ทับ ถ้าเราเล่นหลัง จั่ว 1'});
+def('rivesal',{n:'Gekka Ninja Oni, Rivesal',s:'Rivesal',clan:'de',g:1,gen:true,gk:true,race:'Demon/Phantasm',ok:1,
+  text:'[AUTO] เมื่อถูกนำจาก (RC) ลง Soul ด้วยสกิลแวนการ์ด Lisiafeuille: จั่ว 1 แวนการ์ด +5000 จนจบเทิร์น\n[AUTO] เมื่อถูกวางจาก Soul ลง (GC): Shield +10000 (เด็คนี้ไม่มีการ์ดที่ทำแบบนั้น)'});
+def('henia',{n:'Stealth Dragon, Heniatrack',s:'Heniatrack',clan:'de',g:1,gen:true,race:'Abyss Dragon/Phantasm',ok:2,
+  text:'[AUTO] เมื่อวางลง (RC) จากเด็คหรือมือ ถ้าแวนการ์ดเป็น Phantasm และเทิร์นนี้ยังไม่ได้ใช้สกิลชื่อนี้ขึ้นมือ: ดู 5 ใบบนเด็ค เลือกการ์ด “Habitabulzon” หรือเกรด 3+ ที่ไม่ใช่ Regalis Piece 1 ใบขึ้นมือ แล้วสับ\n[CONT](RC) ถ้าแวนการ์ดเป็น Phantasm: ได้ Intercept และ Intercept จากแถวหลังได้\n[AUTO] เมื่อ Intercept ถ้าคู่แข่งเกรด 3+: SB1 Shield +5000'});
+def('habzon',{n:'Dragritter, Habitabulzon',s:'Habitabulzon',clan:'de',g:2,gen:true,race:'Human/Phantasm',ok:2,
+  text:'[AUTO] เมื่อถูกทิ้งจากมือเป็นค่าไรด์จาก Ride deck ถ้าแวนการ์ดเป็น Phantasm: CB1 หรือ EB3 ค้นการ์ด Scarlet Moon จากเด็คขึ้นมือ แล้วสับ\n[AUTO] เมื่อลง (GC) จากมือ ถ้าแวนการ์ดเป็น Phantasm: CB1 หรือ EB3 จั่ว 1'});
+def('bflail',{n:'Burning Flail Dragon',s:'Burning Flail',clan:'de',g:0,p:4000,trig:'crit',race:'Flame Dragon',ok:2,
+  text:'Critical Trigger\n[AUTO](RC) จบการต่อสู้ที่ยูนิตนี้บูสต์: นำยูนิตนี้ลง Soul ให้ยูนิตเรา 1 ตัว +2000 จนจบเทิร์น'});
+def('kakug',{n:'Scarlet Moonlight',s:'Scarlet Moonlight',clan:'de',g:1,kind:'normal',kak:true,ok:2,
+  text:'Normal Order · Scarlet Moon (เล่นได้เมื่อแวนการ์ดเป็น Phantasm)\nดู 5 ใบบนเด็ค เลือก 1 ใบเปิด ถ้าไม่เปิด สับแล้วจั่ว 1 · ถ้าเปิด เลือก: เป็นยูนิตเกรดไม่เกินแวนการ์ด เรียกขึ้น (RC) / เป็นการ์ด Scarlet Moon ขึ้นมือ แล้วสับ\n[CONT] Bind ได้เฉพาะเป็นค่า Fantôme Skill · อยู่ใน Bind แล้วย้ายออกไม่ได้\n[ACT](Damage) นำการ์ดนี้ลง Drop: นำการ์ดบนสุดของเด็คลง Damage zone'});
+def('sairei',{n:'Blaze Sword Dance "Sairei"',s:'Sairei',clan:'de',g:2,kind:'blitz',ok:2,
+  text:'Blitz Order (ใส่ได้ 2 ใบ) ถ้าเกรดแวนการ์ดเราต่ำกว่าคู่แข่ง เล่นได้โดยไม่สนเกรด\nนำการ์ดนี้ออกจากเกม ยูนิตที่ถูกโจมตี +15000 · ถ้าเราเล่นหลังและไฟต์นี้ยังไม่ได้ ticket จากการ์ดชื่อนี้: รับ Persona Shield ticket · ถ้าคู่แข่ง Persona Ride เทิร์นนี้: +5000 อีก'});
+async function lisiaPlay(p,u){ // Scarlet Moonlight order
+  p.hand.splice(p.hand.indexOf(u),1); p.orders++; log(`${p.short} เล่น ${u.c.s}`); await onOrderPlayed(p);
+  const top=p.deck.slice(0,5), lim=gradeOf(p.f.VC); let x=null;
+  const callable=y=>isUnit(y)&&y.c.g<=lim;
+  if(p.ai){ x=top.filter(y=>callable(y)&&!y.c.trig&&!y.c.sent).sort((a,b)=>score(b)-score(a))[0]||top.find(KAK)||null; }
+  else { const r=await pickCards(p,'Scarlet Moonlight: ดู 5 ใบบนเด็ค เลือก 1 ใบเปิด (ไม่เลือก = สับแล้วจั่ว 1)',top,{min:0,max:1}); x=r.length?top[r[0]]:null; }
+  if(!x){ shuffle(p.deck); draw(p,1); log('Scarlet Moonlight: ไม่เปิด · จั่ว 1'); }
+  else { log(`Scarlet Moonlight: เปิด ${x.c.s}`); let v=callable(x)?'call':KAK(x)?'hand':null;
+    if(callable(x)&&KAK(x)&&!p.ai) v=await askP(p,'Scarlet Moonlight: เลือกหนึ่งอย่าง','',[{l:'เรียกขึ้น (RC)',v:'call',pri:1},{l:'ขึ้นมือ',v:'hand'}]);
+    if(v){ p.deck.splice(p.deck.indexOf(x),1); shuffle(p.deck);
+      if(v==='hand'){ p.hand.push(x); log(`Scarlet Moonlight: ${x.c.s} ขึ้นมือ`); } else { const c=await chooseCallCircle(p,x); await place(p,x,c); } }
+    else shuffle(p.deck); }
+  p.drop.push(fresh(u)); await onNormalOrder(p);
+}
+async function lisiaFantome(d){ // d = defender, Lisiafeuille attacked
+  const pool=[...d.hand.filter(KAK).map(x=>({x,z:'hand'})),...d.soul.filter(KAK).map(x=>({x,z:'soul'})),...d.drop.filter(KAK).map(x=>({x,z:'drop'}))];
+  const cand=d.soul.filter(x=>GK(x)&&isUnit(x)); if(!pool.length||!cand.length) return;
+  if(!await yes(d,'Fantôme Skill (Lisiafeuille): Bind การ์ด Scarlet Moon 1 ใบ เพื่อเรียกการ์ด “Gekka” ชื่อต่างกันจาก Soul ขึ้น (RC)?', RCS.some(c=>!d.f[c]))) return;
+  d.used.add('lisFan'); let o; if(d.ai) o=pool.find(y=>y.z==='drop')||pool.find(y=>y.z==='soul')||pool[0]; else { const r=await pickCards(d,'เลือกการ์ด Scarlet Moon ที่จะ Bind',pool.map(y=>y.x),{min:1,max:1}); o=pool[r[0]]; }
+  d[o.z].splice(d[o.z].indexOf(o.x),1); d.bind.push(fresh(o.x)); fx('perfect'); await cutin(d,'FANTÔME SKILL','Lisiafeuille');
+  let picks=[];
+  if(d.ai){ const seen=new Set(); const open=RCS.filter(c=>!d.f[c]).length; for(const y of cand.slice().sort((a,b)=>(b.c.g===2?1:0)-(a.c.g===2?1:0)||score(b)-score(a))){ if(picks.length>=open) break; if(seen.has(y.c.n)) continue; seen.add(y.c.n); picks.push(y); } }
+  else { const r=await pickCards(d,'Fantôme Skill: เลือกการ์ด “Gekka” ชื่อต่างกันจาก Soul (กี่ใบก็ได้)',cand,{min:0,max:Math.min(5,cand.length),validate:sel=>new Set(sel.map(i=>cand[i].c.n)).size===sel.length}); picks=r.map(i=>cand[i]); }
+  for(const y of picks){ if(!d.soul.includes(y)) continue; d.soul.splice(d.soul.indexOf(y),1); const c=await chooseCallCircle(d,y); log(`Fantôme Skill: เรียก ${y.c.s} จาก Soul`); await place(d,y,c); }
+}
+async function lisiaAttack(p,A){
+  const rs=RCS.filter(c=>p.f[c]); if(rs.length<2||!upN(p)||p.used.has('lisAtk')) return;
+  let picks;
+  if(p.ai){ const ok=p.deck.some(x=>isUnit(x)&&GK(x)); if(!ok) return; const rest=rs.filter(c=>p.f[c].rest).sort((a,b)=>(p.f[b].id==='rivesal'?1:0)-(p.f[a].id==='rivesal'?1:0)); if(rest.length<2) return; picks=rest.slice(0,rest.length>=4?4:2); }
+  else { if(!await yes(p,'Lisiafeuille: CB1 + นำแนวหลัง 2 ใบขึ้นไปลง Soul เพื่อค้นยูนิต “Gekka” และแถวหน้า +5000?')) return;
+    const r=await pickCards(p,'เลือกแนวหลังที่จะนำลง Soul (2 ใบขึ้นไป)',rs.map(c=>p.f[c]),{min:2,max:rs.length}); picks=r.map(i=>rs[i]); }
+  p.used.add('lisAtk'); await cb(p,1); const k=Math.floor(picks.length/2);
+  for(const c of picks){ const u=p.f[c]; if(!u) continue; p.f[c]=null; p.soul.push(fresh(u)); log(`Lisiafeuille: ${u.c.s} ลง Soul`);
+    if(u.id==='rivesal'){ draw(p,1); if(p.f.VC) p.f.VC.pt+=5000; log('Rivesal: จั่ว 1 · แวนการ์ด +5000'); } }
+  await cutin(p,'GEKKA','Lisiafeuille "Phantom"');
+  for(let i=0;i<k;i++){ const cand=p.deck.filter(x=>isUnit(x)&&GK(x)); if(!cand.length) break; let x;
+    if(p.ai) x=cand.filter(y=>y.c.g<=2).sort((a,b)=>score(b)-score(a))[0]||cand[0]; else { const r=await pickCards(p,`Lisiafeuille: เลือกยูนิต “Gekka” จากเด็ค (${i+1}/${k})`,cand,{min:0,max:1}); x=r.length?cand[r[0]]:null; }
+    if(!x) continue; p.deck.splice(p.deck.indexOf(x),1); const open=picks.filter(c=>!p.f[c]); let c;
+    if(!open.length) c=await chooseCallCircle(p,x); else if(p.ai) c=open.find(y=>y[0]==='F')||open[0]; else c=await bpFor(p,0,`เลือกช่องสำหรับ ${x.c.s}`,open,false);
+    log(`Lisiafeuille: เรียก ${x.c.s}`); await place(p,x,c); if(p.f[c]===x) x.lisiaT=G.turn; }
+  shuffle(p.deck); if(k){ p.lisFrontT=G.turn; p.lisFrontN=k; log(`Lisiafeuille: แถวหน้าทั้งหมด +${5000*k}`); } render();
+}
+
 const DECKS = {
   rezael:{name:'Rezael', clan:'rz', sub:'Keter Sanctuary · ชุบชีวิตจาก Drop', src:'en.cf-vanguard.com/deckrecipe/detail/dz-bt05-Rezael-Vita', ride:['soel','ventesta','ascensior','rez'],
     main:[['rez',3],['vita',4],['gabwelius',2],['spiral',4],['nobia',4],['nilberis',4],['palladium',3],['tolpaz',1],['cerrgaon',4],['gragaon',3],
@@ -1095,7 +1167,9 @@ const DECKS = {
   vyrgilla:{name:'Vyrgilla', clan:'de', sub:'Dragon Empire · Rewrite & Ezerwur', src:'Deck Log (รูปที่ส่งมา)', ride:['vyrg0','vyrg1','vyrg2','vyrg3'],
     main:[['altknight',4],['vyrg3',3],['fanvare',2],['ezerwur',4],['enwing',1],['falhart',1],['shenryi',4],['cosmor',2],['nirmihn',4],['summit',1],['buckler',3],['utsuroi',1],
           ['dragveda',1],['sunegosuri',4],['dinobreeze',2],['soyo',1],['amaviera',2],['parama',2],['flareveil',1],['sougyou',2],['magusbride',1],['bscross',1],['stardust',1],['twincast',1],['defroar',1]]},
-  overlord:{name:'Overlord', clan:'de', sub:'Dragon Empire · ไอคอน 権 & Persona Ride', src:'Deck Log 9ZBVA (รูปที่ส่งมา)', ride:['conroe','bar','nehalem','overlord'],
+  lisia:{name:'Lisiafeuille', clan:'de', sub:'Dragon Empire · Gekka ใช้ Soul เรียกซ้ำ', src:'Deck Log (รูปที่ส่งมา)', ride:['milis','virea','lutika','lisia'],
+    main:[['miifa',1],['lisia',3],['elber',4],['chelna',4],['habzon',4],['henia',4],['rivesal',4],['utsuroi',4],['misparf',4],['dragveda',1],['bflail',4],['flareveil',3],['amaviera',4],['kakug',4],['sairei',1],['twincast',1]]},
+  overlord:{name:'Overlord', clan:'de', sub:'Dragon Empire · ไอคอน Authority & Persona Ride', src:'Deck Log 9ZBVA (รูปที่ส่งมา)', ride:['conroe','bar','nehalem','overlord'],
     main:[['overlord',3],['vortex',2],['nehalem',3],['berserk',4],['perijeacro',4],['migdald',1],['nazr',3],['elmo',4],['barri',3],['justina',1],
           ['misparf',3],['dragveda',1],['raksha',4],['taa',4],['genjou',2],['amaviera',2],['kaen',1],['guren',3],['sanctitude',1],['globe',1]]},
   chronojet:{name:'Chronojet', clan:'ds', sub:'Dark States · Stride (G-Deck)', src:'Deck Log (รูปที่ส่งมา)', ride:['chronodran','chg1','smokegear','chronojet'],
@@ -1183,6 +1257,9 @@ function power(p,u,c){
   if (c && c!=='VC' && c!=='DUO' && myTurn && p.grizael) v += 10000;
   if (c==='VC' && p.duo && u===p.f.VC) v += power(p,p.duo,'DUO');
   if (!lost && c!=='VC' && u.id==='myun2' && hasMyunG3(p)) v += 5000;
+  if (!lost && c!=='VC' && u.id==='chelna' && hasLisG3(p)) v += 5000;
+  if (!lost && c!=='VC' && u.id==='elber' && myTurn && hasLisG3(p)) v += 5000;
+  if (FRONT.includes(c) && p.lisFrontT===G.turn) v += 5000*(p.lisFrontN||0);
   if (c==='VC' && u===p.f.VC && p.elmoT===G.turn && u.c.p<18000) v += 18000-u.c.p;
   if (!lost && u.id==='vortex' && myTurn && KEN(vg) && ovg && gradeOf(ovg)>=3 && ((p.vcAtkTurn===G.turn&&p.vcAtk>=2)||opp(p).rgLostT===G.turn)) v += 10000;
   if (!lost && c!=='VC' && u.id==='berserk' && myTurn && KEN(vg) && gradeOf(vg)>=3) v += (ovg&&gradeOf(ovg)>=3)?10000:5000;
@@ -1292,6 +1369,20 @@ function standColumn(p,c){ [c,COL[c]].forEach(x=>{ if(x!=='VC' && p.f[x]) p.f[x]
 async function onPlaced(p,u,c,opt){
   if(c==='VC') return;
   if(u.id==='berserk') await berserkPlaced(p,u,c);
+  if(u.id==='henia' && GEN(p.f.VC) && !p.used.has('henia')){ const top=p.deck.slice(0,5); const cand=top.filter(x=>/Habitabulzon/.test(x.c.n)||(x.c.g>=3&&!x.c.regalisP));
+    if(cand.length){ let x; if(p.ai) x=cand.find(y=>y.id==='lisia')||cand[0]; else { const r=await pickCards(p,'Heniatrack: เลือก Habitabulzon หรือการ์ดเกรด 3+ ขึ้นมือ',cand,{min:0,max:1}); x=r.length?cand[r[0]]:null; }
+      if(x){ p.used.add('henia'); p.deck.splice(p.deck.indexOf(x),1); p.hand.push(x); log(`Heniatrack: ${x.c.s} ขึ้นมือ`); } } shuffle(p.deck); }
+  if(u.id==='elber' && GK(p.f.VC) && upN(p) && await yes(p,'Elberina: CB1 ดู 7 ใบบนเด็ค เรียกยูนิตเกรดไม่เกินแวนการ์ด (ถ้าไม่ได้เรียก จั่ว 1)?')){ await cb(p,1); const top=p.deck.slice(0,7), lim=gradeOf(p.f.VC);
+    const cand=top.filter(x=>isUnit(x)&&x.c.g<=lim&&x.id!=='elber'); let x=null; if(cand.length){ if(p.ai) x=cand.filter(y=>!y.c.trig&&!y.c.sent).sort((a,b)=>score(b)-score(a))[0]||null; else { const r=await pickCards(p,'Elberina: เลือกยูนิตเรียกขึ้น (RC)',cand,{min:0,max:1}); x=r.length?cand[r[0]]:null; } }
+    if(x){ p.deck.splice(p.deck.indexOf(x),1); shuffle(p.deck); const c2=await chooseCallCircle(p,x); log(`Elberina: เรียก ${x.c.s}`); await place(p,x,c2); } else { shuffle(p.deck); draw(p,1); log('Elberina: จั่ว 1'); } }
+  if(u.id==='chelna' && p.soul.length){ const drop=p.drop.filter(x=>GK(x)); const pool=n=>[...p.soul,...p.drop].filter(x=>GK(x)&&x.id!=='chelna'&&x.c.g===n);
+    let n=0; if(p.ai){ for(const k of [2,3,1]){ const t=pool(k).filter(x=>isUnit(x)); if(t.length && drop.filter(x=>x!==t[0]).length>=k && RCS.some(c=>!p.f[c])){ n=k; break; } } }
+    else if(drop.length){ const o=[1,2,3].filter(k=>drop.length>=k&&pool(k).some(x=>isUnit(x))).map(k=>({l:`นำไว้ใต้เด็ค ${k} ใบ → เรียกเกรด ${k}`,v:k})); if(o.length) n=await askP(p,'Chelnachika: SB1 + นำการ์ด “Gekka” จาก Drop ไว้ใต้เด็ค เพื่อเรียกการ์ดเกรดเท่าจำนวนนั้น?','',[...o,{l:'ไม่ใช้',v:0}]); }
+    if(n){ const tgt0=p.ai?pool(n).filter(x=>isUnit(x)).sort((a,b)=>score(b)-score(a))[0]:null; let cost=drop.filter(x=>x!==tgt0);
+      if(p.ai) cost=cost.slice(0,n); else { const r=await pickCards(p,`Chelnachika: เลือกการ์ด “Gekka” ใน Drop ${n} ใบไว้ใต้เด็ค`,cost,{min:n,max:n}); cost=r.map(i=>cost[i]); }
+      await sb(p,1); cost.forEach(x=>{ p.drop.splice(p.drop.indexOf(x),1); p.deck.push(fresh(x)); }); log(`Chelnachika: นำ ${cost.length} ใบไว้ใต้เด็ค`);
+      const cand=pool(n).filter(x=>isUnit(x)); let t=null; if(cand.length){ if(p.ai) t=cand.includes(tgt0)?tgt0:cand[0]; else { const r=await pickCards(p,`Chelnachika: เลือกการ์ด “Gekka” เกรด ${n} จาก Soul/Drop เรียกขึ้น (RC)`,cand,{min:1,max:1}); t=cand[r[0]]; } }
+      if(t){ const z=p.soul.includes(t)?p.soul:p.drop; z.splice(z.indexOf(t),1); const c2=await chooseCallCircle(p,t); log(`Chelnachika: เรียก ${t.c.s} (จบเทิร์นลง Soul)`); await place(p,t,c2); if(p.f[c2]===t) t.soulEnd=G.turn; } } }
   if(u.id==='migdald' && G.phase!=='battle'){ u.pt+=5000; log('Migdald +5000'); const d=opp(p); const rs=RCS.filter(x=>d.f[x]);
     if(!p.used.has('fight:unique') && p.en>=3 && rs.length && await yes(p,'Migdald (Unique Skill): Energy-Blast 3 จั่ว 1 แล้วนำการ์ดในช่องแนวหลังคู่แข่ง 1 ช่องลง Drop?', true)){
       p.used.add('fight:unique'); p.en-=3; draw(p,1); let t; if(p.ai) t=rs.sort((a,b)=>gradeOf(d.f[b])-gradeOf(d.f[a]))[0]; else t=await bpFor(p,1,'Migdald: เลือกช่องแนวหลังคู่แข่ง',rs,false);
@@ -1545,12 +1636,18 @@ async function ride(p,u){
     if(hh.length){ if(p.ai) x=hh.slice().sort((a,b)=>score(a)-score(b))[0]; else { const r=await pickCards(p,'Maser Gear: เลือกการ์ดในมือ 1 ใบไว้ใต้เด็ค',hh,{min:1,max:1}); x=hh[r&&r.length?r[0]:0]; } }
     if(x){ p.hand.splice(p.hand.indexOf(x),1); p.deck.push(fresh(x)); log(`Maser Gear: นำการ์ด 1 ใบไว้ใต้เด็ค`); } }
   if(old.c.g===2) p.fromG2T=G.turn;
-  if(u.id==='nehalem'){ const pick=await searchDeck(p,7,x=>isUnit(x)&&KEN(x)&&!x.c.sent,'Nehalem: เลือกยูนิตไอคอน 権 (ไม่ใช่ Sentinel) ขึ้นมือ'); if(!pick) log('Nehalem: ไม่ได้การ์ด'); if(u.rhT===G.turn){ u.pt+=5000; log('Nehalem: ไรด์จากมือ +5000'); } }
-  if(u.id==='bar' && p.ride.some(x=>x.c.g===3&&KEN(x)) && p.soul.some(x=>x.id==='conroe') && await yes(p,'Bahr: เปิดเกรด 3 ไอคอน 権 จาก Ride deck เพื่อเรียก Conroe จาก Soul ขึ้น (RC)?')){
+  if(u.id==='nehalem'){ const pick=await searchDeck(p,7,x=>isUnit(x)&&KEN(x)&&!x.c.sent,'Nehalem: เลือกยูนิตไอคอน Authority (ไม่ใช่ Sentinel) ขึ้นมือ'); if(!pick) log('Nehalem: ไม่ได้การ์ด'); if(u.rhT===G.turn){ u.pt+=5000; log('Nehalem: ไรด์จากมือ +5000'); } }
+  if(u.id==='bar' && p.ride.some(x=>x.c.g===3&&KEN(x)) && p.soul.some(x=>x.id==='conroe') && await yes(p,'Bahr: เปิดเกรด 3 ไอคอน Authority จาก Ride deck เพื่อเรียก Conroe จาก Soul ขึ้น (RC)?')){
     const x=p.soul.find(y=>y.id==='conroe'); p.soul.splice(p.soul.indexOf(x),1); const c=await chooseCallCircle(p,x); log('Bahr: เรียก Conroe จาก Soul ขึ้น (RC)'); await place(p,x,c); if(p.f[c]===x) x.conroeAct=true; }
   if(u.id==='berserk') await berserkPlaced(p,u,'VC');
   if(u.c.g>=3 && KEN(u)){ const nh=p.drop.find(x=>x.id==='nehalem'); if(nh && !RCS.some(c=>p.f[c]&&p.f[c].id==='nehalem') && await yes(p,'Nehalem (Drop): เรียกขึ้น (RC) ให้แวนการ์ดและยูนิตนี้ +5000?')){
     p.drop.splice(p.drop.indexOf(nh),1); const c=await chooseCallCircle(p,nh); await place(p,nh,c); if(p.f[c]===nh){ nh.pt+=5000; p.f.VC.pt+=5000; log('Nehalem: เรียกจาก Drop · แวนการ์ดและ Nehalem +5000'); } } }
+  if(old.id==='virea' && u.id==='lutika'){ const pk=[]; const a1=p.deck.find(x=>GK(x)); if(a1) pk.push(a1); const a2=p.deck.find(x=>KAK(x)&&!pk.includes(x)); if(a2) pk.push(a2);
+    if(!p.ai){ const c1=p.deck.filter(x=>GK(x)); if(c1.length){ const r=await pickCards(p,'Virea: เลือกการ์ด “Gekka” ลง Soul',c1,{min:1,max:1}); pk[0]=c1[r[0]]; } }
+    pk.forEach(x=>{ p.deck.splice(p.deck.indexOf(x),1); p.soul.push(x); }); shuffle(p.deck); if(pk.length) log(`Virea: ${pk.map(x=>x.c.s).join(', ')} ลง Soul`); }
+  if(old.id==='lutika' && u.c.g===3 && LIS(u)){ const pool=[...p.soul.map(x=>({x,z:'soul'})),...p.drop.map(x=>({x,z:'drop'}))].filter(o=>(isUnit(o.x)&&GK(o.x)&&!o.x.c.trig)||(o.x.c.kind==='normal'&&!o.x.c.regalisP));
+    if(pool.length){ let o; if(p.ai) o=pool.filter(y=>isUnit(y.x)).sort((a,b)=>score(b.x)-score(a.x))[0]||pool[0]; else { const r=await pickCards(p,'Lutika: เลือกยูนิต “Gekka” (เรียกขึ้น RC) หรือ Normal Order (ขึ้นมือ) จาก Soul/Drop',pool.map(y=>y.x),{min:0,max:1}); o=r.length?pool[r[0]]:null; }
+      if(o){ p[o.z].splice(p[o.z].indexOf(o.x),1); if(isUnit(o.x)){ const c=await chooseCallCircle(p,o.x); log(`Lutika: เรียก ${o.x.c.s}`); await place(p,o.x,c); } else { p.hand.push(fresh(o.x)); log(`Lutika: ${o.x.c.s} ขึ้นมือ`); } } } }
   if(u.id==='bdark') await bdarkPlaced(p,u,true);
   if(old.id==='pratta' && u.id==='estila' && p.ride.some(x=>x.c.g===3&&AL(x))){
     const top=p.deck.slice(0,7), cand=top.filter(x=>x.c.cm||x.c.gaku);
@@ -1585,7 +1682,7 @@ async function ride(p,u){
     if(tn && !RCS.some(c=>p.f[c]&&p.f[c].id==='tarnu') && await yes(p,'Tarnu ใน Drop: เรียกขึ้น (RC)?')){
       p.drop.splice(p.drop.indexOf(tn),1); const c=await chooseCallCircle(p,tn); log('Tarnu: เรียกจาก Drop +5000'); await place(p,tn,c); if(p.f[c]===tn) tn.pt+=5000; }
   }
-  if((old.id==='mion'||old.id==='soel'||old.id==='proa'||old.id==='lotte'||old.id==='myun0'||old.id==='ls0'||old.id==='pratta'||old.id==='fullbau'||old.id==='himmel0'||old.id==='obl0'||old.id==='vyrg0'||old.id==='chronodran'||old.id==='conroe') && p.second) { draw(p,1); log(`${old.c.s}: เล่นหลัง จั่ว 1`); }
+  if((old.id==='mion'||old.id==='soel'||old.id==='proa'||old.id==='lotte'||old.id==='myun0'||old.id==='ls0'||old.id==='pratta'||old.id==='fullbau'||old.id==='himmel0'||old.id==='obl0'||old.id==='vyrg0'||old.id==='chronodran'||old.id==='conroe'||old.id==='milis') && p.second) { draw(p,1); log(`${old.c.s}: เล่นหลัง จั่ว 1`); }
   if(old.id==='ventesta' && u.id==='ascensior'){ p.soul.splice(p.soul.indexOf(old),1); const c=await chooseCallCircle(p,old); log('Ventesta: เรียกตัวเองขึ้น (RC) และ Soul-Charge 1'); await place(p,old,c);
     if(p.deck.length) p.soul.push(fresh(p.deck.shift())); }
   if(old.id==='sedna' && u.id==='aqua' && p.soul.length>1 && await yes(p,'Sedna: SB1 ดู 7 ใบบน หาเกรด 2+ ขึ้นมือ?')){
@@ -1604,6 +1701,8 @@ async function ride(p,u){
 async function payRideCost(p,d,fromRD=true){ p.hand.splice(p.hand.indexOf(d),1); p.drop.push(fresh(d)); log(`${p.short} ทิ้ง ${d.c.s} เพื่อ Ride`); if(d.id==='lucciel') await lucciel(p);
   if((d.id==='valsheblan'||d.id==='spiralsm') && p.f.VC && FAN(p.f.VC)) await valshCost(p,'search');
   if(d.id==='falhart'||d.id==='tizkahl') await valshCost(p,'draw');
+  if(d.id==='habzon' && fromRD && GEN(p.f.VC) && (upN(p)||p.en>=3) && p.deck.some(KAK)){ let how; if(p.ai) how=p.en>=3?'eb':'cb'; else { const o=[]; if(upN(p)) o.push({l:'CB1',v:'cb',pri:1}); if(p.en>=3) o.push({l:'Energy-Blast 3',v:'eb'}); o.push({l:'ไม่ใช้',v:null}); how=await askP(p,'Habitabulzon: ค้นการ์ด Scarlet Moon ขึ้นมือ?','',o); }
+    if(how){ if(how==='cb') await cb(p,1); else p.en-=3; const x=p.deck.find(KAK); p.deck.splice(p.deck.indexOf(x),1); p.hand.push(x); shuffle(p.deck); log(`Habitabulzon: ${x.c.s} ขึ้นมือ`); } }
   await onDiscard(p,d,false);
   if(d.id==='perijeacro' && G.phase==='ride' && p.drop.includes(d) && await yes(p,'Perijeacro: เรียกขึ้น (RC)?',true)){ const st=!!(p.f.VC&&gradeOf(p.f.VC)>=2); p.drop.splice(p.drop.indexOf(d),1); const c=await chooseCallCircle(p,d); await place(p,d,c); if(p.f[c]===d && !st) d.rest=true; log(`Perijeacro: เรียกขึ้น (RC)${st?'':' แบบ Rest'}`); }
   if(d.id==='spiral' && p.soul.length && await yes(p,'Spiral Cutie Angel: SB1 และนำการ์ดนี้ไว้ใต้เด็คเพื่อจั่ว 1?')){
@@ -1690,6 +1789,9 @@ async function damageCheck(p,n=1,of=1){
 }
 
 // ---- ACT abilities ----
+function actHints(p){ const H=[]; const vc=p.f.VC; if(!vc) return H;
+  if(vc.id==='ccommand' && !p.used.has('ccmd')){ const why=[]; if(!GB(p,3)) why.push(`ต้อง Generation Break 3 (ตอนนี้ ${gFaceUp(p)+1}: G Zone หงาย ${gFaceUp(p)} + G Unit บนแวนการ์ด 1)`); if(!upN(p)) why.push('ไม่มี Damage หงายให้ CB1'); if(why.length) H.push('Chronos Command ยังใช้ไม่ได้: '+why.join(' · ')); }
+  return H; }
 function acts(p){
   const L=[];
   const vc=p.f.VC;
@@ -1708,7 +1810,7 @@ function acts(p){
   if(vc && vc.id==='vyrg3' && gradeOf(opp(p).f.VC)>=3 && p.hand.some(x=>x.id==='altknight')) L.push({k:'rewrite',l:'REWRITE: Bind Vyrgilla เพื่อไรด์ Altknight (จบเทิร์นกลับเป็น Vyrgilla)'});
   if(vc && vc.id==='vyrg2' && !p.used.has('vy2') && RCS.filter(c=>p.f[c]).length>=4 && p.ride.some(x=>VY(x))) L.push({k:'vy2',l:'Shooting Star: เปิด Vyrgilla จาก Ride deck → Critical +1'});
   if(vc && gradeOf(vc)>=3 && p.hand.some(x=>x.id==='summit') && [...p.soul,...p.drop].filter(x=>x.rd).length>=2) L.push({k:'summit',l:'Summit Flare Dragon (มือ): ทิ้งเพื่อหาการ์ดเกรด 3+'});
-  if(vc && vc.id==='ccommand' && !p.used.has('ccmd') && GB(p,3) && upN(p) && RCS.some(c=>p.f[c])) L.push({k:'ccmd',l:'Chronos Command: CB1 คู่แข่งนำแนวหลังทั้งหมดไว้ใต้เด็ค'});
+  if(vc && vc.id==='ccommand' && !p.used.has('ccmd') && GB(p,3) && upN(p)) L.push({k:'ccmd',l:'Chronos Command: CB1 คู่แข่งนำแนวหลังทั้งหมดไว้ใต้เด็ค'});
   if(vc && vc.id==='mflare' && !p.used.has('mflare') && p.gdeck.length) L.push({k:'mflare',l:'Mystery Flare: หงาย G Zone 1 ใบ แถวหน้า +5000 ...'});
   if(vc && vc.id==='obl3' && p.orders===0 && upN(p) && !p.used.has('oblAct') && [...p.deck,...p.drop].some(x=>x.c.song&&AM(x)&&x.c.g<=gradeOf(vc))) L.push({k:'oblAct',l:'Oblivionis: CB1 ค้นการ์ด Music จากเด็ค/Drop แล้วเล่น'});
   for(const c of RCS){ const w=p.f[c]; if(w&&w.id==='timoris'&&gradeOf(p.f.VC)>=3&&p.en>=3&&!p.used.has('tim'+w.uid)&&[...p.drop,...p.bind].some(x=>isUnit(x)&&x.c.g<=3&&x.c.n!==w.c.n)) L.push({k:'tim:'+c,l:'Timoris: Energy-Blast 3 เรียกยูนิตจาก Drop/Bind'}); }
@@ -1718,8 +1820,10 @@ function acts(p){
   if(vc && vc.id==='phantomB' && !p.used.has('pbd') && upN(p) && RCS.filter(c=>p.f[c]&&REN(p.f[c])).reduce((n,c)=>n+(p.f[c].id==='nevan'?2:1),0)>=2) L.push({k:'pbd',l:'Phantom Blaster: CB1 Retire แนวหลัง Ren 2 ใบ → Retire ฝั่งคู่แข่ง +10000/★+1'});
   if(hasRenG3(p) && p.drop.some(x=>x.id==='charon') && upN(p) && !RCS.some(c=>p.f[c]&&p.f[c].id==='charon')) L.push({k:'charon',l:'Charon (Drop): CB1 เรียกขึ้น (RC)'});
   if(hasRenG3(p) && p.drop.filter(x=>x.id==='charon').length>=2 && p.dmg.some(d=>!d.up)) L.push({k:'charonCC',l:'Charon (Drop): นำออก 2 ใบ เพื่อ Counter-Charge 1'});
+  { const vr=p.drop.find(x=>x.id==='virea'); if(vr && hasLisG3(p) && upN(p) && !RCS.some(c=>p.f[c]&&p.f[c].id==='virea')) L.push({k:'virea',l:'Virea (Drop): CB1 เรียกขึ้น (RC)'}); }
+  if(p.dmg.some(d=>d.u.id==='kakug') && p.deck.length) L.push({k:'kakdmg',l:'Scarlet Moonlight (Damage): นำลง Drop แล้วนำการ์ดบนเด็คลง Damage'});
   if(vc && KEN(vc) && gradeOf(vc)>=3 && opp(p).f.VC && gradeOf(opp(p).f.VC)>=3 && p.elmoT!==G.turn && p.soul.some(x=>x.id==='elmo')) L.push({k:'elmo',l:'Elmo (Soul): Bind · เทิร์นนี้ Power เดิมของแวนการ์ดเป็น 18000'});
-  if(vc && vc.id==='vortex' && !p.used.has('vtxAct') && upN(p) && p.soul.some(x=>x.c.g===3&&KEN(x))) L.push({k:'vtx',l:'Vortex Dragon: CB1 + SB เกรด 3 ไอคอน 権 · Retire แนวหน้าคู่แข่งทั้งหมด และได้สกิล Stand แถวตั้งตอนโจมตี'});
+  if(vc && vc.id==='vortex' && !p.used.has('vtxAct') && upN(p) && p.soul.some(x=>x.c.g===3&&KEN(x))) L.push({k:'vtx',l:'Vortex Dragon: CB1 + SB เกรด 3 ไอคอน Authority · Retire แนวหน้าคู่แข่งทั้งหมด และได้สกิล Stand แถวตั้งตอนโจมตี'});
   for(const c of RCS){ const w=p.f[c]; if(w && w.id==='conroe' && w.conroeAct) L.push({k:'conroe:'+c,l:'Conroe: Retire ยูนิตนี้ ค้นการ์ดเกรด 1 จากเด็คขึ้นมือ'}); }
   { const gd=p.drop.find(x=>x.id==='guren'); if(gd && hasOvlVG(p) && p.gurenT!==G.turn && p.en>=3 && vc.c.persona && !p.persona && p.fromG2T!==G.turn && realHand(p).length) L.push({k:'gurenDrop',l:'Apocalypse Flame (Drop): EB3 + Bind · ทิ้ง 1 ใบ เปิด Persona Ride'}); }
   for(const x of p.drop) if(x.jus===G.turn && x.c.kind==='normal' && canOrder(p,x)) L.push({k:'jus:'+x.uid,l:`Justina: เล่น ${x.c.s} จาก Drop`});
@@ -1742,8 +1846,10 @@ function acts(p){
 const mgOK=(p,c)=>{ const g=gradeOf(p.f[c]); return g<=2 && p.deck.some(u=>isUnit(u)&&u.c.g===g+1&&!u.c.trig); };
 async function doAct(p,k){
   if(k==='sinno'){ await myunSinno(p); return; }
+  if(k==='virea'){ const x=p.drop.find(y=>y.id==='virea'); if(!x) return; await cb(p,1); p.drop.splice(p.drop.indexOf(x),1); const c=await chooseCallCircle(p,x); log('Virea: เรียกจาก Drop'); await place(p,x,c); if(p.f[c]===x&&gradeOf(opp(p).f.VC)>=3) x.pt+=2000; return; }
+  if(k==='kakdmg'){ const i=p.dmg.findIndex(d=>d.u.id==='kakug'); if(i>=0 && p.deck.length){ const d0=p.dmg.splice(i,1)[0]; p.drop.push(fresh(d0.u)); p.dmg.splice(i,0,{u:fresh(p.deck.shift()),up:true}); log('Scarlet Moonlight: ลง Drop · ได้ Damage หงายใหม่ 1 ใบ'); } return; }
   if(k==='elmo'){ const x=p.soul.find(y=>y.id==='elmo'); if(!x) return; p.soul.splice(p.soul.indexOf(x),1); p.bind.push(fresh(x)); p.elmoT=G.turn; log('Elmo: Bind · เทิร์นนี้ Power เดิมของแวนการ์ดเป็น 18000'); return; }
-  if(k==='vtx'){ p.used.add('vtxAct'); await cb(p,1); const g3=p.soul.filter(x=>x.c.g===3&&KEN(x)); let x=g3[0]; if(!p.ai&&g3.length>1){ const r=await pickCards(p,'Vortex Dragon: เลือกเกรด 3 ไอคอน 権 ใน Soul ที่จะ Soul Blast',g3,{min:1,max:1}); x=g3[r[0]]; }
+  if(k==='vtx'){ p.used.add('vtxAct'); await cb(p,1); const g3=p.soul.filter(x=>x.c.g===3&&KEN(x)); let x=g3[0]; if(!p.ai&&g3.length>1){ const r=await pickCards(p,'Vortex Dragon: เลือกเกรด 3 ไอคอน Authority ใน Soul ที่จะ Soul Blast',g3,{min:1,max:1}); x=g3[r[0]]; }
     p.soul.splice(p.soul.indexOf(x),1); p.drop.push(fresh(x)); await cutin(p,'BURNING HELL','Vortex Dragon');
     const d=opp(p); for(const c of ['FL','FR']){ const t=d.f[c]; if(t&&!bfProtected(d,t)){ d.f[c]=null; await retire(d,t); log(`Vortex Dragon: Retire ${t.c.s}`); } }
     p.vtxT=G.turn; log('Vortex Dragon: ได้สกิล Stand แถวตั้งตอนโจมตี'); return; }
@@ -1763,7 +1869,7 @@ async function doAct(p,k){
     const t=p.f[c]; if(!t) return; const gr=gradeOf(t); p.f[c]=null; p.deck.push(fresh(t)); log(`Maser Gear: ${t.c.s} ไปใต้เด็ค`);
     const cc=await callGradePlus(p,gr,'Maser Gear'); if(cc&&p.f[cc]){ p.f[cc].pt+=5000; log(`Maser Gear: ${p.f[cc].c.s} +5000`); } return; }
   if(k==='ccmd'){ p.used.add('ccmd'); await cb(p,1); await cutin(p,'CHRONOS COMMAND','Gear Chronicle'); const d=opp(p); for(const c of RCS){ const t=d.f[c]; if(t&&!bfProtected(d,t)){ d.f[c]=null; d.deck.push(fresh(t)); } } d.rgLostT=G.turn; log('Chronos Command: แนวหลังคู่แข่งทั้งหมดไปใต้เด็ค');
-    const rs=RCS.filter(c=>p.f[c]); let c; if(p.ai) c=rs.sort((a,b)=>(a[0]==='F'?0:1)-(b[0]==='F'?0:1))[0]; else c=await bpFor(p,0,'Chronos Command: เลือกแนวหลังรับสกิล',rs,false); if(c&&p.f[c]){ p.f[c].ccGrant=G.turn; log(`${p.f[c].c.s} ได้สกิล Chronos Command`); } return; }
+    const rs=RCS.filter(c=>p.f[c]); let c=null; if(!rs.length) log('Chronos Command: แนวหลังเราไม่มี จึงไม่มีใบรับสกิล'); else if(p.ai) c=rs.sort((a,b)=>(a[0]==='F'?0:1)-(b[0]==='F'?0:1))[0]; else c=await bpFor(p,0,'Chronos Command: เลือกแนวหลังรับสกิล',rs,false); if(c&&p.f[c]){ p.f[c].ccGrant=G.turn; log(`${p.f[c].c.s} ได้สกิล Chronos Command`); } return; }
   if(k==='mflare'){ p.used.add('mflare'); await flipG(p); p.mfUntil=G.turn+1; log('Mystery Flare: แถวหน้า +5000 จนจบเทิร์นคู่แข่ง');
     const rs=RCS.filter(c=>p.f[c]); if(rs.length){ let c; if(p.ai) c=rs.find(x=>x[0]==='F')||rs[0]; else c=await bpFor(p,0,'Mystery Flare: เลือกแนวหลังที่จะ Stand ตอนแวนการ์ดโจมตี',rs,false); if(c&&p.f[c]) p.f[c].mfStand=G.turn; }
     if(gFaceUp(p)>=5){ p.mfExtraT=G.turn; log('Mystery Flare: G Zone หงาย 5+ · โจมตีแล้วเล่นเทิร์นเพิ่มได้'); } return; }
@@ -1910,13 +2016,16 @@ async function grimAuto(p,u){
     if(x){ p.hand.splice(p.hand.indexOf(x),1); p.drop.push(fresh(x)); const cand=p.drop.filter(y=>y!==x&&((isUnit(y)&&!y.c.sent&&!y.c.trig&&y.c.g<=2)||(y.c.kind!=='unit'&&y.c.kind!=='ticket'&&y.id!=='twincast'&&y.id!=='transphere')));
       if(cand.length){ let y; if(p.ai) y=cand.find(z=>z.id==='judradjim')||cand.sort((a,b)=>score(b)-score(a))[0]; else { const r=await pickCards(p,'Sour Grapes: เลือกการ์ดจาก Drop ขึ้นมือ',cand,{min:1,max:1}); y=cand[r[0]]; } p.drop.splice(p.drop.indexOf(y),1); p.hand.push(y); log(`Sour Grapes: ทิ้ง ${x.c.s} · นำ ${y.c.s} ขึ้นมือ`); } } }
 }
-const canOrder = (p,u) => !u.c.noplay && (u.id!=='globe'||!p.regalis) && u.id!=='bonfire' && (!u.c.grim || (hasFrierenVG(p) && p.en>=2 && !p.oz.some(o=>o.id===u.id))) && (u.id!=='judradjim' || (hasFrierenVG(p) && p.en>=2 && gradeOf(opp(p).f.VC)>=3)) && u.c.g<=gradeOf(p.f.VC) && p.orders<p.orderLimit && (p.onlyCM!==G.turn || !!u.c.cm) && (u.id!=='crimson' || FAN(p.f.VC)) && (u.id!=='mates' || !LM(p.f.VC) || upN(p)>=1) && (u.id!=='sweet' || upN(p)>=1) && (u.id!=='imprisoned' || /Oblivionis/.test(p.f.VC.c.n)) && (!u.c.ult || (VY(p.f.VC) && (u.id==='bscross'?p.soul.length>=1:upN(p)>=1)));
+const canOrder = (p,u) => !u.c.noplay && (u.id!=='kakug'||GEN(p.f.VC)) && (u.id!=='globe'||!p.regalis) && u.id!=='bonfire' && (!u.c.grim || (hasFrierenVG(p) && p.en>=2 && !p.oz.some(o=>o.id===u.id))) && (u.id!=='judradjim' || (hasFrierenVG(p) && p.en>=2 && gradeOf(opp(p).f.VC)>=3)) && u.c.g<=gradeOf(p.f.VC) && p.orders<p.orderLimit && (p.onlyCM!==G.turn || !!u.c.cm) && (u.id!=='crimson' || FAN(p.f.VC)) && (u.id!=='mates' || !LM(p.f.VC) || upN(p)>=1) && (u.id!=='sweet' || upN(p)>=1) && (u.id!=='imprisoned' || /Oblivionis/.test(p.f.VC.c.n)) && (!u.c.ult || (VY(p.f.VC) && (u.id==='bscross'?p.soul.length>=1:upN(p)>=1)));
 
 // ---- abilities on attack ----
 async function onAttack(p,A,attC,tgtC){
   const d=opp(p), T=d.f[tgtC];
   if(attC==='VC'){
     if(tgtC==='VC' && (A.id==='rez'||A.id==='vita')) await rezaelCall(p,A);
+    if(A.id==='lisia') await lisiaAttack(p,A);
+    if(A.id==='miifa' && T && gradeOf(T)>=3){ const gk=p.drop.filter(x=>isUnit(x)&&GK(x)); if(gk.length){ let pk; if(p.ai) pk=gk.slice(0,2); else { const r=await pickCards(p,'Miifa: นำยูนิต “Gekka” จาก Drop ไว้ใต้เด็ค (สูงสุด 2 ใบ) ใบละ +5000',gk,{min:0,max:2}); pk=r.map(i=>gk[i]); }
+      pk.forEach(x=>{ p.drop.splice(p.drop.indexOf(x),1); p.deck.push(fresh(x)); }); if(pk.length){ A.pb+=5000*pk.length; log(`Miifa +${5000*pk.length}`); } } }
     if(A.id==='vortex' && p.vtxT===G.turn && !p.used.has('vtxAtk')){ p.used.add('vtxAtk'); const n=p.persona?2:1; const cols=[['FL','BL'],['FR','BR'],['BC']]; let picks;
       if(p.ai) picks=cols.map(cc=>[cc,cc.filter(c=>p.f[c]&&p.f[c].rest).length]).sort((a,b)=>b[1]-a[1]).slice(0,n).map(x=>x[0]);
       else { picks=[]; for(let i=0;i<n;i++){ const ch=await bpFor(p,0,`Vortex Dragon: แตะช่องในแถวตั้งที่จะ Stand แนวหลังทั้งหมด (${i+1}/${n})`,['FL','BL','FR','BR','BC'],false); const col=cols.find(cc=>cc.includes(ch)); if(col&&!picks.includes(col)) picks.push(col); } }
@@ -2100,6 +2209,8 @@ function moveToGC(d,u,fromC){
   if(u.id==='sage' && G.bat && G.bat.A && G.bat.A.atkT===G.turn && G.bat.A.atkN>=2) u.gsh+=15000;
   if(u.id==='myun2' && hasMyunVG(d)) u.gsh+=hasMyunG3(d)?10000:5000;
   if(u.id==='vortex' && KEN(d.f.VC)) u.gsh+=10000;
+  if(u.id==='chelna' && hasLisG3(d)) u.gsh+=5000;
+  if(u.id==='miifa' && GK(d.f.VC)) u.gsh+=10000;
   if(u.id==='perijeacro' && opp(d).f.VC && gradeOf(opp(d).f.VC)>=3) u.gsh+=5000;
   if(d.magShield && G.turn<=d.magShield.until && LM(u)) u.gsh+=5000*d.magShield.n;
   d.gc.push(u);
@@ -2348,6 +2459,7 @@ async function onNormalOrder(p){
 }
 async function playNormalOrder(p,u,fromDrop){
   if(u.id==='guren'||u.id==='kaen'){ await playOvlOrder(p,u,fromDrop); return; }
+  if(u.id==='kakug' && !fromDrop){ await lisiaPlay(p,u); return; }
   if(u.c.ult){ await playUlt(p,u,fromDrop); return; }
   if(u.c.song){ await playSong(p,u,fromDrop?'drop':'hand'); return; }
   if(u.id==='judradjim'){ p.hand.splice(p.hand.indexOf(u),1); p.orders++; p.en-=2; p.drop.push(fresh(u)); log(`${p.short} เล่น Judradjim`); fx('attack'); await onOrderPlayed(p);
@@ -2408,6 +2520,7 @@ async function doAttack(p,attC,boostC,tgtC){
       const x=d.soul.find(y=>y.id===id); if(!x || d.used.has('soul'+id)) continue;
       if(await yes(d,`${x.c.n} (Soul): นำไว้ใต้เด็คเพื่อให้แวนการ์ด +${amt}?`, d.dmg.length>=2)){
         d.used.add('soul'+id); d.soul.splice(d.soul.indexOf(x),1); d.deck.push(fresh(x)); d.f.VC.pb+=amt; log(`${d.short} Lubna (Soul): แวนการ์ด +${amt}`); fx('guard'); render(); } } }
+  if(tgtC==='VC' && d.f.VC.id==='lisia' && !d.used.has('lisFan')) await lisiaFantome(d);
   if(tgtC==='VC' && d.f.VC.id==='maier' && !d.used.has('maierDef') && d.soul.length){
     const bfs=RCS.filter(c=>d.f[c] && BF(d.f[c]));
     if(bfs.length){
@@ -2446,7 +2559,7 @@ async function closeBattle(){
   if(b.B && p.f[b.boostC]===b.B){
     if(b.B.id==='yuika' && b.attC!=='VC' && p.f[b.attC]===b.A && p.soul.length && await yes(p,`Yuika: SB1 คืน ${b.A.c.s} ขึ้นมือ?`, b.A.c.g>=2)){
       await sb(p,1); await returnToHand(p,b.attC,false); }
-    if((b.B.id==='edwige'||b.B.id==='bladefeather'||b.B.id==='stemdev'||b.B.id==='lyrics') && await yes(p,`${b.B.c.s}: นำยูนิตนี้ลง Soul ให้ยูนิต 1 ตัว +2000?`, true)){
+    if((b.B.id==='edwige'||b.B.id==='bladefeather'||b.B.id==='stemdev'||b.B.id==='lyrics'||b.B.id==='bflail') && await yes(p,`${b.B.c.s}: นำยูนิตนี้ลง Soul ให้ยูนิต 1 ตัว +2000?`, true)){
       const e=b.B; p.f[b.boostC]=null; p.soul.push(fresh(e));
       const c=await chooseUnitFor(p,'เลือกยูนิตรับ +2000','drive'); if(c&&p.f[c]){ p.f[c].pt+=2000; } log(`${e.c.s} ลง Soul +2000`); }
     else if(b.B.id==='cerrgaon' && b.cerr && await yes(p,'Cerrgaon: Retire ยูนิตนี้ เพื่อดู 2 ใบบนเด็ค เลือก 1 ใบขึ้นมือ?', true)){
@@ -2477,7 +2590,7 @@ async function closeBattle(){
     const cbN=p.mortCostT===G.turn?0:1;
     const pool=[...p.hand.filter(x=>isUnit(x)&&/Mortis|睦/.test(x.c.n)).map(x=>({x,z:'hand'})),...RCS.filter(c=>p.f[c]&&/Mortis|睦/.test(p.f[c].c.n)).map(c=>({x:p.f[c],c}))];
     if(pool.length>=2 && upN(p)>=cbN && await yes(p,`Mortis: ${cbN?'CB1 และ ':''}Bind ยูนิต Mortis 2 ใบ เพื่อ Stand แวนการ์ด?`, true)){
-      let picks; if(p.ai) picks=pool.slice(0,2); else { const r=await pickCards(p,'Mortis: เลือกยูนิต 睦/Mortis 2 ใบที่จะ Bind',pool.map(o=>o.x),{min:2,max:2}); picks=r.map(i=>pool[i]); }
+      let picks; if(p.ai) picks=pool.slice(0,2); else { const r=await pickCards(p,'Mortis: เลือกยูนิต Mortis 2 ใบที่จะ Bind',pool.map(o=>o.x),{min:2,max:2}); picks=r.map(i=>pool[i]); }
       p.used.add('m4stand'); if(cbN) await cb(p,1);
       for(const o of picks){ if(o.c){ p.f[o.c]=null; } else p.hand.splice(p.hand.indexOf(o.x),1); p.bind.push(fresh(o.x)); }
       b.A.rest=false; b.A.dm=(b.A.dmT===G.turn?(b.A.dm||0):0)+3-(gradeOf(opp(p).f.VC)>=3?1:0); b.A.dmT=G.turn;
@@ -2506,6 +2619,7 @@ async function closeBattle(){
       p.hand.splice(p.hand.indexOf(x),1); p.soul.push(fresh(x)); v.dm-=1; FRONT.forEach(c=>{ if(p.f[c]) p.f[c].pt+=5000; }); log('Dragonic Overlord: Drive +1 · แถวหน้าทั้งหมด +5000'); } render(); }
   if(b.attC!=='VC' && !b.charm && b.tgtC!=='VC' && b.A.id==='overlord' && p.f[b.attC]===b.A && KEN(p.f.VC) && p.en>=3 && !p.used.has('ovlR'+b.A.uid) && await yes(p,'Dragonic Overlord (RC): Energy-Blast 3 เพื่อ Stand?', true)){ p.used.add('ovlR'+b.A.uid); p.en-=3; b.A.rest=false; log('Dragonic Overlord (RC): Stand'); }
   if(!b.charm && b.B && p.f[b.boostC]===b.B && b.B.id==='elmo' && KEN(p.f.VC) && await yes(p,'Elmo: นำยูนิตนี้ลง Soul แล้วจั่ว 1?', true)){ const e=b.B; p.f[b.boostC]=null; p.soul.push(fresh(e)); draw(p,1); log('Elmo: ลง Soul · จั่ว 1'); }
+  if(!b.charm && b.attC!=='VC' && b.A.id==='elber' && p.f[b.attC]===b.A && b.A.lisiaT===G.turn && b.d.f[b.tgtC] && gradeOf(b.d.f[b.tgtC])>=3 && p.en>=3 && !p.used.has('elb'+b.A.uid) && await yes(p,'Elberina: Energy-Blast 3 Stand ยูนิตนี้?',true)){ p.used.add('elb'+b.A.uid); p.en-=3; const u=b.A; u.rest=false; if(crit(u)>=2){ u.pt+=10000; u.ct=1-u.c.crit; log('Elberina: Stand · +10000 · Critical เหลือ 1'); } else log('Elberina: Stand'); }
   if(b.lubToSoul && p.f[b.attC]===b.A){ p.f[b.attC]=null; p.soul.push(fresh(b.A)); log('Lubna ลง Soul'); }
   if(b.petie && b.B && p.f[b.boostC]===b.B){ const o=[]; if(!p.used.has('petieEC')) o.push({l:'Energy-Charge 2',v:'ec',pri:1}); if(!p.used.has('petieCC') && p.dmg.some(d=>!d.up)) o.push({l:'นำ Miss Petie ลง Soul เพื่อ Counter-Charge 1',v:'cc'});
     if(o.length){ let v; if(p.ai) v=(o.find(x=>x.v==='cc')&&p.en>=8)?'cc':o[0].v; else { o.push({l:'ไม่ใช้',v:null}); v=await askP(p,'Miss Petie: เลือกหนึ่งอย่าง','',o); }
@@ -2536,10 +2650,10 @@ function guardItems(d){
   const vg=d.f.VC.c.g;
   d.hand.forEach(u=>{ if(noG1 && u.c.g>=1 && u.c.kind!=='blitz') return;
     if(isUnit(u)){ if(u.c.sent && b.noSent) return; items.push({u,t:u.c.sent?'sent':'unit'}); }
-    else if(u.c.kind==='blitz'){ if(u.c.g>vg && !(u.id==='warflag' && vg<gradeOf(opp(d).f.VC))) return; if((u.id==='twincast'||u.id==='transphere') && d.regalis) return; if(u.id==='transphere' && !upN(d)) return; if(u.id==='sanctitude' && vg>3) return; items.push({u,t:'blitz'}); }
+    else if(u.c.kind==='blitz'){ if(u.c.g>vg && !((u.id==='warflag'||u.id==='sairei') && vg<gradeOf(opp(d).f.VC))) return; if((u.id==='twincast'||u.id==='transphere') && d.regalis) return; if(u.id==='transphere' && !upN(d)) return; if(u.id==='sanctitude' && vg>3) return; items.push({u,t:'blitz'}); }
     else if(isTicket(u)) items.push({u,t:'ticket'});
   });
-  RCS.filter(c=>c!==b.tgtC&&!(b.own===d&&c===b.attC)&&d.f[c]&&((c[0]==='F'&&(d.f[c].c.intercept||(d.f[c].id==='cablish'&&hasMyunVG(d))))||(d.f[c].id==='tarnu'&&hasMagVG(d))||(d.f[c].id==='perijeacro'&&gradeOf(d.f.VC)>=3)||(d.f[c].id==='aido'&&hasLS(d))||(d.f[c].id==='leilon'&&d.f.VC&&FAN(d.f.VC)))).forEach(c=>items.push({u:d.f[c],c,t:'icpt'}));
+  RCS.filter(c=>c!==b.tgtC&&!(b.own===d&&c===b.attC)&&d.f[c]&&((c[0]==='F'&&(d.f[c].c.intercept||(d.f[c].id==='cablish'&&hasMyunVG(d))))||(d.f[c].id==='tarnu'&&hasMagVG(d))||(d.f[c].id==='perijeacro'&&gradeOf(d.f.VC)>=3)||(d.f[c].id==='henia'&&GEN(d.f.VC))||(d.f[c].id==='aido'&&hasLS(d))||(d.f[c].id==='leilon'&&d.f.VC&&FAN(d.f.VC)))).forEach(c=>items.push({u:d.f[c],c,t:'icpt'}));
   return items;
 }
 function guardValid(d,items,sel){
@@ -2562,6 +2676,7 @@ async function applyGuard(d,xs){
       if(x.u.id==='twincast'){ d.regalis=true; T.pb+=10000; log(`${d.short} Twincast: ${T.c.s} +10000`); }
       if(x.u.id==='sanctitude'){ needDiscard++; b.noHit=true; log(`${d.short} Sanctitude: ไม่โดน Hit`); }
       if(x.u.id==='defroar'){ const gs=d.gc.filter(g=>isUnit(g)&&!g.c.sent); const t=gs.sort((a,b)=>b.gsh-a.gsh)[0]; if(t){ t.gsh+=10000; t.roar=true; log(`${d.short} Defensing Roar: ${t.c.s} Shield +10000`); } }
+      if(x.u.id==='sairei'){ T.pb+=15000; let t=`${d.short} Sairei: ${T.c.s} +15000`; if(d.second && !d.saiTicket){ d.saiTicket=true; d.hand.push(mk('pshield')); d.orderLimit=Math.max(d.orderLimit,2); t+=' · ได้ Persona Shield'; } if(opp(d).persona){ T.pb+=5000; t+=' · +5000'; } log(t); }
       if(x.u.id==='warflag'){ T.pb+=15000; let t=`${d.short} Battle Flag: ${T.c.s} +15000`;
         if(d.second && !d.flagTicket){ d.flagTicket=true; d.hand.push(mk('pshield')); t+=' · ได้ Persona Shield'; }
         if(opp(d).persona){ T.pb+=5000; t+=' · +5000'; } log(t); }
@@ -2571,6 +2686,10 @@ async function applyGuard(d,xs){
       d.hand.splice(d.hand.indexOf(x.u),1); d.gc.push(fresh(x.u)); T.pb+=10000; d.orderLimit=Math.max(d.orderLimit,2); log(`${d.short} Persona Shield: ${T.c.s} +10000`);
       for(const c of RCS){ const w=d.f[c]; if(w&&w.id==='nazr'&&c!==b.tgtC&&d.soul.length&&await yes(d,'Nazrdeen: SB1 ย้ายยูนิตนี้ไป (GC)?',true)){ await sb(d,1); moveToGC(d,w,c); log(`Nazrdeen: ย้ายไป (GC) · Shield ${w.gsh}`); } }
     } else { moveToGC(d,x.u,x.c); await onGC(d,x.u);
+      if(x.u.id==='henia' && x.c && gradeOf(opp(d).f.VC)>=3 && d.soul.length && await yes(d,'Heniatrack: SB1 Shield +5000?',true)){ await sb(d,1); x.u.gsh+=5000; log('Heniatrack: Shield +5000'); }
+      if(x.u.id==='habzon' && !x.c && GEN(d.f.VC) && (upN(d)||d.en>=3)){ let how; if(d.ai) how=d.en>=3?'eb':'cb'; else { const o=[]; if(upN(d)) o.push({l:'CB1',v:'cb',pri:1}); if(d.en>=3) o.push({l:'Energy-Blast 3',v:'eb'}); o.push({l:'ไม่ใช้',v:null}); how=await askP(d,'Habitabulzon: จั่ว 1?','',o); }
+        if(how){ if(how==='cb') await cb(d,1); else d.en-=3; draw(d,1); log('Habitabulzon: จั่ว 1'); } }
+      if(x.u.id==='lutika' && hasLisG3(d)){ const gk=d.drop.filter(GK); if(gk.length && await yes(d,'Lutika: นำการ์ด “Gekka” จาก Drop ไว้ใต้เด็ค เพื่อ Shield +5000?',true)){ const y=gk[0]; d.drop.splice(d.drop.indexOf(y),1); d.deck.push(fresh(y)); x.u.gsh+=5000; log('Lutika: Shield +5000'); } }
       if(x.u.id==='misparf' && !x.c && (d.soul.length||d.en>=2)){ let how; if(d.ai) how=d.en>=2?'eb':'sb'; else { const o=[]; if(d.soul.length) o.push({l:'SB1',v:'sb',pri:1}); if(d.en>=2) o.push({l:'Energy-Blast 2',v:'eb'}); o.push({l:'ไม่ใช้',v:null}); how=await askP(d,'Misparf: Shield +10000?','',o); }
         if(how){ if(how==='sb') await sb(d,1); else d.en-=2; const og=gradeOf(opp(d).f.VC); const v=(gradeOf(d.f.VC)<og||og>=3)?15000:10000; x.u.gsh+=v; log(`Misparf: Shield +${v}`); } } if((x.u.id==='valsheblan'||x.u.id==='spiralsm') && !x.c && d.f.VC && FAN(d.f.VC)) await valshCost(d,'draw');
       if(x.u.id==='falhart' && !x.c) await valshCost(d,'draw');
@@ -2606,7 +2725,7 @@ async function aiGuard(d){
   const pool=[...items.filter(x=>x.t==='icpt').map(x=>({x,s:x.u.c.sh})),
     ...items.filter(x=>x.t==='ticket'||(x.t==='blitz'&&(x.u.id==='twincast'||x.u.id==='stille'))).map(x=>({x,s:10000})),
     ...items.filter(x=>x.t==='blitz'&&x.u.id==='transphere').map(x=>({x,s:25000})),
-    ...items.filter(x=>x.t==='blitz'&&x.u.id==='warflag').map(x=>({x,s:15000})),
+    ...items.filter(x=>x.t==='blitz'&&(x.u.id==='warflag'||x.u.id==='sairei')).map(x=>({x,s:15000})),
     ...items.filter(x=>x.t==='unit'&&x.u.c.sh>0).sort((a,b2)=>b2.u.c.sh-a.u.c.sh||val(a.u)-val(b2.u)).map(x=>({x,s:x.u.c.sh}))];
   let sum=0; const use=[];
   for(const y of pool){ if(sum>=target) break; const trial=[...use.map(z=>z.x),y.x]; if(guardValid(d,items,trial.map(z=>items.indexOf(z)))) continue; use.push(y); sum+=y.s; }
@@ -2671,6 +2790,9 @@ async function aiMain(p){
     if(p.orders===0){ const gu=p.hand.find(x=>x.id==='guren'&&canOrder(p,x)); const kn=p.hand.find(x=>x.id==='kaen'&&canOrder(p,x));
       if(gu && realHand(p).length>=2) await playNormalOrder(p,gu,false); else if(kn && ['BL','BC','BR'].filter(c=>opp(p).f[c]).length>=2) await playNormalOrder(p,kn,false); }
   }
+  if(GEN(p.f.VC)){ const kg=p.hand.find(x=>x.id==='kakug'&&canOrder(p,x)); if(kg && p.orders===0 && RCS.some(c=>!p.f[c])) await playNormalOrder(p,kg,false);
+    if(acts(p).some(a=>a.k==='virea') && RCS.some(c=>!p.f[c])) await doAct(p,'virea');
+    if(acts(p).some(a=>a.k==='kakdmg') && p.dmg.some(d=>d.u.id==='kakug'&&!d.up)) await doAct(p,'kakdmg'); }
   if(acts(p).some(a=>a.k==='globeR')) await doAct(p,'globeR');
   if(acts(p).some(a=>a.k==='globeX') && upN(p)>=2 && realHand(p).length<=3) await doAct(p,'globeX');
   for(const a of acts(p).filter(a=>a.k.startsWith('conroe:'))) if(realHand(p).length<=3 && p.deck.some(x=>x.c.g===1)) await doAct(p,a.k);
@@ -2730,6 +2852,7 @@ async function endPhase(p){
   if(p.song){ p.drop.push(fresh(p.song)); p.song=null; }
   if(RCS.some(c=>p.lk[c]) && p.noUnlockT!==G.turn) await unlockAll(p,false);
   { const o=opp(p); if(o.unlockOppEnd && o.noUnlockT!==G.turn){ o.unlockOppEnd=false; await unlockAll(o,false); } }
+  for(const c of RCS){ const u=p.f[c]; if(u && u.soulEnd===G.turn){ p.f[c]=null; p.soul.push(fresh(u)); log(`${u.c.s} ลง Soul ตอนจบเทิร์น`); } }
   for(const c of RCS){ const u=p.f[c]; if(u && u.botEnd===G.turn){ p.f[c]=null; p.deck.push(fresh(u)); log(`${u.c.s} ไปไว้ใต้เด็คตอนจบเทิร์น`); } }
   for(const c of RCS){ const u=p.f[c]; if(u && u.simRet===G.turn){ p.f[c]=null; await retire(p,u); log('Simiess: Retire ตอนจบเทิร์น'); } }
   if(vc && vc.id==='magnolia'){
@@ -2871,7 +2994,7 @@ async function battleStart(p){
     render(); await sleep(250);
   }
 }
-/* Stride (超越) per the comprehensive rules: Stride step comes after the ride step; your vanguard must have an ability that lets you stride,
+/* Stride  per the comprehensive rules: Stride step comes after the ride step; your vanguard must have an ability that lets you stride,
    and either both vanguards are grade 3+ or your vanguard was grade 3+ at the start of your turn. Only face-down G units in the G zone can be strided. */
 const canStrideVG = (p,v) => !!(v && !v.c.gunit && (v.c.canStride || (p.strideGrantT===G.turn)));
 function strideAllowed(p){ const v=p.f.VC, o=opp(p).f.VC; if(!canStrideVG(p,v) || !p.gdeck.length || p.inExtra) return false;
@@ -2894,7 +3017,7 @@ async function strideStep(p){
   if(!pay||!pay.length) return;
   for(const u of pay){ p.hand.splice(p.hand.indexOf(u),1); p.drop.push(fresh(u)); } log(`${p.short} ทิ้ง ${pay.map(u=>u.c.s).join(', ')} เพื่อ Stride`);
   p.gdeck.splice(p.gdeck.indexOf(g),1); const heart=p.f.VC; const wasRest=heart.rest; p.heart=heart; fresh(g); g.rest=wasRest; g.heartN=heart.c.n; g.placedTurn=G.turn; p.f.VC=g; p.strideT=G.turn;
-  log(`STRIDE! ${p.short}: ${g.c.s} (Heart: ${heart.c.s})`); fx('persona'); await rideFxShow('stride',[g],{ai:p.ai,who:p.short,pi:p.i,clan:'ds'});
+  log(`STRIDE! ${p.short}: ${g.c.s} (Heart: ${heart.c.s})`); if(g.id==='ccommand'&&!GB(p,3)) log(`Chronos Command: ตอนนี้ Generation Break ${gFaceUp(p)+1} ต้องถึง 3 ถึงจะใช้สกิลได้`); fx('persona'); await rideFxShow('stride',[g],{ai:p.ai,who:p.short,pi:p.i,clan:'ds'});
   // discarded Balihu may call itself
   for(const u of pay){ if(u.id==='balihu' && p.drop.includes(u) && !RCS.some(c=>p.f[c]&&p.f[c].id==='balihu') && RCS.some(c=>!p.f[c]) && await yes(p,'Balihu ถูกทิ้งเป็นค่า Stride: เรียกขึ้น (RC)? (เทิร์นนี้เกรด -2)')){
       p.drop.splice(p.drop.indexOf(u),1); const c=await chooseCallCircle(p,u); log('Balihu: เรียกจาก Drop'); await place(p,u,c); if(p.f[c]===u){ u.gm=-2; u.gmT=G.turn; } } }
@@ -3006,12 +3129,12 @@ function drawArrow(){
   sv.innerHTML=`<defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--atk)"/></marker></defs>
     <line x1="${sx}" y1="${sy}" x2="${ex}" y2="${ey}" stroke="var(--atk)" stroke-width="5" stroke-linecap="round" marker-end="url(#ah)" class="aline"/>`;
 }
-/* ---- BGM: 5 original synthesized battle tracks, random per game ---- */
+/* ---- BGM: 6 original synthesized battle tracks, random per game ---- */
 const BGM={timer:null,step:0,bars:0,next:0,gain:null,dist:null,cur:null,on:true,order:[],idx:0};
 try{ BGM.on = typeof localStorage==='undefined' || localStorage.getItem('vg-bgm')!=='0'; }catch(e){}
 const TRACKS={
   dark:{bpm:168,name:'Dark Crusade'}, hype:{bpm:150,name:'Hype Clash'}, rock:{bpm:156,name:'Iron Riff'},
-  epic:{bpm:138,name:'Grand Vanguard'}, dnb:{bpm:172,name:'Neon Rush'}
+  epic:{bpm:138,name:'Grand Vanguard'}, dnb:{bpm:172,name:'Neon Rush'}, rise:{bpm:172,name:'Moonrise Vanguard'}
 };
 const CH_HYPE=[[110,[220,261.6,329.6]],[87.31,[174.6,220,261.6]],[130.8,[261.6,329.6,392]],[98,[196,246.9,293.7]]];
 const CH_DARK=[[73.42,[293.7,349.2,440]],[58.27,[233.1,293.7,349.2]],[98,[196,233.1,293.7]],[55,[220,277.2,329.6]]];
@@ -3046,6 +3169,35 @@ function bgmTick(){ const c=SND.ctx; if(!c||!BGM.gain) return;
   while(BGM.next < c.currentTime+0.15){ STEPS[BGM.cur](BGM.step,BGM.next,BGM.s16); BGM.next+=BGM.s16; BGM.step=(BGM.step+1)%128;
     if(BGM.step%16===0){ BGM.bars++; if(BGM.bars>=64){ bgmNextTrack(); return; } } } }
 const isHot=()=>G && (G.phase==='battle' || !!G.bat);
+// Moonrise Vanguard: original track (D minor, 172 BPM, anime-rock drive). Melody written for this game.
+const RISE_CH=[[73.42,[293.7,349.2,440]],[58.27,[233.1,293.7,349.2]],[65.41,[261.6,329.6,392]],[55,[220,277.2,329.6]]];
+const RISE_MEL=[[0,69,2],[2,69,2],[4,72,2],[6,74,4],[10,72,2],[12,69,2],[14,67,2],[16,65,2],[18,67,2],[20,69,8],
+  [32,65,2],[34,65,2],[36,70,2],[38,69,2],[40,67,2],[42,65,2],[44,67,4],[48,62,4],[52,65,2],[54,67,2],[56,69,8],
+  [64,67,2],[66,67,2],[68,72,2],[70,70,2],[72,69,2],[74,67,2],[76,64,4],[80,67,2],[82,69,2],[84,70,2],[86,72,2],[88,76,4],[92,74,2],[94,72,2],
+  [96,73,4],[100,76,4],[104,69,2],[106,73,2],[108,76,4],[112,76,2],[114,74,2],[116,73,2],[118,69,10]];
+const RISE_AT={}; RISE_MEL.forEach(([s,m,l])=>RISE_AT[s]=[440*Math.pow(2,(m-69)/12),l]);
+const RISE_ARP=[0,1,2,1, 2,0,1,2, 0,1,2,1, 2,1,0,2];
+STEPS.rise=function(st,t,S16){
+  const d=BGM.gain, x=BGM.dist, s=st%16, bar=BGM.bars, ch=RISE_CH[(bar>>1)%4], hot=isHot(), sec=bar%32, chorus=sec>=16, intro=sec<4;
+  // drums
+  if(s===0||s===8||(chorus&&(s===10||s===14))||(hot&&s===7)) tone(150,0.15,{t,to:44,v:0.6,dest:d});
+  if(!intro&&(s===4||s===12)){ noise(0.16,{t,ft:'bandpass',f:1800,q:0.7,v:0.36,dest:d}); tone(200,0.08,{t,to:140,type:'triangle',v:0.12,dest:d}); }
+  if(s%2===0||hot) noise(s%4===2?0.06:0.025,{t,ft:'highpass',f:8500,v:s%4===2?0.07:0.04,dest:d});
+  if(s===0&&bar%8===0) noise(1.4,{t,ft:'highpass',f:3500,v:0.13,dest:d});
+  if(sec===15&&s>=8) noise(S16*1.1,{t,ft:'bandpass',f:700+(s-8)*450,q:2,v:0.05+(s-8)*0.012,dest:d});
+  if(sec===15&&(s===12||s===13||s===14||s===15)) tone(170,0.09,{t,to:60,v:0.4,dest:d});
+  // bass: driving eighths with octave pops
+  if(s%2===0){ const f=ch[0]*(s===6||s===14?2:1); tone(f,S16*1.6,{t,type:'sawtooth',v:0.12,lp:1100,dest:x}); }
+  // guitar: power-chord stabs in the chorus, muted chugs before it
+  if(chorus&&[0,3,6,8,11,14].includes(s)){ const r=ch[0]*4; [r,r*1.498,r*2].forEach(f=>tone(f,S16*(s===14?2:1.4),{t,type:'sawtooth',v:0.035,lp:2800,dest:x})); }
+  else if(!intro&&s%2===0) tone(ch[0]*4,S16*0.6,{t,type:'sawtooth',v:0.03,lp:1200,dest:x});
+  // pad
+  if(s===0&&bar%2===0) ch[1].forEach(f=>tone(f,S16*31,{t,type:'triangle',v:chorus?0.016:0.024,att:0.3,dest:d}));
+  // lead
+  if(chorus){ const n=RISE_AT[(bar%8)*16+s]; if(n){ const [f,l]=n; tone(f,S16*l*0.95,{t,type:'square',v:0.045,lp:4200,dest:d}); tone(f*1.004,S16*l*0.95,{t,type:'sawtooth',v:0.02,lp:3000,dest:d}); if(hot) tone(f*2,S16*l*0.9,{t,type:'sine',v:0.018,dest:d}); } }
+  else if(!intro){ const f=ch[1][RISE_ARP[s]]*2; tone(f,S16*0.9,{t,type:'triangle',v:hot?0.04:0.03,dest:d}); }
+};
+
 STEPS.hype=function(st,t,S16){
   const d=BGM.gain, s=st%16, bar=(st/16|0), ch=CH_HYPE[(bar>>1)%4], hot=isHot();
   if(s%4===0) tone(150,0.16,{t,to:42,v:0.55,dest:d});
@@ -3621,7 +3773,7 @@ function render(){
   else if(G.over) btns=`<button class="btn pri" data-bar="again">เล่นใหม่</button>`;
   else if(!mine || G.busy || !G.next) btns=`<span class="wait">${mine?((typeof PEND!=='undefined'&&Object.keys(PEND).length)?'รอเพื่อนตัดสินใจ…':'กำลังประมวลผล…'):(NET.role?'รอเพื่อนเล่น…':'รอคู่แข่ง')}${NET.role==='guest'?'<br><small>ถ้ารอนาน: ให้คนสร้างห้องเปิดหน้าเกมค้างไว้ อย่าสลับไปแอปอื่น</small>':''}</span>`;
   else if(G.phase==='main'){
-    btns=`<button class="btn" data-bar="act" ${acts(me).length?'':'disabled'}>ใช้สกิล (${acts(me).length})</button>`
+    btns=`<button class="btn" data-bar="act" ${(acts(me).length||actHints(me).length)?'':'disabled'}>ใช้สกิล (${acts(me).length})</button>`
       + `<button class="btn pri" data-bar="next">${G.turn>1?'เข้าสู่ Battle':'จบเทิร์น'}</button>`;
   } else if(G.phase==='battle') btns=`<span class="hint">แตะยูนิตแถวหน้าที่เรืองแสงเพื่อโจมตี</span><button class="btn pri" data-bar="next">จบเทิร์น</button>`;
   bar.innerHTML=btns;
@@ -3659,9 +3811,9 @@ async function onTap(e){
     if(G.busy||!G.next) return;
     if(a==='next'){ if(NET.role==='guest'){ G.next=null; render(); netSend('i',{k:'next'}); return; } const r=G.next; G.next=null; r(); return; }
     if(a==='act'){
-      const L=acts(me); if(!L.length) return;
+      const L=acts(me), HN=actHints(me); if(!L.length&&!HN.length) return;
       const lb=NET.role!=='guest'; if(lb){ G.busy=true; render(); }
-      try{ const k=await ask('ใช้สกิล [ACT]','',L.map(x=>({l:x.l,v:x.k})).concat([{l:'ยกเลิก',v:null}])); if(k){ if(NET.role==='guest') netSend('i',{k:'act',a:{k}}); else await doAct(me,k); } }
+      try{ const k=await ask('ใช้สกิล [ACT]','',L.map(x=>({l:x.l,v:x.k})).concat(HN.map(h=>({l:h,v:null,dis:true})),[{l:'ยกเลิก',v:null}])); if(k){ if(NET.role==='guest') netSend('i',{k:'act',a:{k}}); else await doAct(me,k); } }
       finally{ if(lb) G.busy=false; render(); }
     }
     return;
